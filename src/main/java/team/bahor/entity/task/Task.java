@@ -8,6 +8,7 @@ import team.bahor.enums.task.Level;
 import team.bahor.enums.task.Priority;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,10 +24,14 @@ public class Task extends Auditable {
 
     private Priority priority;
 
+    @javax.persistence.Column(nullable = false)
+    private Long order_task;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "column_id")
     private Column column;
 
-
+    @OneToMany(mappedBy = "task",fetch = FetchType.LAZY)
+    private List<Comment> comments;
 
 }

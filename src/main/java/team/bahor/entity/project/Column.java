@@ -19,7 +19,7 @@ public class Column extends Auditable {
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
-    private Integer order;
+    private Integer orderColumn;
 
     @OneToMany(mappedBy = "column", fetch = FetchType.LAZY)
     private List<Task> tasks;
