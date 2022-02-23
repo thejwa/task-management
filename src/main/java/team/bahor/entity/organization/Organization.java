@@ -3,8 +3,10 @@ package team.bahor.entity.organization;
 import lombok.Getter;
 import lombok.Setter;
 import team.bahor.entity.Auditable;
+import team.bahor.entity.project.Project;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Setter
@@ -23,7 +25,12 @@ public class Organization extends Auditable {
 
     private Long ownerId;
 
-    private Integer memberCount = 0;
+    @Column(columnDefinition = "integer default 0")
+    private Integer memberCount;
 
-    private Integer projectCount = 0;
+    @Column(columnDefinition = "integer default 0")
+    private Integer projectCount;
+
+    @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)
+    private List<Project> projects;
 }
