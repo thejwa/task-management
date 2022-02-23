@@ -2,7 +2,6 @@ package team.bahor.entity.project;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.context.annotation.Lazy;
 import team.bahor.entity.Auditable;
 import team.bahor.entity.organization.Organization;
 
@@ -26,5 +25,5 @@ public class Project extends Auditable {
     private Organization organization;
 
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    private List<Column> columns;
+    private List<ProjectColumn> projectColumns;
 }

@@ -12,15 +12,15 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "columns")
-public class Column extends Auditable {
+public class ProjectColumn extends Auditable {
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
-    private Integer orderColumn;
+    private Integer columnOrder;
 
-    @OneToMany(mappedBy = "column", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "projectColumn", fetch = FetchType.LAZY)
     private List<Task> tasks;
 }

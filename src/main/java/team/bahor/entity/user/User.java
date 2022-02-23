@@ -22,7 +22,7 @@ public class User extends Auditable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", nullable = false)
-    private RolePermission role;
+    private Role role;
 
     private String profilePhoto;
 

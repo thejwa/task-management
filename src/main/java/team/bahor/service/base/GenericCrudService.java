@@ -1,0 +1,20 @@
+package team.bahor.service.base;
+
+import team.bahor.dto.BaseGenericDto;
+import team.bahor.dto.GenericDto;
+
+import java.io.Serializable;
+
+public interface GenericCrudService<
+        D extends GenericDto,
+        CD extends BaseGenericDto,
+        UD extends GenericDto,
+        K extends Serializable
+        > extends GenericService<D, K> {
+
+    K create(CD createDto);
+
+    Void delete(K id);
+
+    Void update(UD updateDto);
+}

@@ -3,7 +3,7 @@ package team.bahor.entity.user;
 
 import lombok.Getter;
 import lombok.Setter;
-import team.bahor.entity.BaseEntity;
+import team.bahor.entity.BaseGenericEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "roles")
-public class Role implements BaseEntity {
+public class Role implements BaseGenericEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
