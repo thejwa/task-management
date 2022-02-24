@@ -22,5 +22,4 @@ public class OrganizationUpdateDto extends GenericDto {
 
     private Integer projectCount;
 
-    private List<Project> projects;
 }
