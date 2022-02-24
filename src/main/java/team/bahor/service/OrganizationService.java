@@ -33,6 +33,7 @@ public class OrganizationService extends AbstractService<OrganizationRepository,
 
     public void update(OrganizationUpdateDto org){
         repository.save(mapper.fromUpdateDto(org));
+
     }
 
     public void delete(Long id){
