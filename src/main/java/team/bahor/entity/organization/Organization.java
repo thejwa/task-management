@@ -8,9 +8,9 @@ import team.bahor.entity.project.Project;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
 @Setter
 @Getter
+@Entity
 public class Organization extends Auditable {
 
     private String name;
