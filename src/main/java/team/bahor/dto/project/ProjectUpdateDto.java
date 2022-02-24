@@ -1,5 +1,6 @@
 package team.bahor.dto.project;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import team.bahor.dto.GenericDto;
