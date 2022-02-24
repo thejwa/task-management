@@ -1,5 +1,6 @@
 package team.bahor.dto.task;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,6 +16,7 @@ import team.bahor.enums.task.Priority;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+
 @Setter
 @Getter
 public class TaskDto extends GenericDto {
@@ -45,4 +47,22 @@ public class TaskDto extends GenericDto {
     private Long projectId;
 
     private List<TaskComment> taskComments;
+
+    @Builder(builderMethodName = "childBuilder")
+    public TaskDto(Long id, String code, LocalDateTime createdAt, Long createdBy, LocalDateTime updatedAt, Long updatedBy, Integer status, String name, String description, Level level, Priority priority, Long taskOrder, Long projectId, List<TaskComment> taskComments) {
+        super(id);
+        this.code = code;
+        this.createdAt = createdAt;
+        this.createdBy = createdBy;
+        this.updatedAt = updatedAt;
+        this.updatedBy = updatedBy;
+        this.status = status;
+        this.name = name;
+        this.description = description;
+        this.level = level;
+        this.priority = priority;
+        this.taskOrder = taskOrder;
+        this.projectId = projectId;
+        this.taskComments = taskComments;
+    }
 }

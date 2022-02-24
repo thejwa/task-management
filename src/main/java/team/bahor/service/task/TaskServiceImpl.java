@@ -10,13 +10,13 @@ import team.bahor.entity.task.Task;
 import team.bahor.mapper.task.TaskMapper;
 import team.bahor.repository.task.TaskRepository;
 import team.bahor.service.base.AbstractService;
-import team.bahor.validator.base.BaseGenericValidator;
+import team.bahor.validator.base.TaskValidator;
 
 import java.util.List;
 
 @Service
-public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper, BaseGenericValidator> implements TaskService {
-    public TaskServiceImpl(TaskMapper mapper, BaseGenericValidator validator, TaskRepository repository) {
+public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper, TaskValidator> implements TaskService {
+    public TaskServiceImpl(TaskMapper mapper, TaskValidator validator, TaskRepository repository) {
         super(mapper, validator, repository);
     }
 
@@ -32,11 +32,13 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
     @Override
     public Void delete(Long id) {
         repository.deleteById(id);
+        return null;
     }
 
     @Override
     public Void update(TaskUpdateDto updateDto) {
         repository.update(updateDto);
+        return null;
     }
 
 
