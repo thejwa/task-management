@@ -1,7 +1,6 @@
 package team.bahor.dto.organization;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import team.bahor.dto.BaseGenericDto;
 import team.bahor.entity.project.Project;
 
@@ -9,6 +8,9 @@ import java.util.List;
 
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class OrganizationCreatoDto implements BaseGenericDto {
     private String name;
 

@@ -1,7 +1,6 @@
 package team.bahor.dto.project;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import team.bahor.dto.BaseGenericDto;
 import team.bahor.entity.organization.Organization;
 import team.bahor.entity.project.ProjectColumn;
@@ -11,6 +10,9 @@ import java.util.List;
 
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProjectCreateDto implements BaseGenericDto {
     private String name;
 

@@ -2,6 +2,7 @@ package team.bahor.dto.task;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import team.bahor.dto.BaseGenericDto;
 import team.bahor.entity.task.TaskComment;
@@ -14,6 +15,7 @@ import java.util.List;
 @Setter
 @Getter
 @Builder
+@NoArgsConstructor
 public class TaskCreateDto implements BaseGenericDto {
 
     private Long createdBy;

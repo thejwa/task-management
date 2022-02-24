@@ -4,7 +4,11 @@ import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 import team.bahor.dto.organization.OrganizationCreatoDto;
 import team.bahor.dto.organization.OrganizationDto;
+import team.bahor.dto.organization.OrganizationUpdateDto;
 import team.bahor.entity.organization.Organization;
+import team.bahor.mapper.base.AbstractMapper;
+
+import java.util.List;
 
 @Component
 @Mapper(componentModel = "spring")
