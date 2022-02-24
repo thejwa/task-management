@@ -9,13 +9,11 @@ public class TestController {
     @ResponseBody
     @RequestMapping(value = "/test")
     public String testMethod(){
-
         return "hello.done";
     }
 
     @RequestMapping(value = "/login")
     public String testLogin(){
-
         return "/login";
     }
 }

@@ -23,14 +23,15 @@ public class UserRole implements BaseGenericEntity {
     @Column(nullable = false)
     private String code;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "role_permission",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "permission_id")
-    )
-    private List<UserPermission> permissions;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "role_permission",
+//            joinColumns = @JoinColumn(name = "role_id"),
+//            inverseJoinColumns = @JoinColumn(name = "permission_id")
+//    )
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<UserPermission> permissions;
 
 
 }

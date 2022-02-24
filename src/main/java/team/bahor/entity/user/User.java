@@ -25,13 +25,13 @@ public class User extends Auditable {
 
     private boolean blocked;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)
     private UserRole userRole;
 
     private String profilePhoto;
 
-    @OneToOne(cascade = CascadeType.ALL )
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "organization_id", referencedColumnName = "id")
     private Organization organization;
 

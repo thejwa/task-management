@@ -3,6 +3,7 @@ package team.bahor.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-//@Setter
+@Setter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Auditable implements BaseGenericEntity {
@@ -41,7 +42,7 @@ public abstract class Auditable implements BaseGenericEntity {
 
     private Integer status; //status enum'dan qanaqa statusdaligini frontga berib yuboramiz
 
-    private Boolean isDeleted;
+    private boolean isDeleted;
 
 
 }

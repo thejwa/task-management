@@ -12,6 +12,14 @@ import javax.persistence.*;
 @Setter
 @Table(name = "permissions")
 public class UserPermission implements BaseGenericEntity {
+    public UserPermission() {
+    }
+
+    public UserPermission(String name, String code) {
+        this.name = name;
+        this.code = code;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,5 +30,9 @@ public class UserPermission implements BaseGenericEntity {
     @Column(nullable = false)
     private String code;
 
+
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "role_id")
+//    private UserRole role;
 
 }

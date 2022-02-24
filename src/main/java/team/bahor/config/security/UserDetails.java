@@ -20,6 +20,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private String code;
     private boolean blocked;
     private boolean active;
+    private boolean deleted;
     private Set<GrantedAuthority> authorities;
 
     public UserDetails(User user) {
@@ -28,11 +29,12 @@ public class UserDetails implements org.springframework.security.core.userdetail
         this.password = user.getPassword();
         this.code = user.getCode();
         this.blocked = user.isBlocked();
-        this.active = user.getStatus()==0;
+        this.deleted = user.isDeleted();
+        this.active = user.getStatus() == 0;
         processAuthorities(user);
     }
 
-    private void processAuthorities(User user){
+    private void processAuthorities(User user) {
         authorities = new HashSet<>();
         UserRole role = user.getUserRole();
 
@@ -41,7 +43,6 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
         if (Objects.isNull(role.getPermissions())) return;
         role.getPermissions().forEach(permission -> authorities.add(new SimpleGrantedAuthority(permission.getCode())));
-
     }
 
     @Override
@@ -76,6 +77,11 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public boolean isEnabled() {
-        return this.active;
+        return (this.active && !this.deleted);
     }
+
+    public boolean isDeleted() {
+        return this.deleted;
+    }
+
 }
