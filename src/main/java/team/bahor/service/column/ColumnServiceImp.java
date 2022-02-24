@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import team.bahor.dto.column.ColumnCreateDto;
 import team.bahor.dto.column.ColumnDto;
 import team.bahor.dto.column.ColumnUpdateDto;
-import team.bahor.entity.column.Column;
+import team.bahor.entity.project.ProjectColumn;
 import team.bahor.mapper.column.ColumnMapper;
 import team.bahor.repository.column.ColumnRepository;
 import team.bahor.service.base.AbstractService;
@@ -24,7 +24,7 @@ implements ColumnService{
 
     @Override
     public String create(ColumnCreateDto createDto) {
-        Column column = mapper.fromCreateDto(createDto);
+        ProjectColumn projectColumn = mapper.fromCreateDto(createDto);
         return null;
     }
 

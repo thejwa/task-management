@@ -1,4 +1,4 @@
-package team.bahor.entity.column;
+package team.bahor.entity.project;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "columns")
-public class Column extends Auditable {
+public class ProjectColumn extends Auditable {
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
