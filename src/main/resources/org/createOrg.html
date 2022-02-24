@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment.html :: header('Home Page')"></head>
+<body class="myb">
+<section th:include="fragment.html :: navbar"></section>
 
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <form th:action="@{/organization/createOrg}" th:method="post" th:object="${dto}">
+                <div class="form-group">
+                    <label for="name" class="form-label">Title</label>
+                    <input class="form-control" type="text" id="name" name="name"  /> <!--th:field="*{name}"-->
+                    <span style="color: red" th:errors="*{name}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="website" class="form-label">Title</label>
+                    <input class="form-control" type="text" id="website" name="website"  />
+                    <span style="color: red" th:errors="*{website}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="logo" class="form-label">Title</label>
+                    <input class="form-control" type="text" id="logo" name="logo"  />
+                    <span style="color: red" th:errors="*{logo}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Title</label>
+                    <input class="form-control" type="text" id="email" name="email"  />
+                    <span style="color: red" th:errors="*{email}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="location" class="form-label">Title</label>
+                    <input class="form-control" type="text" id="location" name="location"  />
+                    <span style="color: red" th:errors="*{location}"></span>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="submit" value="save"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<section th:include="fragment.html :: js-files"></section>
 </body>
 </html>
