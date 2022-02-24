@@ -1,5 +1,6 @@
 package team.bahor.dto.project;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import team.bahor.dto.GenericDto;
@@ -20,4 +21,12 @@ public class ProjectUpdateDto extends GenericDto {
 
     private List<ProjectColumn> projectColumns;
 
+    @Builder(builderMethodName = "childBuilder")
+    public ProjectUpdateDto(Long id, String name, LocalDateTime deadline, String description, List<ProjectColumn> projectColumns) {
+        super(id);
+        this.name = name;
+        this.deadline = deadline;
+        this.description = description;
+        this.projectColumns = projectColumns;
+    }
 }

@@ -1,5 +1,12 @@
 package team.bahor.dto;
 
-public abstract class GenericDto implements BaseGenericDto {
+import lombok.*;
 
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public abstract class GenericDto implements BaseGenericDto {
+        private Long id;
 }
