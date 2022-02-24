@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@Table(name="organizations")
 public class Organization extends Auditable {
 
     private String name;
