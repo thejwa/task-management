@@ -9,6 +9,7 @@ import team.bahor.entity.organization.Organization;
 @Component
 @Mapper(componentModel = "spring")
 public interface OrganizationMapper {
- OrganizationDto toDto(Organization organization);
-Organization fromCreateDto(OrganizationCreatoDto dto);
+    OrganizationDto toDto(Organization organization);
+
+    Organization fromCreateDto(OrganizationCreatoDto dto);
 }

@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class OrganizationService {
+
     private final OrganizationRepository repository;
     private final OrganizationMapper mapper;
 
