@@ -12,4 +12,10 @@ public class TestController {
 
         return "hello.done";
     }
+
+    @RequestMapping(value = "/login")
+    public String testLogin(){
+
+        return "/login";
+    }
 }
