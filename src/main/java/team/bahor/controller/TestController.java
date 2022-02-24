@@ -14,4 +14,10 @@ public class TestController {
     public String projectPage() {
         return "/index2";
     }
+
+    @RequestMapping(value = "/login")
+    public String testLogin(){
+
+        return "/login";
+    }
 }

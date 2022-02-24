@@ -1,19 +1,15 @@
-package team.bahor.entity.organization;
+package team.bahor.dto.organization;
 
 import lombok.Getter;
 import lombok.Setter;
-import team.bahor.entity.Auditable;
+import team.bahor.dto.GenericDto;
 import team.bahor.entity.project.Project;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Setter
 @Getter
-@Entity
-@Table(name="organizations")
-public class Organization extends Auditable {
-
+public class OrganizationDto extends GenericDto {
     private String name;
 
     private String website;
@@ -26,12 +22,9 @@ public class Organization extends Auditable {
 
     private Long ownerId;
 
-    @Column(columnDefinition = "integer default 0")
     private Integer memberCount;
 
-    @Column(columnDefinition = "integer default 0")
     private Integer projectCount;
 
-    @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)
     private List<Project> projects;
 }

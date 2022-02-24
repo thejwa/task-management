@@ -20,9 +20,14 @@ public class User extends Auditable {
     @Column(unique = true, nullable = false)
     private String username;
 
+    @Column(nullable = false)
+    private String password;
+
+    private boolean blocked;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    private UserRole userRole;
 
     private String profilePhoto;
 
