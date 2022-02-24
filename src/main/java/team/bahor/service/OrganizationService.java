@@ -6,17 +6,16 @@ import team.bahor.entity.organization.Organization;
 import team.bahor.entity.project.Project;
 import team.bahor.mapper.OrganizationMapper;
 import team.bahor.repository.organization.OrganizationRepository;
+import team.bahor.service.base.AbstractService;
+import team.bahor.validator.base.BaseGenericValidator;
 
 import java.util.List;
 
 @Service
-public class OrganizationService {
-    private final OrganizationRepository repository;
-    private final OrganizationMapper mapper;
+public class OrganizationService extends AbstractService<OrganizationRepository,OrganizationMapper, BaseGenericValidator> {
 
-    public OrganizationService(OrganizationRepository repository, OrganizationMapper mapper) {
-        this.repository = repository;
-        this.mapper = mapper;
+    protected OrganizationService(OrganizationMapper mapper, BaseGenericValidator validator, OrganizationRepository repository) {
+        super(mapper, validator, repository);
     }
 
     public void create(OrganizationCreatoDto dto){
@@ -38,8 +37,7 @@ public class OrganizationService {
         repository.deleteById(id);
     }
 
-    public void addProject(Long oId,Long pId){
-        Project project=new Project(); //TODO: get by pId
+    public void addProject(Long oId,Project project){
         Organization org=repository.getById(oId);
         List<Project> projects=org.getProjects();
         projects.add(project);
@@ -47,8 +45,7 @@ public class OrganizationService {
         repository.save(org);
     }
 
-    public void removeProject(Long oId, Long pId){
-        Project project=new Project(); //TODO: get by pId
+    public void removeProject(Long oId, Project project){
         Organization org=repository.getById(oId);
         List<Project> projects=org.getProjects();
         projects.remove(project);
