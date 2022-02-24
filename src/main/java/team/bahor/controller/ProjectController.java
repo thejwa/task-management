@@ -7,54 +7,54 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import team.bahor.dto.organization.OrganizationCreatoDto;
-import team.bahor.dto.organization.OrganizationUpdateDto;
-import team.bahor.service.OrganizationService;
+import team.bahor.dto.project.ProjectCreateDto;
+import team.bahor.dto.project.ProjectUpdateDto;
+import team.bahor.service.ProjectService;
 
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/organization/*")
-public class OrganizationController {
-    private final OrganizationService organizationService;
+@RequestMapping("/project/*")
+public class ProjectController {
+    private final ProjectService projectService;
 
-    public OrganizationController(OrganizationService organizationService) {
-        this.organizationService = organizationService;
+    public ProjectController(ProjectService projectService) {
+        this.projectService = projectService;
     }
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createPage(Model model) {
-        model.addAttribute("dto", new OrganizationCreatoDto());
-        return "org/createOrg.html";
+        model.addAttribute("dto", new ProjectCreateDto());
+        return "project/createProject.html";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("dto") OrganizationCreatoDto dto, BindingResult bindingResult) {
+    public String create(@Valid @ModelAttribute("dto") ProjectCreateDto dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "org/createOrg.html";
+            return "project/createProject.html";
         }
-        organizationService.create(dto);
+        projectService.create(dto);
         return "redirect:/templates/index.html";
     }
 
     @RequestMapping(value = "update{id}", method = RequestMethod.GET)
     public String updatePage(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute("dto", organizationService.get(id));
-        return "org/updateOrg.html";
+        model.addAttribute("dto", projectService.get(id));
+        return "project/updateProject.html";
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute("dto") OrganizationUpdateDto dto, BindingResult bindingResult) {
+    public String update(@Valid @ModelAttribute("dto") ProjectUpdateDto dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "org/updateOrg.html";
+            return "project/updateProject.html";
         }
-        organizationService.update(dto);
+        projectService.update(dto);
         return "redirect:/templates/index.html";
     }
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable(name = "id") Long id){
-        organizationService.delete(id);
+        projectService.delete(id);
         return "redirect:/templates/index.html";
     }
 }

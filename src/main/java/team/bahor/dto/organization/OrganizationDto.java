@@ -2,13 +2,14 @@ package team.bahor.dto.organization;
 
 import lombok.Getter;
 import lombok.Setter;
+import team.bahor.dto.GenericDto;
 import team.bahor.entity.project.Project;
 
 import java.util.List;
 
 @Setter
 @Getter
-public class OrganizationDto {
+public class OrganizationDto extends GenericDto {
     private String name;
 
     private String website;

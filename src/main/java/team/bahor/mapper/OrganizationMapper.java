@@ -8,8 +8,17 @@ import team.bahor.entity.organization.Organization;
 
 @Component
 @Mapper(componentModel = "spring")
-public interface OrganizationMapper {
-    OrganizationDto toDto(Organization organization);
+public interface OrganizationMapper extends AbstractMapper<Organization,OrganizationDto,OrganizationCreatoDto, OrganizationUpdateDto> {
 
-    Organization fromCreateDto(OrganizationCreatoDto dto);
+ @Override
+ OrganizationDto toDto(Organization entity);
+
+ @Override
+ Organization fromCreateDto(OrganizationCreatoDto createDto);
+
+ @Override
+ List<OrganizationDto> toDto(List<Organization> entities);
+
+ @Override
+ Organization fromUpdateDto(OrganizationUpdateDto updateDto);
 }

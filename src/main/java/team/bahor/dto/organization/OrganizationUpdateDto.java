@@ -1,10 +1,11 @@
 package team.bahor.dto.organization;
 
+import team.bahor.dto.GenericDto;
 import team.bahor.entity.project.Project;
 
 import java.util.List;
 
-public class OrganizationUpdateDto {
+public class OrganizationUpdateDto extends GenericDto {
     private String name;
 
     private String website;
@@ -21,5 +22,4 @@ public class OrganizationUpdateDto {
 
     private Integer projectCount;
 
-    private List<Project> projects;
 }
