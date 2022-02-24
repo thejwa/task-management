@@ -7,14 +7,15 @@ import team.bahor.entity.project.Project;
 import team.bahor.mapper.OrganizationMapper;
 import team.bahor.repository.organization.OrganizationRepository;
 import team.bahor.service.base.AbstractService;
+import team.bahor.validator.OrganizationValidator;
 import team.bahor.validator.base.BaseGenericValidator;
 
 import java.util.List;
 
 @Service
-public class OrganizationService extends AbstractService<OrganizationRepository,OrganizationMapper, BaseGenericValidator> {
+public class OrganizationService extends AbstractService<OrganizationRepository,OrganizationMapper, OrganizationValidator> {
 
-    protected OrganizationService(OrganizationMapper mapper, BaseGenericValidator validator, OrganizationRepository repository) {
+    protected OrganizationService(OrganizationMapper mapper, OrganizationValidator validator, OrganizationRepository repository) {
         super(mapper, validator, repository);
     }
 
