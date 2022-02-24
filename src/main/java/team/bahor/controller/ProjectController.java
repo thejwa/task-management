@@ -40,13 +40,13 @@ public class ProjectController {
     @RequestMapping(value = "update{id}", method = RequestMethod.GET)
     public String updatePage(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("dto", projectService.get(id));
-        return "project/updateProject.html";
+        return "project/createProject.html";
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String update(@Valid @ModelAttribute("dto") ProjectUpdateDto dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "project/updateProject.html";
+            return "project/createProject.html";
         }
         projectService.update(dto);
         return "redirect:/templates/index.html";
