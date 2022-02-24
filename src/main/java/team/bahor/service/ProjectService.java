@@ -31,4 +31,7 @@ public class ProjectService extends AbstractService<ProjectRepository,ProjectMap
         Project project=mapper.fromUpdateDto(dto);
         repository.save(project);
     }
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
 }
