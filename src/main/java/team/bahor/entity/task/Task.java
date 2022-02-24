@@ -3,7 +3,7 @@ package team.bahor.entity.task;
 import lombok.Getter;
 import lombok.Setter;
 import team.bahor.entity.Auditable;
-import team.bahor.entity.project.ProjectColumn;
+import team.bahor.entity.column.Column;
 import team.bahor.enums.task.Level;
 import team.bahor.enums.task.Priority;
 
@@ -24,12 +24,12 @@ public class Task extends Auditable {
 
     private Priority priority;
 
-    @Column(nullable = false)
+    @javax.persistence.Column(nullable = false)
     private Long taskOrder;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "column_id")
-    private ProjectColumn projectColumn;
+    private Column projectColumn;
 
     @OneToMany(mappedBy = "task",fetch = FetchType.LAZY)
     private List<TaskComment> taskComments;

@@ -3,6 +3,7 @@ package team.bahor.entity.project;
 import lombok.Getter;
 import lombok.Setter;
 import team.bahor.entity.Auditable;
+import team.bahor.entity.column.Column;
 import team.bahor.entity.organization.Organization;
 
 import javax.persistence.*;
@@ -25,5 +26,5 @@ public class Project extends Auditable {
     private Organization organization;
 
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    private List<ProjectColumn> projectColumns;
+    private List<Column> projectColumns;
 }
