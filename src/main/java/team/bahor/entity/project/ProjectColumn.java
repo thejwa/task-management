@@ -3,6 +3,7 @@ package team.bahor.entity.project;
 import lombok.Getter;
 import lombok.Setter;
 import team.bahor.entity.Auditable;
+import team.bahor.entity.project.Project;
 import team.bahor.entity.task.Task;
 
 import javax.persistence.*;

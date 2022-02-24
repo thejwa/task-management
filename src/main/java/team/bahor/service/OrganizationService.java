@@ -2,6 +2,7 @@ package team.bahor.service;
 
 import org.springframework.stereotype.Service;
 import team.bahor.dto.organization.OrganizationCreatoDto;
+import team.bahor.dto.organization.OrganizationUpdateDto;
 import team.bahor.entity.organization.Organization;
 import team.bahor.entity.project.Project;
 import team.bahor.mapper.OrganizationMapper;
@@ -30,8 +31,9 @@ public class OrganizationService extends AbstractService<OrganizationRepository,
         return repository.getById(id);
     }
 
-    public void update(Organization org){
-        repository.save(org);
+    public void update(OrganizationUpdateDto org){
+        repository.save(mapper.fromUpdateDto(org));
+
     }
 
     public void delete(Long id){

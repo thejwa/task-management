@@ -8,11 +8,12 @@ import team.bahor.entity.project.Project;
 import team.bahor.mapper.ProjectMapper;
 import team.bahor.repository.project.ProjectRepository;
 import team.bahor.service.base.AbstractService;
+import team.bahor.validator.ProjectValidator;
 import team.bahor.validator.base.BaseGenericValidator;
 
 @Service
-public class ProjectService extends AbstractService<ProjectRepository,ProjectMapper, BaseGenericValidator> {
-    protected ProjectService(ProjectMapper mapper, BaseGenericValidator validator, ProjectRepository repository) {
+public class ProjectService extends AbstractService<ProjectRepository,ProjectMapper, ProjectValidator> {
+    protected ProjectService(ProjectMapper mapper, ProjectValidator validator, ProjectRepository repository) {
         super(mapper, validator, repository);
     }
 
@@ -29,5 +30,8 @@ public class ProjectService extends AbstractService<ProjectRepository,ProjectMap
     public void update(ProjectUpdateDto dto){
         Project project=mapper.fromUpdateDto(dto);
         repository.save(project);
+    }
+    public void delete(Long id){
+        repository.deleteById(id);
     }
 }

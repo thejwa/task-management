@@ -1,5 +1,6 @@
 package team.bahor.dto.organization;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import team.bahor.dto.GenericDto;
@@ -27,4 +28,17 @@ public class OrganizationDto extends GenericDto {
     private Integer projectCount;
 
     private List<Project> projects;
+    @Builder(builderMethodName = "childBuilder")
+    public OrganizationDto(Long id, String name, String website, String logo, String email, String location, Long ownerId, Integer memberCount, Integer projectCount, List<Project> projects) {
+        super(id);
+        this.name = name;
+        this.website = website;
+        this.logo = logo;
+        this.email = email;
+        this.location = location;
+        this.ownerId = ownerId;
+        this.memberCount = memberCount;
+        this.projectCount = projectCount;
+        this.projects = projects;
+    }
 }

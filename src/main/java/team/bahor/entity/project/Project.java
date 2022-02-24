@@ -25,5 +25,5 @@ public class Project extends Auditable {
     private Organization organization;
 
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    private List<ProjectColumn> projectColumns;
+    private List<ProjectColumn> projectProjectColumns;
 }

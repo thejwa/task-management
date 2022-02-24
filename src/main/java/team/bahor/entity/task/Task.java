@@ -24,7 +24,7 @@ public class Task extends Auditable {
 
     private Priority priority;
 
-    @Column(nullable = false)
+    @javax.persistence.Column(nullable = false)
     private Long taskOrder;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

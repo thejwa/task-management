@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index html one</title>
-    <link rel="stylesheet" href="../static/css/index2.css">
+    <link rel="stylesheet" th:href="@{css/index2.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
                     <i class="fas fa-bars"></i>
                 </div>
                 <div class="logo">
-                    <img src="../static/imges/logo.png" alt="">
+                    <img th:src="@{/imges/logo.png}" alt="">
                 </div>
 
                 <div class="link">
@@ -42,12 +42,12 @@
 
                     <div class="user-information">
                         <div class="icon">
-                            <img src="../static/imges/bell.png" alt="">
+                            <img th:src="@{/imges/bell.png}" alt="">
                             <i class="far fa-envelope"></i>
                         </div>    
                         
                         <div class="user">
-                            <img src="../static/imges/useer.png" alt="">
+                            <img th:src="@{/imges/useer.png}" alt="">
                             <p>Azhar I.
                                 <i class="fas fa-angle-down"></i>
                             </p>
@@ -57,18 +57,18 @@
                     
                 </nav>
 
-                <div class="container" th:each="project: ${projects}">
-                    <h3 th:text="${project.name}">Project name</h3>
+                <div class="container">
+                    <h3>Project name</h3>
 
-                    <div class="contents" th:each>
+                    <div class="contents">
                         <div class="content">
                             <div class="box">
                                 <p><b>Date added:</b> <span> 12/04/2021</span></p>
-                                <p><b>Deadline:</b><span >12/04/2021 </span></p>
+                                <p><b>Deadline:</b><span>12/04/2021 </span></p>
                                 <p><b>Participants:</b><span>12/04/2021 </span></p>
                             </div>
                             <div class="content-box">
-                                <p th:text="${user.projectRole}">User role
+                                <p>Менеджер для внутреннего пользования, предназначенный для учета статистики и трекинга задач.
                                 </p>
                             </div>
                             <div class="boxs">
@@ -78,24 +78,72 @@
                             </div>
                         </div>
 
-                        <div class="todoContainer" th:each="column:${project.columns}">
+                        <div class="todoContainer">
                             <div class="todoContent-box">
                                 <div class="todo-img">
-                                    <p th:text="${column.name}">To do</p>
-                                    <img src="../static/imges/plus-circle.png" alt="">
+                                    <p>To do</p>
+                                    <img th:src="@{/imges/plus-circle.png}" alt="">
                                 </div>
-                                <div th:each="task:${column.tasks}">
-                                    
-                                <div class="todo-box" >
-                                    <h4 th:text="${task.name}">CRM system design
-                                        <button class="medium" th:text="${task.level}">Medium</button>   
+                                <div class="todo-box">
+                                    <h4>CRM system design
+                                        <button class="medium">Medium</button>   
                                     </h4>
-                                    <dev th:each="member:${task.members}">
-                                        <p><span>Participant:  </span><span th:text="$member.username">Azhar</span></p>
-                                    </dev>
-                                </div>
+                                    <p><span>Participant:  </span>Azhar</p>
+                                    <p><span>Participant:  </span>Azhar</p>
                                 </div>
 
+                                <div class="todo-box">
+                                    <h4>CRM system design
+                                        <button class="low">Low</button>   
+                                    </h4>
+                                    <p><span>Participant:  </span>Azhar</p>
+                                    <p><span>Participant:  </span>Azhar</p>
+                                </div>
+
+                                <div class="todo-box">
+                                    <h4>CRM system design
+                                        <button class="high">High</button>   
+                                    </h4>
+                                    <p><span>Participant:  </span>Azhar</p>
+                                    <p><span>Participant:  </span>Azhar</p>
+                                </div>
+                            </div>
+                            <div class="todoContent-box">
+                                <div class="todo-img">
+                                    <p>To do</p>
+                                </div>
+                                <div class="todo-box">
+                                    <h4>CRM system design
+                                        <button class="low">Low</button>   
+                                    </h4>
+                                    <p><span>Participant:  </span>Azhar</p>
+                                    <p><span>Participant:  </span>Azhar</p>
+                                </div>
+
+                                <div class="todo-box">
+                                    <h4>CRM system design
+                                        <button class="low">Low</button>   
+                                    </h4>
+                                    <p><span>Participant:  </span>Azhar</p>
+                                    <p><span>Participant:  </span>Azhar</p>
+                                </div>
+                            </div>
+                            <div class="todoContent-box">
+                                <div class="todo-img">
+                                    <p>To do</p>
+                                </div>
+                            </div>
+                            <div class="todoContent-box">
+                                <div class="todo-img">
+                                    <p>To do</p>
+                                </div>
+                                <div class="todo-box">
+                                    <h4>CRM system design
+                                        <button class="low">Low</button>   
+                                    </h4>
+                                    <p><span>Participant:  </span>Azhar</p>
+                                    <p><span>Participant:  </span>Azhar</p>
+                                </div>
                             </div>
                         </div> 
                     </div>

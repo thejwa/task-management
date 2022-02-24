@@ -130,7 +130,7 @@ nav .input {
 }
 
 .content {
-  display: grid;
+  /*display: grid;*/
   grid-template-columns: 750px 300px;
   gap: 20px;
   height: 270px;
@@ -259,7 +259,7 @@ nav .input {
     overflow-y: scroll;
   }
   .content {
-    display: grid;
+    /*display: grid;*/
     grid-template-columns: repeat(1, 1fr);
     height: 100%;
   }
