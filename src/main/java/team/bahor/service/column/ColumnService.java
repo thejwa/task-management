@@ -9,5 +9,5 @@ public interface ColumnService extends GenericCrudService<
         ColumnDto,
         ColumnCreateDto,
         ColumnUpdateDto,
-        String> {
+        Long> {
 }
