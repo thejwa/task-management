@@ -30,15 +30,13 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
     }
 
     @Override
-    public Void delete(Long id) {
+    public void delete(Long id) {
         repository.deleteById(id);
-        return null;
     }
 
     @Override
-    public Void update(TaskUpdateDto updateDto) {
+    public void update(TaskUpdateDto updateDto) {
         repository.update(updateDto);
-        return null;
     }
 
 

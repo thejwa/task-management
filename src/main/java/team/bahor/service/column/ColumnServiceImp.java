@@ -11,40 +11,50 @@ import team.bahor.repository.column.ColumnRepository;
 import team.bahor.service.base.AbstractService;
 import team.bahor.validator.column.ColumnValidator;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service
 public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMapper, ColumnValidator>
-implements ColumnService{
+        implements ColumnService {
 
     @Autowired
     protected ColumnServiceImp(ColumnMapper mapper, ColumnValidator validator, ColumnRepository repository) {
         super(mapper, validator, repository);
     }
 
+
     @Override
-    public String create(ColumnCreateDto createDto) {
+    public Long create(ColumnCreateDto createDto) {
         ProjectColumn projectColumn = mapper.fromCreateDto(createDto);
+        repository.save(projectColumn);
         return null;
     }
 
-    @Override
-    public Void delete(String id) {
-        return null;
-    }
 
     @Override
-    public Void update(ColumnUpdateDto updateDto) {
-        return null;
+    public ColumnDto get(@NotNull Long id) {
+        return mapper.toDto(repository.getById(id));
     }
 
-    @Override
-    public ColumnDto get(String id) {
-        return null;
-    }
 
     @Override
-    public List<ColumnDto> getAll(String id) {
-        return null;
+    public List<ColumnDto> getAll(@NotNull Long id) {
+        List<ProjectColumn> columns = repository.getAllProjectForProjectColumn(id);
+        return mapper.toDto(columns);
+    }
+
+
+    @Override
+    public void update(ColumnUpdateDto updateDto) {
+        repository.update(updateDto);
+    }
+
+
+    @Override
+    public void delete(Long id) {
+        ProjectColumn projectColumn = repository.getById(id);
+        projectColumn.setIsDeleted(true);
+        repository.save(projectColumn);
     }
 }

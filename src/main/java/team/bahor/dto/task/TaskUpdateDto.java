@@ -30,7 +30,6 @@ public class TaskUpdateDto extends GenericDto {
 
     private Long taskOrder;
 
-
     private Long projectId;
 
     @Builder(builderMethodName = "childBuilder")
