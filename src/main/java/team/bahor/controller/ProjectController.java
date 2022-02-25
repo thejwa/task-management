@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import team.bahor.dto.project.ProjectCreateDto;
 import team.bahor.dto.project.ProjectUpdateDto;
-import team.bahor.service.ProjectService;
+import team.bahor.service.project.ProjectServiceImpl;
 
 import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/project/*")
 public class ProjectController {
-    private final ProjectService projectService;
+    private final ProjectServiceImpl projectServiceImpl;
 
-    public ProjectController(ProjectService projectService) {
-        this.projectService = projectService;
+    public ProjectController(ProjectServiceImpl projectServiceImpl) {
+        this.projectServiceImpl = projectServiceImpl;
     }
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
@@ -33,13 +33,13 @@ public class ProjectController {
         if (bindingResult.hasErrors()) {
             return "project/createProject.html";
         }
-        projectService.create(dto);
+        projectServiceImpl.create(dto);
         return "redirect:/templates/index.html";
     }
 
     @RequestMapping(value = "update{id}", method = RequestMethod.GET)
     public String updatePage(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute("dto", projectService.get(id));
+        model.addAttribute("dto", projectServiceImpl.get(id));
         return "project/createProject.html";
     }
 
@@ -48,13 +48,13 @@ public class ProjectController {
         if (bindingResult.hasErrors()) {
             return "project/createProject.html";
         }
-        projectService.update(dto);
+        projectServiceImpl.update(dto);
         return "redirect:/templates/index.html";
     }
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable(name = "id") Long id){
-        projectService.delete(id);
+        projectServiceImpl.delete(id);
         return "redirect:/templates/index.html";
     }
 }

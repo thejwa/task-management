@@ -1,4 +1,4 @@
-package team.bahor.service;
+package team.bahor.service.project;
 
 import org.springframework.stereotype.Service;
 import team.bahor.dto.project.ProjectCreateDto;
@@ -9,17 +9,19 @@ import team.bahor.mapper.ProjectMapper;
 import team.bahor.repository.project.ProjectRepository;
 import team.bahor.service.base.AbstractService;
 import team.bahor.validator.ProjectValidator;
-import team.bahor.validator.base.BaseGenericValidator;
+
+import java.util.List;
 
 @Service
-public class ProjectService extends AbstractService<ProjectRepository,ProjectMapper, ProjectValidator> {
-    protected ProjectService(ProjectMapper mapper, ProjectValidator validator, ProjectRepository repository) {
+public class ProjectServiceImpl extends AbstractService<ProjectRepository,ProjectMapper, ProjectValidator> implements ProjectService{
+    protected ProjectServiceImpl(ProjectMapper mapper, ProjectValidator validator, ProjectRepository repository) {
         super(mapper, validator, repository);
     }
 
-    public void create(ProjectCreateDto dto){
+    public Long create(ProjectCreateDto dto){
         Project project=mapper.fromCreateDto(dto);
         repository.save(project);
+        return null;
     }
 
     public ProjectDto get(Long id){
@@ -27,11 +29,18 @@ public class ProjectService extends AbstractService<ProjectRepository,ProjectMap
         return mapper.toDto(project);
     }
 
-    public void update(ProjectUpdateDto dto){
+    @Override
+    public List<ProjectDto> getAll(Long id) {
+        return null;
+    }
+
+    public Void update(ProjectUpdateDto dto){
         Project project=mapper.fromUpdateDto(dto);
         repository.save(project);
+        return null;
     }
-    public void delete(Long id){
+    public Void delete(Long id){
         repository.deleteById(id);
+        return null;
     }
 }
