@@ -2,10 +2,12 @@ package team.bahor.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import team.bahor.config.security.UserDetails;
 
 @Controller
 public class HomeController {
-    @GetMapping(value = {"","/home"})
+
+    @GetMapping({"", "/home"})
     public String homePage() {
         UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("principal.getId() = " + principal.getId());
@@ -22,6 +24,11 @@ public class HomeController {
     @GetMapping("/task")
     public String taskPage() {
         return "task";
+    }
+
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "admin";
     }
 
 }
