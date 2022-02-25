@@ -3,8 +3,10 @@ package team.bahor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 import team.bahor.entity.user.User;
 import team.bahor.entity.user.UserPermission;
 import team.bahor.entity.user.UserRole;
@@ -41,9 +43,10 @@ public class TaskManagementApplication {
     }
 
 
-    //    @Transactional(timeout = 10)
+//        @Transactional(timeout = 10)
 //    @Transactional
 //    @Bean
+//
     CommandLineRunner run() {
         return args -> {
             User superAdmin = new User();

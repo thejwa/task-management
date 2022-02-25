@@ -23,4 +23,7 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
 
     @Override
     void delete(Organization entity);
+
+    @Override
+    List<Organization> findAll();
 }

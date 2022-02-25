@@ -11,7 +11,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class OrganizationCreatoDto implements BaseGenericDto {
+
     private String name;
 
     private String website;

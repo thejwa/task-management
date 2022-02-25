@@ -12,6 +12,7 @@ import team.bahor.service.base.AbstractService;
 import team.bahor.validator.OrganizationValidator;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class OrganizationServiceImpl extends AbstractService<OrganizationRepository,OrganizationMapper, OrganizationValidator> implements OrganizationService{
@@ -24,6 +25,7 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
         Organization org=mapper.fromCreateDto(dto);
         Long ownerId=1L;
         org.setOwnerId(ownerId);
+        org.setCode(UUID.randomUUID().toString());
         repository.save(org);
         return null;
     }
@@ -35,6 +37,10 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
     @Override
     public List<OrganizationDto> getAll(Long id) {
         return null;
+    }
+
+    public List<OrganizationDto> getAll() {
+        return mapper.toDto(repository.findAll());
     }
 
     public void update(OrganizationUpdateDto org){
