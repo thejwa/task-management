@@ -4,33 +4,32 @@
 <body class="myb">
 <section th:include="fragment.html :: navbar"></section>
 
-
 <div class="container">
     <div class="row">
         <div class="col-6 mx-auto">
-            <form th:action="@{/organization/createOrg}" th:method="post" th:object="${dto}">
+            <form th:action="@{/organization/create}" th:method="post" th:object="${dto}">
                 <div class="form-group">
-                    <label for="name" class="form-label">Title</label>
+                    <label for="name" class="form-label">Name: </label>
                     <input class="form-control" type="text" id="name" name="name"  /> <!--th:field="*{name}"-->
                     <span style="color: red" th:errors="*{name}"></span>
                 </div>
                 <div class="form-group">
-                    <label for="website" class="form-label">Title</label>
+                    <label for="website" class="form-label">Website: </label>
                     <input class="form-control" type="text" id="website" name="website"  />
                     <span style="color: red" th:errors="*{website}"></span>
                 </div>
                 <div class="form-group">
-                    <label for="logo" class="form-label">Title</label>
+                    <label for="logo" class="form-label">Logo: </label>
                     <input class="form-control" type="text" id="logo" name="logo"  />
                     <span style="color: red" th:errors="*{logo}"></span>
                 </div>
                 <div class="form-group">
-                    <label for="email" class="form-label">Title</label>
+                    <label for="email" class="form-label">E-mail: </label>
                     <input class="form-control" type="text" id="email" name="email"  />
                     <span style="color: red" th:errors="*{email}"></span>
                 </div>
                 <div class="form-group">
-                    <label for="location" class="form-label">Title</label>
+                    <label for="location" class="form-label">Location: </label>
                     <input class="form-control" type="text" id="location" name="location"  />
                     <span style="color: red" th:errors="*{location}"></span>
                 </div>
