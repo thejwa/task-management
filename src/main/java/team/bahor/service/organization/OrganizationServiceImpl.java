@@ -39,6 +39,10 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
         return null;
     }
 
+    public List<OrganizationDto> getAll() {
+        return mapper.toDto(repository.findAll());
+    }
+
     public void update(OrganizationUpdateDto org){
         repository.save(mapper.fromUpdateDto(org));
     }
