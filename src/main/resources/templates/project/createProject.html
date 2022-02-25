@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create Project</title>
 </head>
-<body>
-Create project
+<body class="myb">
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <form th:action="@{/project/create}" th:method="post" th:object="${dto}">
+                <div class="form-group">
+                    <label for="name" class="form-label">Name: </label>
+                    <input class="form-control" type="text" id="name" name="name"  /> <!--th:field="*{name}"-->
+                    <span style="color: red" th:errors="*{name}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="form-label">Description: </label>
+                    <input class="form-control" type="text" id="description" name="description"  />
+                    <span style="color: red" th:errors="*{description}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="deadline" class="form-label">Deadline: </label>
+                    <input class="form-control" type="time" id="deadline" name="deadline"  />
+                    <span style="color: red" th:errors="*{deadline}"></span>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="submit" value="save"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
