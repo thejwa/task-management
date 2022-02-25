@@ -44,7 +44,6 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
         return mapper.toDto(columns);
     }
 
-
     @Override
     public void update(ColumnUpdateDto updateDto) {
         repository.update(updateDto);

@@ -34,27 +34,27 @@ public class OrganizationController {
             return "org/createOrg";
         }
         organizationService.create(dto);
-        return "redirect:/templates/index.html";
+        return "/";
     }
 
     @RequestMapping(value = "update{id}", method = RequestMethod.GET)
     public String updatePage(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("dto", organizationService.get(id));
-        return "org/createOrg.html";
+        return "org/createOrg";
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String update(@Valid @ModelAttribute("dto") OrganizationUpdateDto dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "org/createOrg.html";
+            return "org/createOrg";
         }
         organizationService.update(dto);
-        return "redirect:/templates/index.html";
+        return "/";
     }
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable(name = "id") Long id){
         organizationService.delete(id);
-        return "redirect:/templates/index.html";
+        return "/";
     }
 }
