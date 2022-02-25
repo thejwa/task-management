@@ -15,5 +15,12 @@ public class AuthController extends AbstractController<UserServiceImpl> {
         return "/login";
     }
 
+    @GetMapping("/logout")
+    public String logoutPage(){
+        return "/logout";
+    }
+
+
+
 
 }

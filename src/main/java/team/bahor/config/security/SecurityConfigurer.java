@@ -2,6 +2,7 @@ package team.bahor.config.security;
 
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,7 +23,9 @@ import java.util.concurrent.TimeUnit;
 )
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
-    public static final String[] WHITE_LIST = {"/login"};
+    public static final String[] WHITE_LIST = {
+            "/login"
+    };
 
     public static final String[] WHITE_LIST_RESOURCES = {
             "/css/**", "/webjars/**", "/js/**", "/error"
@@ -42,7 +45,9 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests(expressionInterceptUrlRegistry ->
                         expressionInterceptUrlRegistry
-                                .antMatchers(WHITE_LIST)
+                                .antMatchers(HttpMethod.GET, WHITE_LIST)
+                                .permitAll()
+                                .antMatchers(HttpMethod.POST, "/logout")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()
@@ -53,19 +58,20 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                                 .defaultSuccessUrl("/", false)
                                 .loginProcessingUrl("/login")
                 )
-                .rememberMe(httpSecurityRememberMeConfigurer ->
-                        httpSecurityRememberMeConfigurer
-                                .key("krcuM1234567890-=kr0943jllmu3903JLKAADFSLKJL;KDFJS!@#$%^&*()_")
-                                .rememberMeParameter("remember-me")
-                                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(1))
-                )
-                .logout(httpSecurityLogoutConfigurer ->
-                        httpSecurityLogoutConfigurer
+//                .rememberMe(httpSecurityRememberMeConfigurer ->
+//                        httpSecurityRememberMeConfigurer
+//                                .key("krcuM1234567890-=kr0943jllmu3903JLKAADFSLKJL;KDFJS!@#$%^&*()_")
+//                                .rememberMeParameter("remember-me")
+//                                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(1))
+//                )
+                .logout(logout ->
+                        logout
                                 .logoutUrl("/logout")
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "POST"))
                                 .invalidateHttpSession(true)
                                 .clearAuthentication(true)
                                 .deleteCookies("JSESSIONID", "remember-me")
+                                .logoutSuccessUrl("/login")
                 );
     }
 
