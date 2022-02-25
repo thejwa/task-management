@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import team.bahor.dto.organization.OrganizationCreatoDto;
 import team.bahor.dto.organization.OrganizationUpdateDto;
-import team.bahor.service.OrganizationService;
+import team.bahor.service.organization.OrganizationServiceImpl;
 
 import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/organization/*")
 public class OrganizationController {
-    private final OrganizationService organizationService;
+    private final OrganizationServiceImpl organizationService;
 
-    public OrganizationController(OrganizationService organizationService) {
+    public OrganizationController(OrganizationServiceImpl organizationService) {
         this.organizationService = organizationService;
     }
 

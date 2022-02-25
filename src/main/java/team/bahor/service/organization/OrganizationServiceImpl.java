@@ -1,7 +1,8 @@
-package team.bahor.service;
+package team.bahor.service.organization;
 
 import org.springframework.stereotype.Service;
 import team.bahor.dto.organization.OrganizationCreatoDto;
+import team.bahor.dto.organization.OrganizationDto;
 import team.bahor.dto.organization.OrganizationUpdateDto;
 import team.bahor.entity.organization.Organization;
 import team.bahor.entity.project.Project;
@@ -9,35 +10,42 @@ import team.bahor.mapper.OrganizationMapper;
 import team.bahor.repository.organization.OrganizationRepository;
 import team.bahor.service.base.AbstractService;
 import team.bahor.validator.OrganizationValidator;
-import team.bahor.validator.base.BaseGenericValidator;
 
 import java.util.List;
 
 @Service
-public class OrganizationService extends AbstractService<OrganizationRepository,OrganizationMapper, OrganizationValidator> {
+public class OrganizationServiceImpl extends AbstractService<OrganizationRepository,OrganizationMapper, OrganizationValidator> implements OrganizationService{
 
-    protected OrganizationService(OrganizationMapper mapper, OrganizationValidator validator, OrganizationRepository repository) {
+    protected OrganizationServiceImpl(OrganizationMapper mapper, OrganizationValidator validator, OrganizationRepository repository) {
         super(mapper, validator, repository);
     }
 
-    public void create(OrganizationCreatoDto dto){
+    public Long create(OrganizationCreatoDto dto){
         Organization org=mapper.fromCreateDto(dto);
         Long ownerId=1L;
         org.setOwnerId(ownerId);
         repository.save(org);
+        return null;
     }
 
-    public Organization get(Long id){
-        return repository.getById(id);
+    public OrganizationDto get(Long id){
+        return mapper.toDto(repository.getById(id));
     }
 
-    public void update(OrganizationUpdateDto org){
+    @Override
+    public List<OrganizationDto> getAll(Long id) {
+        return null;
+    }
+
+    public Void update(OrganizationUpdateDto org){
         repository.save(mapper.fromUpdateDto(org));
 
+        return null;
     }
 
-    public void delete(Long id){
+    public Void delete(Long id){
         repository.deleteById(id);
+        return null;
     }
 
     public void addProject(Long oId,Project project){
