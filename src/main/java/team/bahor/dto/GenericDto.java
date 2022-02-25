@@ -6,7 +6,7 @@ import lombok.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+//@Builder
 public abstract class GenericDto implements BaseGenericDto {
         private Long id;
 }
