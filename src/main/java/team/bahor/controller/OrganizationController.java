@@ -25,16 +25,16 @@ public class OrganizationController {
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createPage(Model model) {
         model.addAttribute("dto", new OrganizationCreatoDto());
-        return "organization/createOrg.html";
+        return "org/createOrg";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("dto") OrganizationCreatoDto dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "organization/createOrg.html";
+            return "org/createOrg";
         }
         organizationService.create(dto);
-        return "redirect:/templates/index.html";
+        return "index";
     }
 
     @RequestMapping(value = "update{id}", method = RequestMethod.GET)
