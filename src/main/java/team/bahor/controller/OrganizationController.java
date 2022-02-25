@@ -25,13 +25,13 @@ public class OrganizationController {
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createPage(Model model) {
         model.addAttribute("dto", new OrganizationCreatoDto());
-        return "organization/createOrg.html";
+        return "org/createOrg.html";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("dto") OrganizationCreatoDto dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "organization/createOrg.html";
+            return "org/createOrg.html";
         }
         organizationService.create(dto);
         return "redirect:/templates/index.html";
@@ -40,13 +40,13 @@ public class OrganizationController {
     @RequestMapping(value = "update{id}", method = RequestMethod.GET)
     public String updatePage(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("dto", organizationService.get(id));
-        return "organization/createOrg.html";
+        return "org/createOrg.html";
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String update(@Valid @ModelAttribute("dto") OrganizationUpdateDto dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "organization/createOrg.html";
+            return "org/createOrg.html";
         }
         organizationService.update(dto);
         return "redirect:/templates/index.html";
