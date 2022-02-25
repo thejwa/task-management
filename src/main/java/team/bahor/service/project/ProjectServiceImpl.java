@@ -34,13 +34,11 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository,Projec
         return null;
     }
 
-    public Void update(ProjectUpdateDto dto){
+    public void update(ProjectUpdateDto dto){
         Project project=mapper.fromUpdateDto(dto);
         repository.save(project);
-        return null;
     }
-    public Void delete(Long id){
+    public void delete(Long id){
         repository.deleteById(id);
-        return null;
     }
 }

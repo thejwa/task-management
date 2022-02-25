@@ -37,15 +37,12 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
         return null;
     }
 
-    public Void update(OrganizationUpdateDto org){
+    public void update(OrganizationUpdateDto org){
         repository.save(mapper.fromUpdateDto(org));
-
-        return null;
     }
 
-    public Void delete(Long id){
+    public void delete(Long id){
         repository.deleteById(id);
-        return null;
     }
 
     public void addProject(Long oId,Project project){

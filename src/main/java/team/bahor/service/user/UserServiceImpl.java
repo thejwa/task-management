@@ -23,13 +23,11 @@ public class UserServiceImpl extends AbstractService<UserRepository, UserMapper,
     }
 
     @Override
-    public Void delete(Long id) {
-        return null;
+    public void delete(Long id) {
     }
 
     @Override
-    public Void update(UserUpdateDto updateDto) {
-        return null;
+    public void update(UserUpdateDto updateDto) {
     }
 
     @Override

@@ -54,7 +54,7 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
     @Override
     public void delete(Long id) {
         ProjectColumn projectColumn = repository.getById(id);
-        projectColumn.setIsDeleted(true);
+        projectColumn.setDeleted(true);
         repository.save(projectColumn);
     }
 }
