@@ -64,7 +64,7 @@ public class TaskManagementApplication {
             role.setPermissions(userPermissions);
 
             superAdmin.setUserRole(role);
-
+            superAdmin.setStatus(0);
 //            userPermissionRepository.saveAll(userPermissions);
 //            userRoleRepository.save(role);
             userRepository.save(superAdmin);
