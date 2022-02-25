@@ -81,72 +81,63 @@
                         </div>
 
                         <div class="todoContainer">
-                            <div class="todoContent-box">
-                                <div class="todo-img">
-                                    <p>To do</p>
-                                    <img th:src="@{/imges/plus-circle.png}" alt="">
-                                </div>
-                                <div class="todo-box">
-                                    <h4>CRM system design
-                                        <button class="medium">Medium</button>   
-                                    </h4>
-                                    <p><span>Participant:  </span>Azhar</p>
-                                    <p><span>Participant:  </span>Azhar</p>
-                                </div>
+                            <div class="columns">
+                                <div class="todoContent-box">
+                                    <div class="todo-img">
+                                        <p>To do</p>
+                                    </div>
+                                    <div class="todo-box">
+                                        <h4>CRM system design
+                                            <button class="medium">Medium</button>
+                                        </h4>
+                                        <p><span>Participant:  </span>Azhar</p>
+                                        <p><span>Participant:  </span>Azhar</p>
+                                    </div>
 
-                                <div class="todo-box">
-                                    <h4>CRM system design
-                                        <button class="low">Low</button>   
-                                    </h4>
-                                    <p><span>Participant:  </span>Azhar</p>
-                                    <p><span>Participant:  </span>Azhar</p>
-                                </div>
+                                    <div class="todo-box">
+                                        <h4>CRM system design
+                                            <button class="low">Low</button>
+                                        </h4>
+                                        <p><span>Participant:  </span>Azhar</p>
+                                        <p><span>Participant:  </span>Azhar</p>
+                                    </div>
 
-                                <div class="todo-box">
-                                    <h4>CRM system design
-                                        <button class="high">High</button>   
-                                    </h4>
-                                    <p><span>Participant:  </span>Azhar</p>
-                                    <p><span>Participant:  </span>Azhar</p>
+                                    <div class="todo-box">
+                                        <h4>CRM system design
+                                            <button class="high">High</button>
+                                        </h4>
+                                        <p><span>Participant:  </span>Azhar</p>
+                                        <p><span>Participant:  </span>Azhar</p>
+                                    </div>
+                                    <div class="create_task d-flex justify-content-center">
+                                        <a class="btn btn-info text-white" th:href="@{/}">+</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="todoContent-box">
-                                <div class="todo-img">
-                                    <p>To do</p>
-                                </div>
-                                <div class="todo-box">
-                                    <h4>CRM system design
-                                        <button class="low">Low</button>   
-                                    </h4>
-                                    <p><span>Participant:  </span>Azhar</p>
-                                    <p><span>Participant:  </span>Azhar</p>
-                                </div>
 
-                                <div class="todo-box">
-                                    <h4>CRM system design
-                                        <button class="low">Low</button>   
-                                    </h4>
-                                    <p><span>Participant:  </span>Azhar</p>
-                                    <p><span>Participant:  </span>Azhar</p>
+                            <div class="create_column">
+                                <div class="todoContent-box">
+                                    <div class="todo-img">
+                                        <h5>Create Column</h5>
+                                        <a class="btn" id="show"><img th:src="@{/imges/plus-circle.png}" alt=""></a>
+                                    </div>
+                                    <div class="forma" id="register" style="display: none">
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                            </div>
+                                            <button type="submit" id="hide" class="btn btn-primary">Add</button>
+                                            <button type="button" id="hide1" class="btn btn-light hide">❌</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="todoContent-box">
-                                <div class="todo-img">
-                                    <p>To do</p>
-                                </div>
-                            </div>
-                            <div class="todoContent-box">
-                                <div class="todo-img">
-                                    <p>To do</p>
-                                </div>
-                                <div class="todo-box">
-                                    <h4>CRM system design
-                                        <button class="low">Low</button>   
-                                    </h4>
-                                    <p><span>Participant:  </span>Azhar</p>
-                                    <p><span>Participant:  </span>Azhar</p>
-                                </div>
-                            </div>
+
                         </div> 
                     </div>
                 </div>
@@ -162,5 +153,19 @@
                 main.classList.toggle("open")
             })
         </script>
+        <script>
+            document.getElementById("hide").onclick = function() {
+                document.getElementById("register").style.display = "none";
+            }
+
+            document.getElementById("hide1").onclick = function() {
+                document.getElementById("register").style.display = "none";
+            }
+
+            document.getElementById("show").onclick = function() {
+                document.getElementById("register").style.display = "block";
+            }
+        </script>
+
 </body>
 </html>
