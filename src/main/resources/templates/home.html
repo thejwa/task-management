@@ -22,11 +22,11 @@
                 </div>
 
                 <div class="link">
-                    <a href="#"> -- Clients
+                    <a th:href="@{/}"> -- Clients
                     </a>
-                    <a href="#">Task manager</a>
-                    <a href="#">Inbox</a>
-                    <a href="#">Contacts</a>
+                    <a th:href="@{/task}">Task manager</a>
+                    <a th:href="@{/project}">Inbox</a>
+                    <a th:href="@{/}">Contacts</a>
                 </div>
             </main>
 
@@ -59,6 +59,7 @@
 
                 <div class="container">
                     <h3>ОсОО “Energi.kg”</h3>
+<!--                    <h2 th:text="${organization.name}>Org Name</h2>-->
                     <div class="content">
                         <div class="contents">
                             <div class="content-text">
