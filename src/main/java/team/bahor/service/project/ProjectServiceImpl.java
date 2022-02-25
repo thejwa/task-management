@@ -11,6 +11,7 @@ import team.bahor.service.base.AbstractService;
 import team.bahor.validator.ProjectValidator;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ProjectServiceImpl extends AbstractService<ProjectRepository,ProjectMapper, ProjectValidator> implements ProjectService{
@@ -20,6 +21,8 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository,Projec
 
     public Long create(ProjectCreateDto dto){
         Project project=mapper.fromCreateDto(dto);
+        project.setCode(UUID.randomUUID().toString());
+        System.out.println(project);
         repository.save(project);
         return null;
     }

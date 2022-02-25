@@ -2,13 +2,14 @@ package team.bahor.entity.project;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import team.bahor.entity.Auditable;
 import team.bahor.entity.organization.Organization;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
-
+@ToString
 @Entity
 @Getter
 @Setter
