@@ -34,7 +34,7 @@ public class OrganizationController {
             return "org/createOrg";
         }
         organizationService.create(dto);
-        return "/";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "update{id}", method = RequestMethod.GET)
@@ -48,6 +48,7 @@ public class OrganizationController {
         if (bindingResult.hasErrors()) {
             return "org/createOrg";
         }
+
         organizationService.update(dto);
         return "/";
     }
