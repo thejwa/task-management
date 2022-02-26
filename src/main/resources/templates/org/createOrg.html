@@ -2,8 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Create Organization</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body class="myb">
 
@@ -13,7 +11,7 @@
             <form th:action="@{/organization/create}" th:method="post" th:object="${dto}">
                 <div class="form-group">
                     <label for="name" class="form-label">Name: </label>
-                    <input class="form-control" type="text" id="name" name="name"/> <!--th:field="*{name}"-->
+                    <input class="form-control" type="text" id="name" name="name"  /> <!--th:field="*{name}"-->
                     <span style="color: red" th:errors="*{name}"></span>
                 </div>
                 <div class="form-group">
@@ -37,7 +35,8 @@
                     <span style="color: red" th:errors="*{location}"></span>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="submit" value="save"/>
+                    <input class="btn btn-success" type="submit" value="Save"/>|
+                    <a class="btn btn-info" th:href="@{/}">Back</a>
                 </div>
             </form>
         </div>

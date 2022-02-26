@@ -4,9 +4,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import team.bahor.dto.GenericDto;
+import team.bahor.dto.column.ColumnDto;
 import team.bahor.entity.organization.Organization;
 import team.bahor.entity.project.ProjectColumn;
 
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,10 +24,10 @@ public class ProjectDto extends GenericDto {
 
     private Organization organization;
 
-    private List<ProjectColumn> projectColumns;
+    private List<ColumnDto> projectColumns;
 
     @Builder(builderMethodName = "childBuilder")
-    public ProjectDto(Long id, String name, LocalDateTime deadline, String description, Organization organization, List<ProjectColumn> projectColumns) {
+    public ProjectDto(Long id, String name, LocalDateTime deadline, String description, Organization organization, List<ColumnDto> projectColumns) {
         super(id);
         this.name = name;
         this.deadline = deadline;

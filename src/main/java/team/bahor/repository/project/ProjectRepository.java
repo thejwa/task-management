@@ -2,8 +2,10 @@ package team.bahor.repository.project;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.FluentQuery;
 import team.bahor.entity.project.Project;
+import team.bahor.entity.project.ProjectColumn;
 import team.bahor.repository.base.BaseGenericRepository;
 
 import java.util.List;
@@ -46,4 +48,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, BaseGen
 
     @Override
     <S extends Project, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction);
+
+//    @Query(value = "select * from columns pc where not pc.is_deleted and pc.project_id = id",nativeQuery = true)
+//    List<ProjectColumn> getAllProjectForProjectColumn(Long id);
 }

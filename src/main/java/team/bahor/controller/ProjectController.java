@@ -25,36 +25,37 @@ public class ProjectController {
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createPage(Model model) {
         model.addAttribute("dto", new ProjectCreateDto());
-        return "project/createProject.html";
+        return "project/createProject";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("dto") ProjectCreateDto dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "project/createProject.html";
+            return "project/createProject";
         }
+
         projectServiceImpl.create(dto);
-        return "redirect:/templates/index.html";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "update{id}", method = RequestMethod.GET)
     public String updatePage(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("dto", projectServiceImpl.get(id));
-        return "project/createProject.html";
+        return "project/createProject";
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String update(@Valid @ModelAttribute("dto") ProjectUpdateDto dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "project/createProject.html";
+            return "project/createProject";
         }
         projectServiceImpl.update(dto);
-        return "redirect:/templates/index.html";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable(name = "id") Long id){
         projectServiceImpl.delete(id);
-        return "redirect:/templates/index.html";
+        return "redirect:/";
     }
 }

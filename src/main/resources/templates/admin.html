@@ -84,7 +84,7 @@
                                     <th th:text="${organization.email}"></th>
                                     <th th:text="${organization.code}"></th>
                                     <th class="icons">
-                                        <a class="btn btn-info" href="#">+👮‍</a>
+                                        <a class="btn btn-info" th:href="@{/organization/create_admin/{id}/(id=${organization.id}">+👮‍</a>
                                         <a class="btn btn-info" href="#">👁</a>
                                         <a class="btn btn-info" href="#">🔐</a>
                                         <a class="btn btn-info" href="#">🔓</a>

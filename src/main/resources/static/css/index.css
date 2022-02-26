@@ -9,7 +9,6 @@ header {
   display: grid;
   grid-template-columns: 300px 1fr;
   height: 100vh;
-  overflow-y: hidden;
 }
 
 header main {
@@ -133,7 +132,7 @@ nav .input {
   /*display: grid;*/
   grid-template-columns: 750px 300px;
   gap: 20px;
-  height: 270px;
+  height: auto;
   border-radius: 17px;
   margin-top: 10px;
 }

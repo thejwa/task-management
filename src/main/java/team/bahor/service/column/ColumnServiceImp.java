@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 import team.bahor.dto.column.ColumnCreateDto;
 import team.bahor.dto.column.ColumnDto;
 import team.bahor.dto.column.ColumnUpdateDto;
+import team.bahor.dto.task.TaskDto;
 import team.bahor.entity.project.ProjectColumn;
 import team.bahor.mapper.column.ColumnMapper;
 import team.bahor.repository.column.ColumnRepository;
 import team.bahor.service.base.AbstractService;
+import team.bahor.service.task.TaskService;
 import team.bahor.validator.column.ColumnValidator;
 
 import javax.validation.constraints.NotNull;
@@ -18,9 +20,12 @@ import java.util.List;
 public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMapper, ColumnValidator>
         implements ColumnService {
 
+    private final TaskService taskService;
+
     @Autowired
-    protected ColumnServiceImp(ColumnMapper mapper, ColumnValidator validator, ColumnRepository repository) {
+    protected ColumnServiceImp(ColumnMapper mapper, ColumnValidator validator, ColumnRepository repository, TaskService taskService) {
         super(mapper, validator, repository);
+        this.taskService = taskService;
     }
 
 
@@ -40,8 +45,12 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
 
     @Override
     public List<ColumnDto> getAll(@NotNull Long id) {
-        List<ProjectColumn> columns = repository.getAllProjectForProjectColumn(id);
-        return mapper.toDto(columns);
+        List<ColumnDto> columns = mapper.toDto(repository.getAllProjectForProjectColumn(id));
+        for (ColumnDto column : columns) {
+            final List<TaskDto> all = taskService.getAll(column.getId());
+            column.setTasks(all);
+        }
+        return columns;
     }
 
     @Override
