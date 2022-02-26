@@ -13,7 +13,7 @@ import team.bahor.entity.project.Project;
 public class ColumnCreateDto implements BaseGenericDto {
     private String name;
 
-    private Project project;
+    private Long projectId;
 
     private Long createdBy;
 

@@ -36,6 +36,7 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
 
     @Override
     public List<OrganizationDto> getAll(Long id) {
+        repository.getById(id);
         return null;
     }
 

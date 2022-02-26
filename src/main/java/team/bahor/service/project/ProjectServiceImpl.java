@@ -8,6 +8,7 @@ import team.bahor.entity.project.Project;
 import team.bahor.mapper.ProjectMapper;
 import team.bahor.repository.project.ProjectRepository;
 import team.bahor.service.base.AbstractService;
+import team.bahor.service.column.ColumnService;
 import team.bahor.validator.ProjectValidator;
 
 import java.util.List;
@@ -15,8 +16,12 @@ import java.util.UUID;
 
 @Service
 public class ProjectServiceImpl extends AbstractService<ProjectRepository,ProjectMapper, ProjectValidator> implements ProjectService{
-    protected ProjectServiceImpl(ProjectMapper mapper, ProjectValidator validator, ProjectRepository repository) {
+
+    private final ColumnService columnService;
+
+    protected ProjectServiceImpl(ProjectMapper mapper, ProjectValidator validator, ProjectRepository repository, ColumnService columnService) {
         super(mapper, validator, repository);
+        this.columnService = columnService;
     }
 
     public Long create(ProjectCreateDto dto){
@@ -28,13 +33,15 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository,Projec
     }
 
     public ProjectDto get(Long id){
-        Project project=repository.getById(id);
-        return mapper.toDto(project);
+        ProjectDto projectDto= mapper.toDto(repository.getById(id));
+        projectDto.setProjectColumns(columnService.getAll(projectDto.getId()));
+        return projectDto;
     }
 
     @Override
     public List<ProjectDto> getAll(Long id) {
-        return null;
+        // TODO: 26.02.2022 Organization Project return !!!
+        return mapper.toDto(repository.findAll());
     }
 
     public void update(ProjectUpdateDto dto){

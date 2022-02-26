@@ -3,6 +3,7 @@ package team.bahor.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import team.bahor.dto.column.ColumnCreateDto;
 import team.bahor.dto.column.ColumnUpdateDto;
 import team.bahor.service.column.ColumnService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/column/*")
@@ -22,7 +25,10 @@ public class ColumnController extends AbstractController<ColumnService> {
 
 
     @RequestMapping(value = "create/{id}", method = RequestMethod.POST)
-    public String create(@ModelAttribute ColumnCreateDto dto, @PathVariable Long id) {
+    public String create(@Valid @ModelAttribute("dto") ColumnCreateDto dto, @PathVariable Long id, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/";
+        }
         dto.setCreatedBy(id);
         service.create(dto);
         return "redirect:/";
