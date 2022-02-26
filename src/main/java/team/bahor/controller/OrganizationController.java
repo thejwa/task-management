@@ -59,4 +59,10 @@ public class OrganizationController {
         organizationService.delete(id);
         return "/";
     }
+
+    @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
+    public String getAll(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("organization", organizationService.get(id));
+        return "redirect:/home";
+    }
 }

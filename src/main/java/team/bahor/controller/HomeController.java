@@ -8,13 +8,13 @@ import team.bahor.config.security.UserDetails;
 @Controller
 public class HomeController {
 
-    @GetMapping({"", "/home"})
+    @GetMapping({ "organization", "", "/home"})
     public String homePage() {
         UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("principal.getId() = " + principal.getId());
         System.out.println("principal.getUsername() = " + principal.getUsername());
         System.out.println("principal.getAuthorities() = " + principal.getAuthorities());
-        return "home";
+        return "/home";
     }
 
     @GetMapping("/project")

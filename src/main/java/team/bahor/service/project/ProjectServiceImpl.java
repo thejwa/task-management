@@ -40,8 +40,7 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository,Projec
 
     @Override
     public List<ProjectDto> getAll(Long id) {
-        // TODO: 26.02.2022 Organization Project return !!!
-        return mapper.toDto(repository.findAll());
+       return mapper.toDto(repository.findProjectsByOrganization(id));
     }
 
     public void update(ProjectUpdateDto dto){

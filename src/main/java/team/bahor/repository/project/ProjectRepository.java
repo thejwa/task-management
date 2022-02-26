@@ -15,7 +15,8 @@ import java.util.function.Function;
 public interface ProjectRepository extends JpaRepository<Project, Long>, BaseGenericRepository {
     @Override
     List<Project> findAll();
-
+//getAllProjectForProjectColumn
+    List<Project> findProjectsByOrganization(Long id);
     @Override
     List<Project> findAllById(Iterable<Long> longs);
 
