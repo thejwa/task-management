@@ -40,6 +40,7 @@ public abstract class Auditable implements BaseGenericEntity {
 
     private Long updatedBy;
 
+    @Column(columnDefinition = "integer default 0")
     private Integer status; //status enum'dan qanaqa statusdaligini frontga berib yuboramiz
 
     private boolean isDeleted;

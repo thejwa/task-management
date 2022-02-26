@@ -22,5 +22,4 @@ public class AuthController extends AbstractController<UserServiceImpl> {
 
 
 
-
 }

@@ -43,10 +43,8 @@ public class TaskManagementApplication {
     }
 
 
-//        @Transactional(timeout = 10)
 //    @Transactional
 //    @Bean
-//
     CommandLineRunner run() {
         return args -> {
             User superAdmin = new User();
