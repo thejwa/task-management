@@ -1,7 +1,9 @@
 package team.bahor.entity.task;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import team.bahor.entity.BaseGenericEntity;
@@ -9,6 +11,8 @@ import team.bahor.entity.BaseGenericEntity;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@SuperBuilder
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -24,7 +28,7 @@ public class TaskMember implements BaseGenericEntity {
     @Column(nullable = false)
     private Long taskId;
 
-    @Column(nullable = false,columnDefinition = "int default 0")
+    @Column(nullable = false, columnDefinition = "int default 0")
     private Integer status;
 
     private boolean deleted;

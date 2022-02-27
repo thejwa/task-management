@@ -1,12 +1,16 @@
 package team.bahor.entity.user;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import team.bahor.entity.Auditable;
 import team.bahor.entity.organization.Organization;
 
 import javax.persistence.*;
 
+@SuperBuilder
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
@@ -31,7 +35,7 @@ public class User extends Auditable {
 
     private String profilePhoto;
 
-   @Column(nullable = false)
+    @Column(nullable = false)
     private Long organizationId;
 
 

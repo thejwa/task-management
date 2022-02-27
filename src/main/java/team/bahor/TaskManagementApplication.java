@@ -59,8 +59,8 @@ public class TaskManagementApplication {
                     .map(permission -> new UserPermission(permission.name(), permission.getCode()))
                     .collect(Collectors.toList());
             role.setPermissions(userPermissions);
-
             superAdmin.setUserRole(role);
+            superAdmin.setOrganizationId(1L);
             superAdmin.setStatus(0);
             superAdmin.setOrganizationId(1L);
 //            userPermissionRepository.saveAll(userPermissions);
