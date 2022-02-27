@@ -1,6 +1,5 @@
 package team.bahor.entity.user;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import team.bahor.entity.BaseGenericEntity;

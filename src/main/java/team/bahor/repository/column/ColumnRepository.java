@@ -21,9 +21,9 @@ public interface ColumnRepository extends JpaRepository<ProjectColumn,Long>, Bas
     void update(@Param("dto") ColumnUpdateDto dto);
 
 
-    @Query(value = "select * from columns pc where not pc.is_deleted and pc.project_id = id",nativeQuery = true)
+    @Query(value = "select * from ProjectColumn pc where not pc.isDeleted and pc.project_id = id",nativeQuery = true)
     List<ProjectColumn> getAllProjectForProjectColumn(Long id);
 
-    @Query(value = "select * from columns pc where not is_deleted and pc.id=id", nativeQuery = true)
+    @Query(value = "select * from ProjectColumn pc where not isDeleted and pc.id=id", nativeQuery = true)
     ProjectColumn getById(Long id);
 }
