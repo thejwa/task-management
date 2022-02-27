@@ -45,4 +45,9 @@ public class UserController extends AbstractController<UserServiceImpl> {
     public String adminsPage(Model model){
         return "home";
     }
+
+    @GetMapping("user_page")
+    public String userPage(Model model) {
+        return "home";
+    }
 }
