@@ -78,7 +78,7 @@
                                 <p th:text="${project.deadline}"></p>
                             </div>
                             <div class="icons">
-                                <a class="btn btn-light" href="#">👁</a>
+                                <a class="btn btn-light" th:href="@{/project/{id}(id=${project.id})}">👁</a>
                                 <a class="btn btn-light" href="#">✏️</a>
                                 <a class="btn btn-light" href="#">🔐</a>
                                 <a class="btn btn-light" href="#">🔓</a>

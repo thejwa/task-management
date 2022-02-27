@@ -1,5 +1,6 @@
 package team.bahor.service.column;
 
+import org.hibernate.mapping.Column;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.bahor.dto.column.ColumnCreateDto;
@@ -70,7 +71,8 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
 
 
     public List<ColumnDto> getAllColumnForPproject(Long id) {
-        List<ColumnDto> columnDtos = mapper.toDto(repository.findAllColumn(id));
+        List<ProjectColumn> columns = repository.findAllColumn(id);
+        List<ColumnDto> columnDtos = mapper.toDto(columns);
         for (ColumnDto columnDto : columnDtos) {
             columnDto.setTasks(taskService.getAllTasksForColumn(columnDto.getId()));
         }
