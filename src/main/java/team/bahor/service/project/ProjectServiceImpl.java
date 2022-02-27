@@ -29,9 +29,6 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
         this.columnService = columnService;
     }
 
-    //    private final ColumnService columnService;
-
-
     public Long create(ProjectCreateDto dto) {
         Project project = mapper.fromCreateDto(dto);
         project.setCreatedBy(((UserDetails) getContext().getAuthentication().getPrincipal()).getId());
