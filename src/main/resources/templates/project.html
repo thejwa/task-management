@@ -22,13 +22,12 @@
         header {
             display: grid;
             grid-template-columns: 300px 1fr;
-            height: 100vh;
-            overflow-x: scroll;
+            height: auto;
         }
 
         header main {
             width: 100%;
-            height: 100vh;
+            height: auto;
             background: #f8f8fb;
             padding: 130px 0 0 80px;
         }
@@ -216,7 +215,9 @@
             background: #e0e4ea;
             border-radius: 17px;
         }
-
+        .todo-box:hover{
+            background: #ecedee;
+        }
         .todo-box h4 {
             display: flex;
             align-items: center;
@@ -370,6 +371,12 @@
             display: none; !important;
         }
 
+        h4 a{
+            font-size: 18px;
+            text-decoration: none;
+            color: black;
+        }
+
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -425,21 +432,14 @@
 
         <div class="container">
             <h3 th:text="${project.name}"></h3>
-            <!--            <h3>Project name</h3>-->
-
             <div class="contents">
                 <div class="content">
                     <div class="box">
-                        <!--                        <p><b>Date added:</b> <span> 12/04/2021</span></p>-->
-                        <!--                        <p><b>Deadline:</b><span>12/04/2021 </span></p>-->
-                        <!--                        <p><b>Participants:</b><span>12/04/2021 </span></p>-->
-                        <p><b>Date added:</b> <span th:text="${project.createdAt}"></span></p>
+                       <p><b>Date added:</b> <span th:text="${project.createdAt}"></span></p>
                         <p><b>Deadline:</b><span th:text="${project.deadline}"></span></p>
                     </div>
                     <div class="content-box">
-                        <!--                        <p>Менеджер для внутреннего пользования, предназначенный для учета статистики и трекинга задач.-->
-                        <!--                        </p>-->
-                        <span>DESCRIPTION: </span><span th:text="${project.description}"></span>
+                        <span>DESCRIPTION: </span><span th:text="${project.description}"></span><br/>
                         <span>TZ: </span><span th:text="${project.tz}"></span>
                     </div>
                     <div class="boxs">
@@ -449,54 +449,11 @@
                     </div>
                 </div>
 
-                <div class="todoContainer">
-                    <div class="columns">
-                        <div class="todoContent-box">
-                            <div class="todo-img">
-                                <h5>To do</h5>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                        ▪▪▪
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">+ Add Card</a></li>
-                                        <li><a class="dropdown-item" href="#">✏ Update</a></li>
-                                        <li><a class="dropdown-item" href="#">🗑 Delete</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="todo-box">
-                                <h4>CRM system design
-                                    <button class="medium">Medium</button>
-                                </h4>
-                                <p><span>Participant:  </span>Azhar</p>
-                                <p><span>Participant:  </span>Azhar</p>
-                            </div>
-
-                            <div class="todo-box">
-                                <h4>CRM system design
-                                    <button class="low">Low</button>
-                                </h4>
-                                <p><span>Participant:  </span>Azhar</p>
-                                <p><span>Participant:  </span>Azhar</p>
-                            </div>
-
-                            <div class="todo-box">
-                                <h4>CRM system design
-                                    <button class="high">High</button>
-                                </h4>
-                                <p><span>Participant:  </span>Azhar</p>
-                                <p><span>Participant:  </span>Azhar</p>
-                            </div>
-                            <div class="create_task d-flex justify-content-center">
-                                <a class="btn btn-info text-white" th:href="@{/}">+Add Card</a>
-                            </div>
-                        </div>
-                        <div class="colmn" th:each="column : ${project.projectColumns}">
-                            <div class="todoContent-box">
+                <div class="todoContainer" >
+<!--                    <div class="columns">-->
+<!--                        <div class="colmn">-->
+                            <div class="todoContent-box" th:each="column : ${project.projectColumns}">
                                 <div class="todo-img">
-                                    <!--                                    <p>To do</p>-->
                                     <h5 th:text="${column.name}"></h5>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
@@ -511,10 +468,11 @@
                                     </div>
                                 </div>
                                 <div class="task">
-                                    <div class="todo-box" th:each="task : ${column.tasks}">
-                                        <h4><span th:text="${task.name}"></span>
-                                            <button class="medium" th:text="${task.level}"></button>
+                                    <div class="todo-box" th:each="task : ${column.tasks}" >
+                                        <h4><a th:text="${task.name}" th:href="@{/task/{id}(id=${task.id})}"></a>
+                                            <button th:class="low" th:text="${task.level}"></button>
                                         </h4>
+                                        <!-- medium high-->
                                         <p>CreatedAt: <span th:text="${task.createdAt}">Participant:  </span></p>
                                         <p>Description: <span th:text="${task.description}">Participant:  </span></p>
                                         <p><span>Participant:  </span>Azhar</p>
@@ -522,13 +480,12 @@
                                 </div>
 
                                 <div class="create_task d-flex justify-content-center">
-<!--                                    <a class="btn btn-info text-white" th:href="@{/}">+</a>-->
                                     <a class="btn btn-info text-white" th:href="@{/}">+Add Card</a>
                                 </div>
                             </div>
-                        </div>
+<!--                        </div>-->
 
-                    </div>
+<!--                    </div>-->
 
                     <div class="create_column">
                         <div class="todoContent-box">
@@ -537,8 +494,7 @@
                                 <a class="btn" id="show"><img th:src="@{/imges/plus-circle.png}" alt=""></a>
                             </div>
                             <div class="forma" id="register" style="display: none">
-                                <!--                            <form th:action="@{/column/create/{id}(id=${project.id})}" th:method="post" th:object="${dto}>-->
-                                <form>
+                                <form th:action="@{/column/create/{id}(id=${project.id})}" th:method="post" th:object="${dto}">
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Column Name</label>
                                         <input type="text" class="form-control" id="name" name="name">
