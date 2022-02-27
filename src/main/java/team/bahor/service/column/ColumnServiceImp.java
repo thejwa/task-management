@@ -28,11 +28,10 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
         this.taskService = taskService;
     }
 
-    @Autowired
 
 
 
-    @Override
+
     public Long create(ColumnCreateDto createDto) {
         ProjectColumn projectColumn = mapper.fromCreateDto(createDto);
         repository.save(projectColumn);

@@ -76,10 +76,12 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
 
     public List<ProjectDto> getAllProjectsForUser(Long id) {
         return mapper.toDto(repository.getAllProjectsForUser(id));
+//        List<Project> allProjectsForUser = repository.getAllProjectsForUser(id);
+//        return null;
     }
 
     public ProjectDto getProject(Long id){
-        Project project = repository.findByIdProject(id);
+        final Project project = repository.findByIdProject(id);
         ProjectDto dto = mapper.toDto(project);
         dto.setProjectColumns(columnService.getAllColumnForPproject(id));
         return dto;

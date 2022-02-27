@@ -53,7 +53,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, BaseGen
     @Query(value = "select * from projects where  not deleted and id= ?1",nativeQuery = true)
     Project findByIdProject(Long id);
 
-    @Query(value = "select ps.* from project_member pm  inner join projects ps on ps.id = pm.project_id where not ps.deleted  and not pm.deleted   and pm.user_id = ?1;",nativeQuery = true)
+    @Query(value = "select ps.* from project_member pm  inner join projects ps on ps.id = pm.project_id where not ps.deleted  and not pm.deleted   and pm.user_id = ?1",nativeQuery = true)
     List<Project> getAllProjectsForUser(Long id);
 
 //    @Query(value = "select * from columns pc where not pc.is_deleted and pc.project_id = id",nativeQuery = true)
