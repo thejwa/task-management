@@ -17,6 +17,11 @@ import java.util.List;
 @Setter
 @Table(name = "roles")
 public class UserRole implements BaseGenericEntity {
+    public UserRole(String name, String code) {
+        this.name = name;
+        this.code = code;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,6 +41,7 @@ public class UserRole implements BaseGenericEntity {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<UserPermission> permissions;
+
 
 
 }
