@@ -42,7 +42,9 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository,Projec
 
     @Override
     public List<ProjectDto> getAll(Long id) {
+        System.out.println(mapper.toDto(repository.findProjectsByOrganizationId(id)));
       return mapper.toDto(repository.findProjectsByOrganizationId(id));
+
     }
 
     public void update(ProjectUpdateDto dto){

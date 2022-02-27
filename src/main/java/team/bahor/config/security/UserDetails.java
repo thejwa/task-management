@@ -21,6 +21,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private boolean blocked;
     private boolean active;
     private boolean deleted;
+    private Long organizationId;
     private Set<GrantedAuthority> authorities;
 
     public UserDetails(User user) {
@@ -31,6 +32,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
         this.blocked = user.isBlocked();
         this.deleted = user.isDeleted();
         this.active = user.getStatus() == 0;
+        this.organizationId=user.getOrganizationId();
         processAuthorities(user);
     }
 
@@ -78,6 +80,10 @@ public class UserDetails implements org.springframework.security.core.userdetail
     @Override
     public boolean isEnabled() {
         return (this.active && !this.deleted);
+    }
+
+    public Long getOrganizationId(){
+        return this.organizationId;
     }
 
 
