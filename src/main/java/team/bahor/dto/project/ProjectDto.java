@@ -18,6 +18,8 @@ public class ProjectDto extends GenericDto {
 
     private String name;
 
+    private String  tz;
+
     private LocalDateTime deadline;
 
     private String description;
@@ -27,9 +29,10 @@ public class ProjectDto extends GenericDto {
     private List<ColumnDto> projectColumns;
 
     @Builder(builderMethodName = "childBuilder")
-    public ProjectDto(Long id, String name, LocalDateTime deadline, String description, Organization organization, List<ColumnDto> projectColumns) {
+    public ProjectDto(Long id, String name, String tz, LocalDateTime deadline, String description, Organization organization, List<ColumnDto> projectColumns) {
         super(id);
         this.name = name;
+        this.tz = tz;
         this.deadline = deadline;
         this.description = description;
         this.organization = organization;

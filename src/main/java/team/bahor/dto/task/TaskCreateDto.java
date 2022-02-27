@@ -14,9 +14,11 @@ import java.util.List;
 
 @Setter
 @Getter
-@Builder
 @NoArgsConstructor
 public class TaskCreateDto implements BaseGenericDto {
+    public TaskCreateDto(Long columnId) {
+        this.columnId = columnId;
+    }
 
     private Long createdBy;
 
@@ -29,6 +31,8 @@ public class TaskCreateDto implements BaseGenericDto {
     private Priority priority;
 
     private Long taskOrder;
+
+    private Long columnId;
 
     public TaskCreateDto(Long createdBy, String name, String description, Level level, Priority priority, Long taskOrder) {
         this.createdBy = createdBy;

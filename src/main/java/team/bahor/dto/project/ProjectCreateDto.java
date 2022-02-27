@@ -14,14 +14,18 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class ProjectCreateDto implements BaseGenericDto {
+
+    public ProjectCreateDto(Long organizationId) {
+        this.organizationId = organizationId;
+    }
+
     private String name;
+
+    private String tz;
 
     private LocalDateTime deadline;
 
     private String description;
 
-    private Organization organization;
-
-    private List<ProjectColumn> projectColumns;
-
+    private Long organizationId;
 }
