@@ -45,7 +45,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests(expressionInterceptUrlRegistry ->
                         expressionInterceptUrlRegistry
-                                .antMatchers(HttpMethod.GET, WHITE_LIST)
+                                .antMatchers(WHITE_LIST)
                                 .permitAll()
 //                                .antMatchers(HttpMethod.POST, "/logout")
 //                                .permitAll()

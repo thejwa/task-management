@@ -1,6 +1,7 @@
 package team.bahor.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 import team.bahor.dto.organization.OrganizationCreatoDto;
 import team.bahor.dto.organization.OrganizationDto;

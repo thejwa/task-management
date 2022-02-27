@@ -26,6 +26,8 @@ public class TaskCreateDto implements BaseGenericDto {
 
     private String description;
 
+    private String deadline;
+
     private Level level;
 
     private Priority priority;
@@ -34,12 +36,14 @@ public class TaskCreateDto implements BaseGenericDto {
 
     private Long columnId;
 
-    public TaskCreateDto(Long createdBy, String name, String description, Level level, Priority priority, Long taskOrder) {
+    public TaskCreateDto(Long createdBy, String name, String description, String deadline, Level level, Priority priority, Long taskOrder, Long columnId) {
         this.createdBy = createdBy;
         this.name = name;
         this.description = description;
+        this.deadline = deadline;
         this.level = level;
         this.priority = priority;
         this.taskOrder = taskOrder;
+        this.columnId = columnId;
     }
 }

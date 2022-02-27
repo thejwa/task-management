@@ -1,9 +1,11 @@
 package team.bahor.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import team.bahor.config.security.UserDetails;
 import team.bahor.dto.user.UserCreateDto;
 import team.bahor.service.organization.OrganizationServiceImpl;
 import team.bahor.service.user.UserServiceImpl;
@@ -38,5 +40,13 @@ public class UserController extends AbstractController<UserServiceImpl> {
     @GetMapping("admins_page")
     public String adminsPage(Model model) {
         return "admin";
+    public String adminsPage(Model model) {
+        final Long id = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getOrganizationId();
+        return "redirect:organization/get/" + id;
+    }
+
+    @GetMapping("user_page")
+    public String userPage(Model model) {
+        return "home";
     }
 }

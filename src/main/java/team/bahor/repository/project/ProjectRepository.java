@@ -16,10 +16,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, BaseGen
     @Override
     List<Project> findAll();
 
-    //getAllProjectForProjectColumn
-//    List<Project> findProjectsByOrganization(Long id);
-    @Override
-    List<Project> findAllById(Iterable<Long> longs);
+    List<Project> findProjectsByOrganizationId(Long id);
 
     @Override
     <S extends Project> List<S> saveAll(Iterable<S> entities);
@@ -50,6 +47,8 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, BaseGen
 
     @Override
     <S extends Project, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction);
+    @Query(value = "select * from projects where not deleted and organization_id= ?1",nativeQuery = true)
+    List<Project> getByOrgId(Long id);
 
 //    @Query(value = "select * from columns pc where not pc.is_deleted and pc.project_id = id",nativeQuery = true)
 //    List<ProjectColumn> getAllProjectForProjectColumn(Long id);

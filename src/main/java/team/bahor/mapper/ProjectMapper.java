@@ -1,6 +1,7 @@
 package team.bahor.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 import team.bahor.dto.project.ProjectCreateDto;
 import team.bahor.dto.project.ProjectDto;
@@ -20,6 +21,7 @@ public interface ProjectMapper extends AbstractMapper<Project,ProjectDto,Project
     List<ProjectDto> toDto(List<Project> entities);
 
     @Override
+    @Mapping(target = "deadline",ignore = true)
     Project fromCreateDto(ProjectCreateDto createDto);
 
     @Override

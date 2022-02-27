@@ -1,7 +1,5 @@
 package team.bahor.controller;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,6 +20,10 @@ public class HomeController {
         if (SecurityContextHolder.getContext().getAuthentication().getAuthorities()
                 .contains(new SimpleGrantedAuthority("ROLE_" + Roles.ADMIN.getCode())))
             return "forward:/user/admins_page";
+
+        if (SecurityContextHolder.getContext().getAuthentication().getAuthorities()
+                .contains(new SimpleGrantedAuthority("ROLE_" + Roles.USER.getCode())))
+            return "forward:/user/user_page";
 
         UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("principal.getId() = " + principal.getId());

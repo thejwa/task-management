@@ -35,7 +35,7 @@ public class Task extends Auditable {
     private Integer taskOrder;
 
     @Column(nullable = false)
-    private Long projectColumnId;
+    private Long columnId;
 
 
 }

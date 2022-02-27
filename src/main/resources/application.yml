@@ -4,6 +4,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/task_management?currentSchema=main
     username: postgres
     password: 1
+
   jpa:
     show-sql: true
     hibernate:
