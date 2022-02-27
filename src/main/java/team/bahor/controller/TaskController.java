@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import team.bahor.dto.task.TaskCreateDto;
 import team.bahor.dto.task.TaskMemberCreateDto;
 import team.bahor.dto.task.TaskUpdateDto;
-import team.bahor.service.column.ColumnService;
 import team.bahor.service.task.TaskServiceImpl;
 
 import javax.validation.Valid;
@@ -19,14 +18,9 @@ import javax.validation.Valid;
 public class TaskController {
     private final TaskServiceImpl service;
 
-    public TaskController(TaskServiceImpl service, ColumnService columnService) {
+    public TaskController(TaskServiceImpl service) {
         this.service = service;
-        this.columnService = columnService;
     }
-
-    private final ColumnService columnService;
-
-
 
     @RequestMapping(value = "create/{id}", method = RequestMethod.GET)
     public String createPage(Model model, @PathVariable("id") Long id) {
