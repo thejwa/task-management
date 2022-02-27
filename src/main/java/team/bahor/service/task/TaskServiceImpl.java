@@ -4,16 +4,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import team.bahor.config.security.UserDetails;
 import team.bahor.dto.task.*;
-import team.bahor.entity.project.ProjectColumn;
 import team.bahor.entity.task.Task;
-import team.bahor.entity.task.TaskComment;
 import team.bahor.mapper.task.TaskMapper;
 import team.bahor.repository.column.ColumnRepository;
 import team.bahor.repository.task.TaskRepository;
 import team.bahor.service.base.AbstractService;
 import team.bahor.validator.TaskValidator;
 
-import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -38,6 +35,7 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
         task.setDeadline(LocalDateTime.parse(dto.getDeadline(),DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
         task.setCode(UUID.randomUUID().toString());
         task.setColumnId(dto.getColumnId());
+        task.setStatus(0);
         repository.save(task);
         return null;
 
@@ -62,7 +60,7 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
 
     @Override
     public List<TaskDto> getAll(Long id) {
-        List<Task> tasks = repository.getAllTasksForProjectColumn(id);
+        List<Task> tasks = repository.getAllTasksForColumn(id);
         return mapper.toDto(tasks);
     }
 

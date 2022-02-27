@@ -26,7 +26,7 @@ public interface TaskRepository extends AbstractRepository<Task, Long>, BaseGene
     void update(@Param("dto") TaskUpdateDto dto);
 
     @Query(value = "select * from tasks where not deleted and column_id = ?1",nativeQuery = true)
-    List<Task> getAllTasksForProjectColumn(Long id);
+    List<Task> getAllTasksForColumn(Long id);
 
     @Query(value = "select * from tasks where not deleted and  column_id = ?1  order by task_order desc limit 1",nativeQuery = true)
     Task getEndTaskOrder(Long id);
