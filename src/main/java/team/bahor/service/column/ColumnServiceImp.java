@@ -1,5 +1,6 @@
 package team.bahor.service.column;
 
+import org.hibernate.mapping.Column;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.bahor.dto.column.ColumnCreateDto;
@@ -16,6 +17,7 @@ import team.bahor.validator.column.ColumnValidator;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMapper, ColumnValidator>
@@ -28,13 +30,13 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
         this.taskService = taskService;
     }
 
-    @Autowired
 
 
 
-    @Override
+
     public Long create(ColumnCreateDto createDto) {
         ProjectColumn projectColumn = mapper.fromCreateDto(createDto);
+        projectColumn.setCode(UUID.randomUUID().toString());
         repository.save(projectColumn);
         return null;
     }
@@ -71,7 +73,8 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
 
 
     public List<ColumnDto> getAllColumnForPproject(Long id) {
-        List<ColumnDto> columnDtos = mapper.toDto(repository.findAllColumn(id));
+        List<ProjectColumn> columns = repository.findAllColumn(id);
+        List<ColumnDto> columnDtos = mapper.toDto(columns);
         for (ColumnDto columnDto : columnDtos) {
             columnDto.setTasks(taskService.getAllTasksForColumn(columnDto.getId()));
         }

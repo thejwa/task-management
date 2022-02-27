@@ -27,6 +27,6 @@ public interface ColumnRepository extends JpaRepository<ProjectColumn,Long>, Bas
     @Query(value = "select * from ProjectColumn pc where not isDeleted and pc.id=id", nativeQuery = true)
     ProjectColumn getById(Long id);
 
-    @Query(value = "select * from columns not deleted and id= ?1",nativeQuery = true)
+    @Query(value = "select * from columns where not deleted and project_id= ?1",nativeQuery = true)
     List<ProjectColumn> findAllColumn(Long id);
 }

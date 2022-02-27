@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import team.bahor.dto.column.ColumnCreateDto;
 import team.bahor.dto.column.ColumnUpdateDto;
 import team.bahor.service.column.ColumnService;
+import team.bahor.utils.BaseUtils;
 
 import javax.validation.Valid;
 
@@ -25,13 +26,11 @@ public class ColumnController extends AbstractController<ColumnService> {
 
 
     @RequestMapping(value = "create/{id}", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("dto") ColumnCreateDto dto, @PathVariable Long id, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "redirect:/";
-        }
-        dto.setCreatedBy(id);
+    public String create(@Valid @ModelAttribute("dto") ColumnCreateDto dto, @PathVariable Long id) {
+        dto.setProjectId(id);
+        dto.setCreatedBy(BaseUtils.sessionUserId());
         service.create(dto);
-        return "redirect:/";
+        return "redirect:/project/"+id;
     }
 
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
@@ -39,12 +38,12 @@ public class ColumnController extends AbstractController<ColumnService> {
         model.addAttribute("projectColumn", service.get(id));
         return "redirect:/";
     }
-
-    @RequestMapping(value = "getAll/{id}", method = RequestMethod.GET)
-    public String getAll(Model model, @PathVariable Long id) {
-        model.addAttribute("projectColumns", service.getAll(id));
-        return "redirect:/";
-    }
+//
+//    @RequestMapping(value = "getAll/{id}", method = RequestMethod.GET)
+//    public String getAll(Model model, @PathVariable Long id) {
+//        model.addAttribute("projectColumns", service.getAll(id));
+//        return "redirect:/";
+//    }
 
     @RequestMapping(value = "update/{id}", method = RequestMethod.POST)
     public String update(@ModelAttribute ColumnUpdateDto dto, @PathVariable Long id) {

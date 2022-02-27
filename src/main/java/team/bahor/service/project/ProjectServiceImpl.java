@@ -2,6 +2,7 @@ package team.bahor.service.project;
 
 import org.springframework.stereotype.Service;
 import team.bahor.config.security.UserDetails;
+import team.bahor.dto.column.ColumnDto;
 import team.bahor.dto.project.ProjectCreateDto;
 import team.bahor.dto.project.ProjectDto;
 import team.bahor.dto.project.ProjectUpdateDto;
@@ -29,9 +30,6 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
         this.columnService = columnService;
     }
 
-    //    private final ColumnService columnService;
-
-
     public Long create(ProjectCreateDto dto) {
         Project project = mapper.fromCreateDto(dto);
         project.setCreatedBy(((UserDetails) getContext().getAuthentication().getPrincipal()).getId());
@@ -44,7 +42,8 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
     }
 
     public ProjectDto get(Long id) {
-        ProjectDto projectDto = mapper.toDto(repository.getById(id));
+        Project project = repository.getById(id);
+        ProjectDto projectDto = mapper.toDto(project);
 //        projectDto.setProjectColumns(columnService.getAll(projectDto.getId()));
         return projectDto;
     }
@@ -67,7 +66,13 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
     }
 
     public void delete(Long id) {
-        repository.deleteById(id);
+        repository.setDeleted(id);
+    }
+    public void block(Long id){
+        repository.setBlocked(id);
+    }
+    public void unBlock(Long id){
+        repository.setUnBlocked(id);
     }
 
     public List<ProjectDto> getAllProjectForOrganization(Long id) {
@@ -79,9 +84,10 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
     }
 
     public ProjectDto getProject(Long id){
-        Project project = repository.findByIdProject(id);
+        final Project project = repository.findByIdProject(id);
         ProjectDto dto = mapper.toDto(project);
-        dto.setProjectColumns(columnService.getAllColumnForPproject(id));
+        List<ColumnDto> columnDto = columnService.getAllColumnForPproject(id);
+        dto.setProjectColumns(columnDto);
         return dto;
     }
 }

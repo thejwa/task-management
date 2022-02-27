@@ -44,8 +44,8 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
 
 
     public OrganizationDto getOrg(Long id) {
-        OrganizationDto organizationDto = mapper.toDto(repository.getByUserIdOrganization(id));
-        List<ProjectDto> projectDto = projectService.getAllProjectsForUser(id);
+       final OrganizationDto organizationDto = mapper.toDto(repository.getByUserIdOrganization(id));
+       final List<ProjectDto> projectDto = projectService.getAllProjectsForUser(id);
         organizationDto.setProjects(projectDto);
         return organizationDto;
     }

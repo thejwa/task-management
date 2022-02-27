@@ -8,7 +8,376 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{css/index2.css}">
+<!--    <link rel="stylesheet" th:href="@{css/index2.css}">-->
+    <style  >
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Rubik;
+        }
+        p{
+            margin: 0 !important;
+        }
+        header {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            height: auto;
+        }
+
+        header main {
+            width: 100%;
+            height: auto;
+            background: #f8f8fb;
+            padding: 130px 0 0 80px;
+        }
+
+        .menu-bar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            display: none;
+        }
+
+        .link {
+            margin-top: 100px;
+        }
+
+        .link a {
+            display: block;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 20px;
+            color: #000000;
+            text-decoration: none;
+            margin: 30px 0;
+        }
+
+        .link a:first-child {
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        aside nav {
+            width: 100%;
+            height: 100px;
+            background: #ffffff;
+            box-shadow: 1px 2px 11px rgba(148, 148, 148, 0.25);
+        }
+
+        nav {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+        }
+
+        nav .input {
+            display: flex;
+            align-items: center;
+            padding: 22px 25px;
+        }
+
+        .input .fa-search {
+            position: relative;
+            top: 0px;
+            left: 50px;
+        }
+
+        .input input {
+            padding: 0 70px;
+            width: 100%;
+            height: 56px;
+            background: #ffffff;
+            border: 1px solid #ebebeb;
+            box-sizing: border-box;
+            border-radius: 101px;
+            outline: none;
+        }
+
+        .input input::placeholder {
+            font-size: 18px;
+        }
+
+        .user-information {
+            display: flex;
+            align-items: center;
+            gap: 75px;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .icon img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .icon i {
+            width: 28px;
+            height: 28px;
+            font-size: 28px;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .user p {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 20px;
+            color: #000000;
+        }
+
+        .container {
+            height: 100%;
+            padding: 30px 50px 0 50px;
+        }
+
+        .container h3 {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 36px;
+            line-height: 20px;
+            color: #000000;
+            margin-bottom: 25px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 20px;
+        }
+
+        .box {
+            padding: 22px;
+            width: 300px;
+            height: auto;
+            box-sizing: border-box;
+            background: #f6f6f6;
+            border-radius: 17px;
+        }
+
+        .content-box {
+            padding: 22px;
+            width: 100%;
+            height: auto;
+            background: #f6f6f6;
+            box-sizing: border-box;
+            border-radius: 17px;
+        }
+
+        .boxs {
+            padding: 22px;
+            width: 300px;
+            height: auto;
+            box-sizing: border-box;
+            background: #f6f6f6;
+            border-radius: 17px;
+        }
+
+        .todoContainer {
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .todoContent-box {
+            padding: 10px 18px;
+            margin-top: 20px;
+            width: 100%;
+            height: auto;
+            box-sizing: border-box;
+            background: #f6f6f6;
+            border-radius: 17px;
+        }
+
+        .todo-img {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .todo-box {
+            padding: 15px;
+            margin: 10px 0;
+            width: 100%;
+            height: auto;
+            background: #e0e4ea;
+            border-radius: 17px;
+        }
+        .todo-box:hover{
+            background: #ecedee;
+        }
+        .todo-box h4 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            color: #000000;
+        }
+
+        .todo-box h4 button {
+            padding: 3px 9px;
+            border: none;
+            border-radius: 14px;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 20px;
+            color: #ffffff;
+        }
+
+        .medium {
+            background: #ff9533;
+        }
+
+        .low {
+            background: #67cb65;
+        }
+
+        .high {
+            background: #e74444;
+        }
+
+        .todo-box p {
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 20px;
+            color: #000000;
+        }
+
+        .todo-box p span {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            color: #6c6c6c;
+        }
+
+        /*
+
+        ===================  Responsive ================
+
+        */
+
+        @media (max-width: 1490px) {
+            header {
+                display: grid;
+                grid-template-columns: 60px 1fr;
+            }
+
+            main {
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+
+            header main {
+                width: 300px;
+                height: 100%;
+                position: relative;
+                top: 0;
+                left: -250px;
+                transition: 1s;
+                z-index: 2;
+            }
+
+            .menu-bar {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 15px;
+            }
+
+            .open {
+                width: 300px;
+                position: relative;
+                top: 0;
+                left: 0px;
+                z-index: 1;
+                transition: 1s;
+            }
+        }
+
+        @media (max-width: 1260px) {
+            header {
+                overflow-y: scroll;
+            }
+
+            .todoContainer {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .content {
+                display: block;
+                width: 100%;
+            }
+
+            .content .box,
+            .content .boxs {
+                width: 100%;
+                margin: 20px 0;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .todoContainer {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        @media (max-width: 630px) {
+            .user-information {
+                width: 50px;
+                display: block;
+            }
+
+            .user {
+                display: block;
+                margin: 0;
+            }
+
+            nav {
+                display: block;
+            }
+
+            .icon,
+            .user {
+                display: none;
+            }
+
+            .container {
+                padding: 30px 10px;
+            }
+
+            .content-box {
+                height: 150px;
+            }
+        }
+
+        .dropdown-toggle::after {
+            display: none; !important;
+        }
+
+        h4 a{
+            font-size: 18px;
+            text-decoration: none;
+            color: black;
+        }
+
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,22 +431,16 @@
         </nav>
 
         <div class="container">
-            <!--            <h3 th:text="${project.name}"></h3>-->
-            <h3>Project name</h3>
-
+            <h3 th:text="${project.name}"></h3>
             <div class="contents">
                 <div class="content">
                     <div class="box">
-                        <p><b>Date added:</b> <span> 12/04/2021</span></p>
-                        <p><b>Deadline:</b><span>12/04/2021 </span></p>
-                        <p><b>Participants:</b><span>12/04/2021 </span></p>
-                        <!--                        <p><b>Date added:</b> <span> 12/04/2021</span></p>-->
-                        <!--                        <p><b>Deadline:</b><span th:text="${project.deadline}"></span></p>-->
+                       <p><b>Date added:</b> <span th:text="${project.createdAt}"></span></p>
+                        <p><b>Deadline:</b><span th:text="${project.deadline}"></span></p>
                     </div>
                     <div class="content-box">
-                        <p>Менеджер для внутреннего пользования, предназначенный для учета статистики и трекинга задач.
-                        </p>
-                        <!--                        <p th:text="${project.description}"></p>-->
+                        <span>DESCRIPTION: </span><span th:text="${project.description}"></span><br/>
+                        <span>TZ: </span><span th:text="${project.tz}"></span>
                     </div>
                     <div class="boxs">
                         <p><b>All tasks:</b> 1</p>
@@ -86,72 +449,43 @@
                     </div>
                 </div>
 
-                <div class="todoContainer">
-                    <div class="columns">
-                        <div class="todoContent-box">
-                            <div class="todo-img">
-                                <h5>To do</h5>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                        ▪▪▪
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">+ Add Card</a></li>
-                                        <li><a class="dropdown-item" href="#">✏ Update</a></li>
-                                        <li><a class="dropdown-item" href="#">🗑 Delete</a></li>
-                                    </ul>
+                <div class="todoContainer" >
+<!--                    <div class="columns">-->
+<!--                        <div class="colmn">-->
+                            <div class="todoContent-box" th:each="column : ${project.projectColumns}">
+                                <div class="todo-img">
+                                    <h5 th:text="${column.name}"></h5>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            ▪▪▪
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">+ Add Card</a></li>
+                                            <li><a class="dropdown-item" href="#">✏ Update</a></li>
+                                            <li><a class="dropdown-item" href="#">🗑 Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="task">
+                                    <div class="todo-box" th:each="task : ${column.tasks}" >
+                                        <h4><a th:text="${task.name}" th:href="@{/task/{id}(id=${task.id})}"></a>
+                                            <button th:class="low" th:text="${task.level}"></button>
+                                        </h4>
+                                        <!-- medium high-->
+                                        <p>CreatedAt: <span th:text="${task.createdAt}">Participant:  </span></p>
+                                        <p>Description: <span th:text="${task.description}">Participant:  </span></p>
+                                        <p><span>Participant:  </span>Azhar</p>
+                                    </div>
+                                </div>
+
+                                <div class="create_task d-flex justify-content-center">
+                                    <a class="btn btn-info text-white" th:href="@{/}">+Add Card</a>
                                 </div>
                             </div>
-                            <div class="todo-box">
-                                <h4>CRM system design
-                                    <button class="medium">Medium</button>
-                                </h4>
-                                <p><span>Participant:  </span>Azhar</p>
-                                <p><span>Participant:  </span>Azhar</p>
-                            </div>
+<!--                        </div>-->
 
-                            <div class="todo-box">
-                                <h4>CRM system design
-                                    <button class="low">Low</button>
-                                </h4>
-                                <p><span>Participant:  </span>Azhar</p>
-                                <p><span>Participant:  </span>Azhar</p>
-                            </div>
-
-                            <div class="todo-box">
-                                <h4>CRM system design
-                                    <button class="high">High</button>
-                                </h4>
-                                <p><span>Participant:  </span>Azhar</p>
-                                <p><span>Participant:  </span>Azhar</p>
-                            </div>
-                            <div class="create_task d-flex justify-content-center">
-                                <a class="btn btn-info text-white" th:href="@{/}">+Add Card</a>
-                            </div>
-                        </div>
-                        <!--                        <div class="colmn" th:each="column : ${project.projectColumns}">-->
-                        <!--                            <div class="todoContent-box">-->
-                        <!--                                <div class="todo-img">-->
-                        <!--                                    &lt;!&ndash;                                    <p>To do</p>&ndash;&gt;-->
-                        <!--                                    <p th:text="${column.name}"></p>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="task">-->
-                        <!--                                    <div class="todo-box" th:each="task : ${column.tasks}">-->
-                        <!--                                        <h4 th:text="${task.name}">-->
-                        <!--                                            <button class="medium">Medium</button>-->
-                        <!--                                        </h4>-->
-                        <!--                                        <p><span>Participant:  </span>Azhar</p>-->
-                        <!--                                        <p><span>Participant:  </span>Azhar</p>-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
-
-                        <!--                                <div class="create_task d-flex justify-content-center">-->
-                        <!--                                    <a class="btn btn-info text-white" th:href="@{/}">+</a>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-
-                    </div>
+<!--                    </div>-->
 
                     <div class="create_column">
                         <div class="todoContent-box">
@@ -160,8 +494,7 @@
                                 <a class="btn" id="show"><img th:src="@{/imges/plus-circle.png}" alt=""></a>
                             </div>
                             <div class="forma" id="register" style="display: none">
-                                <!--                            <form th:action="@{/column/create/{id}(id=${project.id})}" th:method="post" th:object="${dto}>-->
-                                <form>
+                                <form th:action="@{/column/create/{id}(id=${project.id})}" th:method="post" th:object="${dto}">
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Column Name</label>
                                         <input type="text" class="form-control" id="name" name="name">

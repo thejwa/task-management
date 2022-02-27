@@ -4,7 +4,6 @@ import lombok.*;
 import team.bahor.dto.BaseGenericDto;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
@@ -12,21 +11,21 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserCreateDto implements BaseGenericDto {
-    @NotBlank
-    private String first_name;
+    @org.hibernate.validator.constraints.NotBlank
+    private String firstName;
 
-    private String last_name;
+    private String lastName;
 
     @NotBlank
-    @Pattern(regexp = "")
+//    @Pattern(regexp = "")
     private String password;
 
     private String role;
 
-    private String profile_photo;
+    private String profilePhoto;
 
     @NotBlank
     private String username;
 
-    private Long organization_id;
+    private Long organizationId;
 }

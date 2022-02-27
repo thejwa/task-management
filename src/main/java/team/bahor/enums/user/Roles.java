@@ -4,6 +4,8 @@ import com.google.common.collect.Sets;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.management.relation.Role;
+import java.util.Arrays;
 import java.util.Set;
 
 @Getter
@@ -35,4 +37,13 @@ public enum Roles {
     private final int order;
 
     private final Set<Permissions> permissions;
+
+    public static Roles getRoleByCode(String code) {
+        for (Roles role : Roles.values()) {
+            if (role.getCode().equals(code)) {
+                return role;
+            }
+        }
+        return null;
+    }
 }
