@@ -10,7 +10,6 @@ import team.bahor.entity.project.Project;
 import team.bahor.mapper.OrganizationMapper;
 import team.bahor.repository.organization.OrganizationRepository;
 import team.bahor.service.base.AbstractService;
-import team.bahor.service.project.ProjectService;
 import team.bahor.service.project.ProjectServiceImpl;
 import team.bahor.validator.OrganizationValidator;
 
@@ -38,6 +37,15 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
     public OrganizationDto get(Long id) {
         OrganizationDto organizationDto = mapper.toDto(repository.getByIdOrganization(id));
         List<ProjectDto> projectDto = projectService.getAllProjectForOrganization(id);
+        organizationDto.setProjects(projectDto);
+        return organizationDto;
+    }
+
+
+
+    public OrganizationDto getOrg(Long id) {
+       final OrganizationDto organizationDto = mapper.toDto(repository.getByUserIdOrganization(id));
+       final List<ProjectDto> projectDto = projectService.getAllProjectsForUser(id);
         organizationDto.setProjects(projectDto);
         return organizationDto;
     }
