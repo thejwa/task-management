@@ -58,4 +58,17 @@ public class ProjectController {
         projectServiceImpl.delete(id);
         return "redirect:/";
     }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public String get(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("project", projectServiceImpl.get(id));
+        return "project";
+    }
+
+    @RequestMapping(value = "getAll/{id}", method = RequestMethod.POST)
+    public String getAll(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("projects", projectServiceImpl.getAll(id));
+        return "redirect:/";
+    }
+
 }

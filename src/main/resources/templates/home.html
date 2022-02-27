@@ -60,15 +60,24 @@
                 </nav>
 
                 <div class="container">
-                    <h3>ОсОО “Energi.kg”</h3>
+                    <h3>Bahor Team Projects</h3>
 <!--                    <h2 th:text="${organization.name}>Org Name</h2>-->
                     <div class="content">
                         <div class="contents">
                             <div class="content-text">
                                 <p>Projects</p>
-                                <p>Export</p>
+                                <p>Info</p>
                             </div>
-                            <div class="box">
+        <!--
+            <tr th:each="todo,iter : ${todos}">
+                <td th:text="${iter.count}"></td>
+                <td th:utext="${todo.title}"></td>
+                <td th:utext="${todo.description}"></td>
+                <td>✅ 🗑 ✏️</td>
+            </tr>
+        -->
+                            <div></div>
+                            <a class="box btn btn-light" th:href="@{/project/1}">
                                 <p>ОсОО “Energi.kg”</p>
                                 <div class="box-text">
                                     <span>
@@ -81,35 +90,7 @@
                                        <img th:src="@{/imges/users.png}" alt=""> Adyl, Azhar, Arthur
                                     </span>
                                 </div>
-                            </div>
-                            <div class="box">
-                                <p>ОсОО “Energi.kg”</p>
-                                <div class="box-text">
-                                    <span>
-                                        <img th:src="@{/imges/sunrise.png}" alt="">12/04/2021
-                                    </span>
-                                    <span>
-                                        <img th:src="@{/imges/sunset2.png}" alt=""> 12/04/2021
-                                    </span>
-                                    <span>
-                                       <img th:src="@{/imges/users.png}" alt=""> Adyl, Azhar, Arthur
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="box">
-                                <p>ОсОО “Energi.kg”</p>
-                                <div class="box-text">
-                                    <span>
-                                        <img th:src="@{/imges/sunrise.png}" alt="">12/04/2021
-                                    </span>
-                                    <span>
-                                        <img th:src="@{/imges/sunset2.png}" alt=""> 12/04/2021
-                                    </span>
-                                    <span>
-                                       <img th:src="@{/imges/users.png}" alt=""> Adyl, Azhar, Arthur
-                                    </span>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

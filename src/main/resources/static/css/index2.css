@@ -353,3 +353,7 @@ nav .input {
     height: 150px;
   }
 }
+
+.dropdown-toggle::after {
+  display: none; !important;
+}
