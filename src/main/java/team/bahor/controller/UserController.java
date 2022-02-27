@@ -22,26 +22,21 @@ public class UserController extends AbstractController<UserServiceImpl> {
 
     @PreAuthorize(value = "hasRole('SUPER_ADMIN')")
     @GetMapping("create_admin/{id}")
-    public String createAdminPage(@PathVariable(value = "id") Long id, Model model){
+    public String createAdminPage(@PathVariable(value = "id") Long id, Model model) {
         UserCreateDto dto = UserCreateDto.builder().organization_id(id).build();
         model.addAttribute("dto", dto);
         return "user/create_admin";
     }
 
     @PreAuthorize(value = "hasRole('SUPER_ADMIN')")
-    @PostMapping("create_admin")
-    public String createAdmin(@Valid @ModelAttribute("dto") UserCreateDto dto){
-
-        return "redirect:admin";
+    @PostMapping("create_admin/{id}")
+    public String createAdmin(@Valid @ModelAttribute("dto") UserCreateDto dto, @PathVariable("id") Long id) {
+        return "redirect:home";
     }
 
-    @GetMapping("super_admins_page")
-    public String superAdminsPage(Model model){
-        return "admin";
-    }
 
     @GetMapping("admins_page")
-    public String adminsPage(Model model){
+    public String adminsPage(Model model) {
         return "admin";
     }
 }

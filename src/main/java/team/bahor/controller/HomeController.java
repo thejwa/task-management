@@ -17,7 +17,7 @@ public class HomeController {
     public String homePage() {
         if (SecurityContextHolder.getContext().getAuthentication().getAuthorities()
                 .contains(new SimpleGrantedAuthority("ROLE_" + Roles.SUPER_ADMIN.getCode())))
-            return "forward:/user/super_admins_page";
+            return "forward:/organization/super_admins_page";
 
         if (SecurityContextHolder.getContext().getAuthentication().getAuthorities()
                 .contains(new SimpleGrantedAuthority("ROLE_" + Roles.ADMIN.getCode())))

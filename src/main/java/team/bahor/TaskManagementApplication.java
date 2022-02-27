@@ -43,8 +43,8 @@ public class TaskManagementApplication {
     }
 
 
-    @Transactional
-    @Bean
+//    @Transactional
+//    @Bean
     CommandLineRunner run() {
         return args -> {
             User superAdmin = new User();

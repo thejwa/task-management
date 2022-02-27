@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-6 mx-auto">
-            <form th:action="@{/user/create}" th:method="post" th:object="${dto}">
+            <form th:action="@{/user/create_admin/{id}(id=${dto.organization_id})}" th:method="post" th:object="${dto}">
                 <div class="form-group">
                     <label for="username" class="form-label">Username: </label>
                     <input class="form-control" type="text" id="username" name="username"/> <!--th:field="*{username}"-->

@@ -4,16 +4,15 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import team.bahor.dto.organization.OrganizationCreatoDto;
+import team.bahor.dto.organization.OrganizationDto;
 import team.bahor.dto.organization.OrganizationUpdateDto;
 import team.bahor.service.organization.OrganizationServiceImpl;
 import team.bahor.utils.BaseUtils;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/organization/*")
@@ -39,6 +38,13 @@ public class OrganizationController {
         dto.setCreatedBy(BaseUtils.sessionUserId());
         organizationService.create(dto);
         return "redirect:/";
+    }
+
+    @GetMapping("super_admins_page")
+    public String superAdminsPage(Model model) {
+        List<OrganizationDto> organizations = organizationService.getAll();
+        model.addAttribute("organizations", organizations);
+        return "admin";
     }
 //
 //    @RequestMapping(value = "update{id}", method = RequestMethod.GET)

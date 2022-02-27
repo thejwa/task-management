@@ -6,7 +6,6 @@ import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 import team.bahor.dto.task.TaskCreateDto;
 import team.bahor.dto.task.TaskDto;
-import team.bahor.dto.task.TaskMemberCreateDto;
 import team.bahor.dto.task.TaskUpdateDto;
 import team.bahor.entity.task.Task;
 import team.bahor.entity.task.TaskMember;
