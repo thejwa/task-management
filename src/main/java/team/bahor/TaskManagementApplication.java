@@ -43,8 +43,8 @@ public class TaskManagementApplication {
     }
 
 
-//    @Transactional
-//    @Bean
+    @Transactional
+    @Bean
     CommandLineRunner run() {
         return args -> {
             User superAdmin = new User();
@@ -61,6 +61,7 @@ public class TaskManagementApplication {
             role.setPermissions(userPermissions);
 
             superAdmin.setUserRole(role);
+            superAdmin.setOrganizationId(1L);
             superAdmin.setStatus(0);
 //            userPermissionRepository.saveAll(userPermissions);
 //            userRoleRepository.save(role);

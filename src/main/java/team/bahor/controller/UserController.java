@@ -40,8 +40,9 @@ public class UserController extends AbstractController<UserServiceImpl> {
         return "admin";
     }
 
+
     @GetMapping("admins_page")
     public String adminsPage(Model model){
-        return "admin";
+        return "home";
     }
 }
