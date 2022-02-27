@@ -80,9 +80,9 @@
                             <div class="icons">
                                 <a class="btn btn-light" th:href="@{/project/{id}(id=${project.id})}">👁</a>
                                 <a class="btn btn-light" href="#">✏️</a>
-                                <a class="btn btn-light" href="#">🔐</a>
-                                <a class="btn btn-light" href="#">🔓</a>
-                                <a class="btn btn-light" href="#">🗑</a>
+                                <a class="btn btn-light" th:href="@{/project/block/{id}(id=${project.id})}">🔐</a>
+                                <a class="btn btn-light" th:href="@{/project/unblock/{id}(id=${project.id})}">🔓</a>
+                                <a class="btn btn-light" th:href="@{/project/delete/{id}(id=${project.id})}">🗑</a>
                             </div>
                         </div>
                     </div>

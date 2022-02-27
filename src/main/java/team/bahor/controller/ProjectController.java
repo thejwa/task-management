@@ -80,6 +80,18 @@ public class ProjectController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "block/{id}", method = RequestMethod.GET)
+    public String block(@PathVariable(name = "id") Long id) {
+        projectServiceImpl.block(id);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "unblock/{id}", method = RequestMethod.GET)
+    public String unBlock(@PathVariable(name = "id") Long id) {
+        projectServiceImpl.unBlock(id);
+        return "redirect:/";
+    }
+
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public String get(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("project", projectServiceImpl.getProject(id));

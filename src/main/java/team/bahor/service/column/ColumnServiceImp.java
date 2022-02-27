@@ -17,6 +17,7 @@ import team.bahor.validator.column.ColumnValidator;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMapper, ColumnValidator>
@@ -35,6 +36,7 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
 
     public Long create(ColumnCreateDto createDto) {
         ProjectColumn projectColumn = mapper.fromCreateDto(createDto);
+        projectColumn.setCode(UUID.randomUUID().toString());
         repository.save(projectColumn);
         return null;
     }
