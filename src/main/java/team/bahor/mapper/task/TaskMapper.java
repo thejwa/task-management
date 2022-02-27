@@ -25,6 +25,6 @@ public interface TaskMapper extends AbstractMapper<
         > {
     TaskUpdateDto toUpdateDto(Task task);
 
-
+    @Mapping(target = "deadline",ignore = true)
     Task fromCreateDto(TaskCreateDto createDto);
 }

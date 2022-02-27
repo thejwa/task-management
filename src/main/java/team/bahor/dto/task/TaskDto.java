@@ -20,8 +20,8 @@ import java.util.List;
 @Setter
 @Getter
 public class TaskDto extends GenericDto {
-    private String code;
 
+    private String code;
 
     private LocalDateTime createdAt;
 
@@ -30,6 +30,8 @@ public class TaskDto extends GenericDto {
     private LocalDateTime updatedAt;
 
     private Long updatedBy;
+
+    private LocalDateTime deadline;
 
     private Integer status;
 
@@ -43,26 +45,23 @@ public class TaskDto extends GenericDto {
 
     private Long taskOrder;
 
-
-    private Long projectId;
-
-    private List<TaskComment> taskComments;
+    private Long columnId;
 
     @Builder(builderMethodName = "childBuilder")
-    public TaskDto(Long id, String code, LocalDateTime createdAt, Long createdBy, LocalDateTime updatedAt, Long updatedBy, Integer status, String name, String description, Level level, Priority priority, Long taskOrder, Long projectId, List<TaskComment> taskComments) {
+    public TaskDto(Long id, String code, LocalDateTime createdAt, Long createdBy, LocalDateTime updatedAt, Long updatedBy, LocalDateTime deadline, Integer status, String name, String description, Level level, Priority priority, Long taskOrder, Long columnId) {
         super(id);
         this.code = code;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.updatedAt = updatedAt;
         this.updatedBy = updatedBy;
+        this.deadline = deadline;
         this.status = status;
         this.name = name;
         this.description = description;
         this.level = level;
         this.priority = priority;
         this.taskOrder = taskOrder;
-        this.projectId = projectId;
-        this.taskComments = taskComments;
+        this.columnId = columnId;
     }
 }

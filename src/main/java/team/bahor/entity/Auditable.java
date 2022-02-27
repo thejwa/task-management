@@ -28,7 +28,7 @@ public abstract class Auditable implements BaseGenericEntity {
     private Long id;
 
     @Column(unique = true, nullable = false, columnDefinition = "varchar default built_ins.gen_random_uuid()::varchar")
-    private String code= UUID.randomUUID().toString();;
+    private String code= UUID.randomUUID().toString();
 
     @CreatedDate
     @CreationTimestamp

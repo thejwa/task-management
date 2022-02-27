@@ -13,6 +13,9 @@ import team.bahor.repository.task.TaskRepository;
 import team.bahor.service.base.AbstractService;
 import team.bahor.validator.TaskValidator;
 
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -30,22 +33,12 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
     public Long create(TaskCreateDto dto) {
         Task endTaskOrder = repository.getEndTaskOrder(dto.getColumnId());
         dto.setCreatedBy(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
-//        dto.setTaskOrder(Objects.isNull(endTaskOrder) ? 1 : endTaskOrder.getTaskOrder() + 1);
+        dto.setTaskOrder((long) (Objects.isNull(endTaskOrder) ? 1 : endTaskOrder.getTaskOrder() + 1));
         Task task = mapper.fromCreateDto(dto);
+        task.setDeadline(LocalDateTime.parse(dto.getDeadline(),DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
         task.setCode(UUID.randomUUID().toString());
-        ProjectColumn projectColumn = columnRepository.getById(dto.getColumnId());
-        if(Objects.isNull(projectColumn)){
-            throw  new IllegalArgumentException("not found column");
-        }
-
-//        List<Task> tasks = projectColumn.getTasks();
-//        tasks.add(task);
-//        columnRepository.save(projectColumn);
-//        projectColumn.getTasks().add(task);
-//        task.setProjectColumn(projectColumn);
-//        task.setTaskComments(List.of(new TaskComment()));
-        columnRepository.save(projectColumn);
-//        repository.save(task);
+        task.setColumnId(dto.getColumnId());
+        repository.save(task);
         return null;
 
     }

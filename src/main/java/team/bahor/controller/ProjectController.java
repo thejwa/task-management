@@ -54,7 +54,6 @@ public class ProjectController {
 
     @RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
     public String createPage(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("id", id);
         model.addAttribute("dto", new ProjectCreateDto(id));
         return "project/createProject";
     }

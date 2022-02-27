@@ -1,6 +1,8 @@
 package team.bahor.service.project;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import team.bahor.config.security.UserDetails;
 import team.bahor.dto.project.ProjectCreateDto;
 import team.bahor.dto.project.ProjectDto;
 import team.bahor.dto.project.ProjectUpdateDto;
@@ -12,9 +14,10 @@ import team.bahor.validator.ProjectValidator;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 import java.util.UUID;
+
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 @Service
 public class ProjectServiceImpl extends AbstractService<ProjectRepository,ProjectMapper, ProjectValidator> implements ProjectService{
@@ -26,6 +29,7 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository,Projec
 
     public Long create(ProjectCreateDto dto){
         Project project=mapper.fromCreateDto(dto);
+        project.setCreatedBy(((UserDetails) getContext().getAuthentication().getPrincipal()).getId());
         DateTimeFormatter dateTimeFormat =DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         LocalDateTime localDateTime=LocalDateTime.parse(dto.getDeadline(),dateTimeFormat);
         project.setDeadline(localDateTime);

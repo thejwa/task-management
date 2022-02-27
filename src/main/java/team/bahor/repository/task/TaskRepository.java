@@ -22,20 +22,20 @@ public interface TaskRepository extends AbstractRepository<Task, Long>, BaseGene
             ", name = dto.name" +
             ", level = dto.level" +
             ", priority = dto.priority" +
-            ", taskOrder = dto.taskOrder where not is_deleted and id =: dto.id",nativeQuery = true)
+            ", taskOrder = dto.taskOrder where not deleted and id =: dto.id",nativeQuery = true)
     void update(@Param("dto") TaskUpdateDto dto);
 
-    @Query(value = "select * from tasks where not is_deleted and column_id = ?1",nativeQuery = true)
+    @Query(value = "select * from tasks where not deleted and column_id = ?1",nativeQuery = true)
     List<Task> getAllTasksForProjectColumn(Long id);
 
-    @Query(value = "select * from tasks where not is_deleted and  column_id = ?1  order by task_order desc limit 1",nativeQuery = true)
+    @Query(value = "select * from tasks where not deleted and  column_id = ?1  order by task_order desc limit 1",nativeQuery = true)
     Task getEndTaskOrder(Long id);
 
     @Modifying
-    @Query(value = "update tasks set is_deleted = true where id= ?1",nativeQuery = true)
+    @Query(value = "update tasks set deleted = true where id= ?1",nativeQuery = true)
     void delete(Long id);
 
-    @Query(value = "select * from tasks where not is_deleted and  id = ?1",nativeQuery = true)
+    @Query(value = "select * from tasks where not deleted and  id = ?1",nativeQuery = true)
     Optional<Object> findByIdOfTask(Long id);
 
 }
