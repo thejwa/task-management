@@ -66,7 +66,13 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
     }
 
     public void delete(Long id) {
-        repository.deleteById(id);
+        repository.setDeleted(id);
+    }
+    public void block(Long id){
+        repository.setBlocked(id);
+    }
+    public void unBlock(Long id){
+        repository.setUnBlocked(id);
     }
 
     public List<ProjectDto> getAllProjectForOrganization(Long id) {
