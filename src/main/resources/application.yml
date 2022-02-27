@@ -3,7 +3,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/task_management?currentSchema=main
     username: postgres
-    password: 1
+    password: 997764
 
   jpa:
     show-sql: true

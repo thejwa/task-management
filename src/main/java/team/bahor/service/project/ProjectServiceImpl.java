@@ -9,6 +9,8 @@ import team.bahor.entity.project.Project;
 import team.bahor.mapper.ProjectMapper;
 import team.bahor.repository.project.ProjectRepository;
 import team.bahor.service.base.AbstractService;
+import team.bahor.service.column.ColumnService;
+import team.bahor.service.column.ColumnServiceImp;
 import team.bahor.validator.ProjectValidator;
 
 import java.time.LocalDateTime;
@@ -20,10 +22,14 @@ import static org.springframework.security.core.context.SecurityContextHolder.ge
 
 @Service
 public class ProjectServiceImpl extends AbstractService<ProjectRepository, ProjectMapper, ProjectValidator> implements ProjectService {
-    public ProjectServiceImpl(ProjectMapper mapper, ProjectValidator validator, ProjectRepository repository) {
+    private final ColumnServiceImp columnService;
+
+    public ProjectServiceImpl(ProjectMapper mapper, ProjectValidator validator, ProjectRepository repository, ColumnServiceImp columnService) {
         super(mapper, validator, repository);
+        this.columnService = columnService;
     }
-//    private final ColumnService columnService;
+
+    //    private final ColumnService columnService;
 
 
     public Long create(ProjectCreateDto dto) {
@@ -66,5 +72,12 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
 
     public List<ProjectDto> getAllProjectForOrganization(Long id) {
        return mapper.toDto(repository.getByOrgId(id));
+    }
+
+    public ProjectDto getProject(Long id){
+        Project project = repository.findByIdProject(id);
+        ProjectDto dto = mapper.toDto(project);
+        dto.setProjectColumns(columnService.getAllColumnForPproject(id));
+        return dto;
     }
 }

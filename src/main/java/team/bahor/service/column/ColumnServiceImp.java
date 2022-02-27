@@ -11,6 +11,7 @@ import team.bahor.mapper.column.ColumnMapper;
 import team.bahor.repository.column.ColumnRepository;
 import team.bahor.service.base.AbstractService;
 import team.bahor.service.task.TaskService;
+import team.bahor.service.task.TaskServiceImpl;
 import team.bahor.validator.column.ColumnValidator;
 
 import javax.validation.constraints.NotNull;
@@ -20,13 +21,15 @@ import java.util.List;
 public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMapper, ColumnValidator>
         implements ColumnService {
 
-    private final TaskService taskService;
+    private final TaskServiceImpl taskService;
 
-    @Autowired
-    protected ColumnServiceImp(ColumnMapper mapper, ColumnValidator validator, ColumnRepository repository, TaskService taskService) {
+    public ColumnServiceImp(ColumnMapper mapper, ColumnValidator validator, ColumnRepository repository, TaskServiceImpl taskService) {
         super(mapper, validator, repository);
         this.taskService = taskService;
     }
+
+    @Autowired
+
 
 
     @Override
@@ -67,4 +70,11 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
     }
 
 
+    public List<ColumnDto> getAllColumnForPproject(Long id) {
+        List<ColumnDto> columnDtos = mapper.toDto(repository.findAllColumn(id));
+        for (ColumnDto columnDto : columnDtos) {
+            columnDto.setTasks(taskService.getAllTasksForColumn(columnDto.getId()));
+        }
+        return columnDtos;
+    }
 }

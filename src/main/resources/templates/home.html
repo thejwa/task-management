@@ -67,25 +67,34 @@
                 <div class="contents">
                     <div class="content-text">
                         <p>Projects</p>
-                        <p>Info</p>
+                        <p>Export</p>
                     </div>
-                    <div th:each="project: ${organization.projects}">
-                        <div class="box btn btn-light d-flex justify-content-center" th:href="@{/project}">
-                            <p th:text="${project.name}"></p>
-
-                            <div class="box-text">
-                                <span>
-                                        <img th:src="@{/imges/sunrise.png}" alt="">
-                                        <span th:text="${project.deadline}"></span>
-                                    </span>
-
-                                <span>
-                                       <img th:src="@{/imges/users.png}" alt=""> Adyl, Azhar, Arthur
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">TZ</th>
+                            <th scope="col">DEADLINE</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="project,iter : ${organization.projects}">
+                            <th th:text="${iter.count}"></th>
+                            <th th:text="${project.name}"></th>
+                            <th th:text="${project.tz}"></th>
+                            <th th:text="${project.deadline}"></th>
+                            <th class="icons">
+                                <a class="btn btn-info" th:href="@{/project/add-member/{id}/(id=${project.id}">+👮‍</a>
+                                <a class="btn btn-info" href="#">👁</a>
+                                <a class="btn btn-info" href="#">🔐</a>
+                                <a class="btn btn-info" href="#">🔓</a>
+                                <a class="btn btn-info" th:href="@{/project/delete/{id}/(id=${project.id})}">🗑</a>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
                     <a th:href="@{/project/create/{id}(id=${organization.id})}" class="btn btn-success">➕ Add</a>
                 </div>
             </div>
