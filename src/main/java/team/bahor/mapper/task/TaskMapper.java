@@ -1,6 +1,7 @@
 package team.bahor.mapper.task;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 import team.bahor.dto.task.TaskCreateDto;
 import team.bahor.dto.task.TaskDto;

@@ -4,10 +4,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import team.bahor.dto.organization.OrganizationCreatoDto;
 import team.bahor.dto.organization.OrganizationUpdateDto;
 import team.bahor.service.organization.OrganizationServiceImpl;
@@ -69,10 +66,11 @@ public class OrganizationController {
 //        return "redirect:/home";
 //    }
 //
+    @ResponseBody
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
     public String get(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("organization", organizationService.get(id));
-
+        System.out.println(id);
         return "redirect:/home";
     }
 }

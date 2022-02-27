@@ -1,5 +1,6 @@
 package team.bahor.service.task;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import team.bahor.config.security.UserDetails;
@@ -14,6 +15,8 @@ import team.bahor.repository.task.TaskRepository;
 import team.bahor.service.base.AbstractService;
 import team.bahor.validator.TaskValidator;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -33,7 +36,7 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
         dto.setCreatedBy(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
         dto.setTaskOrder((long) (Objects.isNull(endTaskOrder) ? 1 : endTaskOrder.getTaskOrder() + 1));
         Task task = mapper.fromCreateDto(dto);
-        task.setDeadline(LocalDateTime.parse(dto.getDeadline(),DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
+        task.setDeadline(LocalDateTime.parse(dto.getDeadline(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
         task.setCode(UUID.randomUUID().toString());
         task.setColumnId(dto.getColumnId());
         task.setStatus(0);
