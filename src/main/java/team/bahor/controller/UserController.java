@@ -49,13 +49,13 @@ public class UserController extends AbstractController<UserServiceImpl> {
     @GetMapping("admins_page")
     public String adminsPage(Model model) {
         final Long id = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getOrganizationId();
-        return "redirect:organization/get/" + id;
+        return "forward:organization/get/" + id;
     }
 
     @GetMapping("user_page")
     public String userPage(Model model) {
         final Long id = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        return "redirect:organization/getUser/" + id;
+        return "forward:organization/getUser/" + id;
     }
 
 
