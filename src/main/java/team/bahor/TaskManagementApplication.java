@@ -58,7 +58,6 @@ public class TaskManagementApplication {
             List<UserPermission> userPermissions = Roles.SUPER_ADMIN.getPermissions().stream()
                     .map(permission -> new UserPermission(permission.name(), permission.getCode()))
                     .collect(Collectors.toList());
-
             role.setPermissions(userPermissions);
 
             superAdmin.setUserRole(role);

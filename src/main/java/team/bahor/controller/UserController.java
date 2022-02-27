@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import team.bahor.dto.user.UserCreateDto;
+import team.bahor.service.organization.OrganizationServiceImpl;
 import team.bahor.service.user.UserServiceImpl;
 
 import javax.validation.Valid;
@@ -12,8 +13,11 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/user/*")
 public class UserController extends AbstractController<UserServiceImpl> {
-    public UserController(UserServiceImpl service) {
+    private final OrganizationServiceImpl organizationService;
+
+    public UserController(UserServiceImpl service, OrganizationServiceImpl organizationService) {
         super(service);
+        this.organizationService = organizationService;
     }
 
     @PreAuthorize(value = "hasRole('SUPER_ADMIN')")

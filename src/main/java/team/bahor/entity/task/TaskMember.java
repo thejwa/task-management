@@ -2,8 +2,11 @@ package team.bahor.entity.task;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -23,5 +26,10 @@ public class TaskMember {
     @Column(nullable = false,columnDefinition = "int default 0")
     private Integer status;
 
-    private boolean isDeleted;
+    private boolean deleted;
+
+    @CreatedDate
+    @CreationTimestamp
+    @Column(nullable = false, columnDefinition = "timestamp default now()")
+    private LocalDateTime createdAt;
 }

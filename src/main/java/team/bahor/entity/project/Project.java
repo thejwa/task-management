@@ -15,16 +15,16 @@ import java.util.List;
 @Setter
 @Table(name = "projects")
 public class Project extends Auditable {
+    @Column(nullable = false)
     private String name;
 
     private LocalDateTime deadline;
 
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "organization_id", referencedColumnName = "id")
-    private Organization organization;
+    private String tz;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    private List<ProjectColumn> projectProjectColumns;
+    @Column(nullable = false)
+    private Long organizationId;
+
 }

@@ -32,6 +32,4 @@ public class Organization extends Auditable {
     @Column(columnDefinition = "integer default 0")
     private Integer projectCount;
 
-    @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)
-    private List<Project> projects;
 }

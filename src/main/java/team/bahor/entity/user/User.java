@@ -31,9 +31,8 @@ public class User extends Auditable {
 
     private String profilePhoto;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "organization_id", referencedColumnName = "id")
-    private Organization organization;
+   @Column(nullable = false)
+    private Long organizationId;
 
 
 }
