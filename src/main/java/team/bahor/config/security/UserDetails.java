@@ -80,8 +80,5 @@ public class UserDetails implements org.springframework.security.core.userdetail
         return (this.active && !this.deleted);
     }
 
-    public boolean isDeleted() {
-        return this.deleted;
-    }
 
 }

@@ -24,21 +24,22 @@ public class OrganizationController {
         this.organizationService = organizationService;
     }
 
-//    @RequestMapping(value = "create", method = RequestMethod.GET)
-//    public String createPage(Model model) {
-//        model.addAttribute("dto", new OrganizationCreatoDto());
-//        return "org/createOrg";
-//    }
-//
-//    @RequestMapping(value = "create", method = RequestMethod.POST)
-//    public String create(@Valid @ModelAttribute("dto") OrganizationCreatoDto dto, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "org/createOrg";
-//        }
-//        dto.setCreatedBy(BaseUtils.sessionUserId());
-//        organizationService.create(dto);
-//        return "redirect:/";
-//    }
+    @RequestMapping(value = "create", method = RequestMethod.GET)
+    public String createPage(Model model) {
+        model.addAttribute("dto", new OrganizationCreatoDto());
+        return "org/createOrg";
+    }
+
+    //
+    @RequestMapping(value = "create", method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute("dto") OrganizationCreatoDto dto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "org/createOrg";
+        }
+        dto.setCreatedBy(BaseUtils.sessionUserId());
+        organizationService.create(dto);
+        return "redirect:/";
+    }
 //
 //    @RequestMapping(value = "update{id}", method = RequestMethod.GET)
 //    public String updatePage(Model model, @PathVariable(name = "id") Long id) {

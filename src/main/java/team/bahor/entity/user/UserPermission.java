@@ -2,18 +2,20 @@ package team.bahor.entity.user;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import team.bahor.entity.BaseGenericEntity;
 
 import javax.persistence.*;
 
+@SuperBuilder
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
 @Table(name = "permissions")
 public class UserPermission implements BaseGenericEntity {
-    public UserPermission() {
-    }
 
     public UserPermission(String name, String code) {
         this.name = name;
