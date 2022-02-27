@@ -23,7 +23,7 @@ public class ProjectCreateDto implements BaseGenericDto {
 
     private String tz;
 
-    private LocalDateTime deadline;
+    private String deadline;
 
     private String description;
 

@@ -23,14 +23,27 @@ public class ProjectController {
         this.projectServiceImpl = projectServiceImpl;
     }
 
-    @RequestMapping(value = "create/{id}", method = RequestMethod.GET)
-    public String createPage(Model model, @Param("id") Long id) {
-        model.addAttribute("dto", new ProjectCreateDto(id));
-        return "project/createProject";
-    }
 
+    /*@RequestMapping(value = "create/{id}", method = RequestMethod.GET)
+    public String createPage(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("dto", new TaskCreateDto(id));
+        return "task/create";
+    }
+    @ResponseBody
     @RequestMapping(value = "create/{id}", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("dto") ProjectCreateDto dto, BindingResult bindingResult,@Param("id") Long id) {
+    public String create(@Valid @ModelAttribute("dto") TaskCreateDto dto, @PathVariable("id") Long id, BindingResult result) {
+        if (result.hasErrors()) {
+            return "task/create";
+        }
+        dto.setColumnId(id);
+        service.create(dto);
+        return "redirect:/home";
+    }
+*/
+
+
+    @RequestMapping(value = "/create/{id}", method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute("dto") ProjectCreateDto dto, BindingResult bindingResult,@PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
             return "project/createProject";
         }
@@ -38,6 +51,14 @@ public class ProjectController {
         projectServiceImpl.create(dto);
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
+    public String createPage(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("id", id);
+        model.addAttribute("dto", new ProjectCreateDto(id));
+        return "project/createProject";
+    }
+
 
     @RequestMapping(value = "update{id}", method = RequestMethod.GET)
     public String updatePage(Model model, @PathVariable(name = "id") Long id) {
@@ -55,7 +76,7 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable(name = "id") Long id){
+    public String delete(@PathVariable(name = "id") Long id) {
         projectServiceImpl.delete(id);
         return "redirect:/";
     }
