@@ -1,7 +1,5 @@
 package team.bahor.controller;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;

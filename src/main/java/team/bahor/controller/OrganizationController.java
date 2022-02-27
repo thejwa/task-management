@@ -66,11 +66,10 @@ public class OrganizationController {
 //        return "redirect:/home";
 //    }
 //
-    @ResponseBody
+
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
     public String get(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("organization", organizationService.get(id));
-        System.out.println(id);
-        return "redirect:/home";
+        return "home";
     }
 }

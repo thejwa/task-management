@@ -11,6 +11,7 @@ import team.bahor.mapper.OrganizationMapper;
 import team.bahor.repository.organization.OrganizationRepository;
 import team.bahor.service.base.AbstractService;
 import team.bahor.service.project.ProjectService;
+import team.bahor.service.project.ProjectServiceImpl;
 import team.bahor.validator.OrganizationValidator;
 
 import java.util.List;
@@ -19,9 +20,9 @@ import java.util.UUID;
 @Service
 public class OrganizationServiceImpl extends AbstractService<OrganizationRepository, OrganizationMapper, OrganizationValidator> implements OrganizationService {
 
-    private final ProjectService projectService;
+    private final ProjectServiceImpl projectService;
 
-    protected OrganizationServiceImpl(OrganizationMapper mapper, OrganizationValidator validator, OrganizationRepository repository, ProjectService projectService) {
+    public OrganizationServiceImpl(OrganizationMapper mapper, OrganizationValidator validator, OrganizationRepository repository, ProjectServiceImpl projectService) {
         super(mapper, validator, repository);
         this.projectService = projectService;
     }
@@ -35,12 +36,10 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
     }
 
     public OrganizationDto get(Long id) {
-//        OrganizationDto organizationDto = mapper.toDto(repository.getById(id));
-//        List<ProjectDto> projectDto = projectService.getAllTasksForColumn(id);
-//        organizationDto.setProjects(projectDto);
-        Organization byId = repository.getById(id);
-        System.out.println(byId);
-        return null;
+        OrganizationDto organizationDto = mapper.toDto(repository.getByIdOrganization(id));
+        List<ProjectDto> projectDto = projectService.getAllProjectForOrganization(id);
+        organizationDto.setProjects(projectDto);
+        return organizationDto;
     }
 
     @Override

@@ -63,4 +63,8 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    public List<ProjectDto> getAllProjectForOrganization(Long id) {
+       return mapper.toDto(repository.getByOrgId(id));
+    }
 }
