@@ -36,13 +36,13 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
 
     public OrganizationDto get(Long id) {
         OrganizationDto organizationDto = mapper.toDto(repository.getById(id));
-        List<ProjectDto> projectDto = projectService.getAll(id);
+        List<ProjectDto> projectDto = projectService.getAllTasksForColumn(id);
         organizationDto.setProjects(projectDto);
         return organizationDto;
     }
 
     @Override
-    public List<OrganizationDto> getAll(Long id) {
+    public List<OrganizationDto> getAllTasksForColumn(Long id) {
         repository.getById(id);
         return null;
     }

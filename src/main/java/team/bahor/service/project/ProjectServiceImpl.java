@@ -45,7 +45,7 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository,Projec
     }
 
     @Override
-    public List<ProjectDto> getAll(Long id) {
+    public List<ProjectDto> getAllTasksForColumn(Long id) {
 //       return mapper.toDto(repository.findProjectsByOrganization(id));
         return null;
     }

@@ -36,7 +36,7 @@ public class UserServiceImpl extends AbstractService<UserRepository, UserMapper,
     }
 
     @Override
-    public List<UserDto> getAll(Long id) {
+    public List<UserDto> getAllTasksForColumn(Long id) {
         return null;
     }
 }

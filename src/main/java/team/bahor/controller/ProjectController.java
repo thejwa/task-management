@@ -1,6 +1,5 @@
 package team.bahor.controller;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -88,7 +87,7 @@ public class ProjectController {
 
     @RequestMapping(value = "getAll/{id}", method = RequestMethod.POST)
     public String getAll(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute("projects", projectServiceImpl.getAll(id));
+        model.addAttribute("projects", projectServiceImpl.getAllTasksForColumn(id));
         return "redirect:/";
     }
 
