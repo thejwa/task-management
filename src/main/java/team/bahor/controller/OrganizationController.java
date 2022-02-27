@@ -68,8 +68,14 @@ public class OrganizationController {
 //
 
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
-    public String get(Model model, @PathVariable(name = "id") Long id) {
+    public String getOrg(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("organization", organizationService.get(id));
+        return "home";
+    }
+
+    @RequestMapping(value = "getUser/{id}", method = RequestMethod.GET)
+    public String getUserOrg(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("organization", organizationService.getOrg(id));
         return "home";
     }
 }
