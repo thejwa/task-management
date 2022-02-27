@@ -59,4 +59,10 @@ public class TaskController {
         service.delete(id);
         return "/";
     }
+
+    @GetMapping(value = "/get/{id}")
+    public String getTask(@PathVariable("id") Long id,Model model){
+        model.addAttribute("model",service.get(id));
+        return "/";
+    }
 }

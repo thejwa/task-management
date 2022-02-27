@@ -82,7 +82,7 @@ public class ProjectController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public String get(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute("project", projectServiceImpl.get(id));
+        model.addAttribute("project", projectServiceImpl.getProject(id));
         return "project";
     }
 

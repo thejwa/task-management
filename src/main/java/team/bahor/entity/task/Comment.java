@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "comments")
-public class TaskComment extends Auditable {
+public class Comment extends Auditable {
     @Column(nullable = false)
     private String title;
 
