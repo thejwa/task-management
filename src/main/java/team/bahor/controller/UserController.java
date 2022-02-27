@@ -43,7 +43,7 @@ public class UserController extends AbstractController<UserServiceImpl> {
 
     @GetMapping("admins_page")
     public String adminsPage(Model model){
-        return "home";
+        return "redirect:organization/get/1";
     }
 
     @GetMapping("user_page")

@@ -16,10 +16,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, BaseGen
     @Override
     List<Project> findAll();
 
-    //getAllProjectForProjectColumn
-//    List<Project> findProjectsByOrganization(Long id);
-    @Override
-    List<Project> findAllById(Iterable<Long> longs);
+    List<Project> findProjectsByOrganizationId(Long id);
 
     @Override
     <S extends Project> List<S> saveAll(Iterable<S> entities);

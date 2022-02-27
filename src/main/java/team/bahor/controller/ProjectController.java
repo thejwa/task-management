@@ -66,10 +66,10 @@ public class ProjectController {
         return "project";
     }
 
-    @RequestMapping(value = "getAll/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "getAll/{id}", method = RequestMethod.GET)
     public String getAll(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("projects", projectServiceImpl.getAll(id));
-        return "redirect:/";
+        return "home";
     }
 
 }
