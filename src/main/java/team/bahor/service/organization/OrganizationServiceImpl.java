@@ -26,12 +26,10 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
         this.projectService = projectService;
     }
 
-    public Long create(OrganizationCreatoDto dto){
-        Organization org=mapper.fromCreateDto(dto);
-//        Long ownerId=1L;
-//        org.setOwnerId(ownerId);
+    public Long create(OrganizationCreatoDto dto) {
+        Organization org = mapper.fromCreateDto(dto);
         org.setCode(UUID.randomUUID().toString());
-        org.setCreatedBy(dto.getCreatedBy());
+//        org.setCreatedBy(dto.getCreatedBy());
         repository.save(org);
         return null;
     }

@@ -10,6 +10,9 @@ import team.bahor.repository.project.ProjectRepository;
 import team.bahor.service.base.AbstractService;
 import team.bahor.validator.ProjectValidator;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,8 +26,10 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository,Projec
 
     public Long create(ProjectCreateDto dto){
         Project project=mapper.fromCreateDto(dto);
+        DateTimeFormatter dateTimeFormat =DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime localDateTime=LocalDateTime.parse(dto.getDeadline(),dateTimeFormat);
+        project.setDeadline(localDateTime);
         project.setCode(UUID.randomUUID().toString());
-        System.out.println(project);
         repository.save(project);
         return null;
     }

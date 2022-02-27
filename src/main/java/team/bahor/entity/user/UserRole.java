@@ -2,12 +2,16 @@ package team.bahor.entity.user;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import team.bahor.entity.BaseGenericEntity;
 
 import javax.persistence.*;
 import java.util.List;
 
+@SuperBuilder
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter

@@ -1,14 +1,19 @@
 package team.bahor.entity.project;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import team.bahor.entity.Auditable;
 import team.bahor.entity.organization.Organization;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+
+@SuperBuilder
+@NoArgsConstructor
 @ToString
 @Entity
 @Getter
