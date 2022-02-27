@@ -16,12 +16,9 @@ import java.util.List;
 public class ProjectColumn extends Auditable {
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
+    @Column(nullable = false)
+    private Long projectId;
 
     private Integer columnOrder;
 
-    @OneToMany(mappedBy = "projectColumn", fetch = FetchType.LAZY)
-    private List<Task> tasks;
 }

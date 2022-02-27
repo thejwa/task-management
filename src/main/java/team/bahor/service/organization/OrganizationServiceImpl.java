@@ -63,16 +63,16 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
 
     public void addProject(Long oId, Project project) {
         Organization org = repository.getById(oId);
-        List<Project> projects = org.getProjects();
-        projects.add(project);
+//        List<Project> projects = org.getProjects();
+//        projects.add(project);
         org.setProjectCount(org.getProjectCount() + 1);
         repository.save(org);
     }
 
     public void removeProject(Long oId, Project project) {
         Organization org = repository.getById(oId);
-        List<Project> projects = org.getProjects();
-        projects.remove(project);
+//        List<Project> projects = org.getProjects();
+//        projects.remove(project);
         org.setProjectCount(org.getProjectCount() - 1);
         repository.save(org);
     }
