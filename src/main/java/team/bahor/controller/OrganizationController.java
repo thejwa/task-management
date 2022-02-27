@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import team.bahor.dto.organization.OrganizationCreatoDto;
 import team.bahor.dto.organization.OrganizationUpdateDto;
 import team.bahor.service.organization.OrganizationServiceImpl;
+import team.bahor.utils.BaseUtils;
 
 import javax.validation.Valid;
 
@@ -34,6 +35,7 @@ public class OrganizationController {
         if (bindingResult.hasErrors()) {
             return "org/createOrg";
         }
+        dto.setCreatedBy(BaseUtils.sessionUserId());
         organizationService.create(dto);
         return "redirect:/";
     }

@@ -1,6 +1,5 @@
 package team.bahor.controller;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,5 +31,9 @@ public class UserController extends AbstractController<UserServiceImpl> {
         return "redirect:admin";
     }
 
+    @GetMapping("super_admins_page")
+    public String adminsPage(Model model){
 
+        return "admin";
+    }
 }

@@ -23,9 +23,10 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
 
     public Long create(OrganizationCreatoDto dto){
         Organization org=mapper.fromCreateDto(dto);
-        Long ownerId=1L;
-        org.setOwnerId(ownerId);
+//        Long ownerId=1L;
+//        org.setOwnerId(ownerId);
         org.setCode(UUID.randomUUID().toString());
+        org.setCreatedBy(dto.getCreatedBy());
         repository.save(org);
         return null;
     }

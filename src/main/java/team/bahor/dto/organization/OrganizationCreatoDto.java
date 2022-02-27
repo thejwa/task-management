@@ -26,4 +26,5 @@ public class OrganizationCreatoDto implements BaseGenericDto {
 
     private Long ownerId;
 
+    private Long createdBy;
 }

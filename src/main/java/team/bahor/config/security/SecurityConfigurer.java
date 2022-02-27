@@ -47,15 +47,15 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                         expressionInterceptUrlRegistry
                                 .antMatchers(HttpMethod.GET, WHITE_LIST)
                                 .permitAll()
-                                .antMatchers(HttpMethod.POST, "/logout")
-                                .permitAll()
+//                                .antMatchers(HttpMethod.POST, "/logout")
+//                                .permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
                 .formLogin(httpSecurityFormLoginConfigurer ->
                         httpSecurityFormLoginConfigurer
                                 .loginPage("/login")
-                                .defaultSuccessUrl("/", false)
+                                .defaultSuccessUrl("/home", false)
                                 .loginProcessingUrl("/login")
                 )
 //                .rememberMe(httpSecurityRememberMeConfigurer ->
