@@ -1,5 +1,7 @@
 package team.bahor.controller;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,16 +12,22 @@ import team.bahor.enums.user.Roles;
 @Controller
 public class HomeController {
 
-    @GetMapping({ "organization", "", "/home"})
+    //    @Secured("ROLE_SUPER_ADMIN")
+    @GetMapping({"", "/home"})
     public String homePage() {
         if (SecurityContextHolder.getContext().getAuthentication().getAuthorities()
                 .contains(new SimpleGrantedAuthority("ROLE_" + Roles.SUPER_ADMIN.getCode())))
             return "forward:/user/super_admins_page";
+
+        if (SecurityContextHolder.getContext().getAuthentication().getAuthorities()
+                .contains(new SimpleGrantedAuthority("ROLE_" + Roles.ADMIN.getCode())))
+            return "forward:/user/admins_page";
+
         UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("principal.getId() = " + principal.getId());
         System.out.println("principal.getUsername() = " + principal.getUsername());
         System.out.println("principal.getAuthorities() = " + principal.getAuthorities());
-        return "/home";
+        return "404";
     }
 
     @GetMapping("/project")
@@ -32,9 +40,14 @@ public class HomeController {
         return "task";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/organization")
     public String adminPage() {
-        return "admin";
+        return "home";
+    }
+
+    @GetMapping("/404")
+    public String error() {
+        return "404";
     }
 
 }

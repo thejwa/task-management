@@ -32,8 +32,12 @@ public class UserController extends AbstractController<UserServiceImpl> {
     }
 
     @GetMapping("super_admins_page")
-    public String adminsPage(Model model){
+    public String superAdminsPage(Model model){
+        return "admin";
+    }
 
+    @GetMapping("admins_page")
+    public String adminsPage(Model model){
         return "admin";
     }
 }
