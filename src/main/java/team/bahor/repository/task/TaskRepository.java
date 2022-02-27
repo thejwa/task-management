@@ -1,27 +1,41 @@
 package team.bahor.repository.task;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import team.bahor.dto.task.TaskUpdateDto;
+import team.bahor.entity.project.ProjectColumn;
 import team.bahor.entity.task.Task;
 import team.bahor.repository.base.AbstractRepository;
+import team.bahor.repository.base.BaseGenericRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface TaskRepository extends AbstractRepository<Task, Long> {
+public interface TaskRepository extends AbstractRepository<Task, Long>, BaseGenericRepository {
 
-    @Query(value = "update Task  set updatedAt = :#{#dto.updatedAt}," +
-            "updatedBy = :#{#dto.updatedBy}," +
-            " description = :#{#dto.description} ," +
-            " status = :#{#dto.status}" +
-            ", name = :#{#dto.name}" +
-            ", level = :#{#dto.level}" +
-            ", priority = :#{#dto.priority}" +
-            ", taskOrder = :#{#dto.taskOrder} where id = :#{#dto.id} ",
-            nativeQuery = true)
+    @Modifying
+    @Query(value = "update tasks  set updatedAt = dto.updatedAt," +
+            "updatedBy = dto.updatedBy," +
+            " description = dto.description ," +
+            " status = dto.status" +
+            ", name = dto.name" +
+            ", level = dto.level" +
+            ", priority = dto.priority" +
+            ", taskOrder = dto.taskOrder where not is_deleted and id =: dto.id",nativeQuery = true)
     void update(@Param("dto") TaskUpdateDto dto);
 
+    @Query(value = "select * from tasks where not is_deleted and column_id = ?1",nativeQuery = true)
+    List<Task> getAllTasksForProjectColumn(Long id);
 
-    @Query(value = "select * from Task where not isDeleted and id=column_id",nativeQuery = true)
-    List<Task> getAllTaskForProjectColumn(Long id);
+    @Query(value = "select * from tasks where not is_deleted and  column_id = ?1  order by task_order desc limit 1",nativeQuery = true)
+    Task getEndTaskOrder(Long id);
+
+    @Modifying
+    @Query(value = "update tasks set is_deleted = true where id= ?1",nativeQuery = true)
+    void delete(Long id);
+
+    @Query(value = "select * from tasks where not is_deleted and  id = ?1",nativeQuery = true)
+    Optional<Object> findByIdOfTask(Long id);
+
 }

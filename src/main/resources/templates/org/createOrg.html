@@ -10,6 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-6 mx-auto">
+            <h2>Create Organization</h2>
             <form th:action="@{/organization/create}" th:method="post" th:object="${dto}">
                 <div class="form-group">
                     <label for="name" class="form-label">Name: </label>
@@ -36,8 +37,9 @@
                     <input class="form-control" type="text" id="location" name="location"/>
                     <span style="color: red" th:errors="*{location}"></span>
                 </div>
-                <div class="form-group">
-                    <input class="btn btn-success" type="submit" value="Save"/>|
+                <br/>
+                <div class="form-group d-flex justify-content-around">
+                    <input class="btn btn-success" type="submit" value="Save"/>
                     <a class="btn btn-info" th:href="@{/}">Back</a>
                 </div>
             </form>

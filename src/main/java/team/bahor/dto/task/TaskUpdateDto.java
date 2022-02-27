@@ -2,6 +2,7 @@ package team.bahor.dto.task;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import team.bahor.dto.GenericDto;
 import team.bahor.entity.task.TaskComment;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Setter
 @Getter
+@NoArgsConstructor
 public class TaskUpdateDto extends GenericDto {
     private LocalDateTime updatedAt;
 

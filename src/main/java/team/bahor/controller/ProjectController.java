@@ -1,5 +1,6 @@
 package team.bahor.controller;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,25 +23,25 @@ public class ProjectController {
         this.projectServiceImpl = projectServiceImpl;
     }
 
-    @RequestMapping(value = "create", method = RequestMethod.GET)
-    public String createPage(Model model) {
-        model.addAttribute("dto", new ProjectCreateDto());
+    @RequestMapping(value = "create/{id}", method = RequestMethod.GET)
+    public String createPage(Model model, @Param("id") Long id) {
+        model.addAttribute("dto", new ProjectCreateDto(id));
         return "project/createProject";
     }
 
-    @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("dto") ProjectCreateDto dto, BindingResult bindingResult) {
+    @RequestMapping(value = "create/{id}", method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute("dto") ProjectCreateDto dto, BindingResult bindingResult,@Param("id") Long id) {
         if (bindingResult.hasErrors()) {
             return "project/createProject";
         }
-
+        dto.setOrganizationId(id);
         projectServiceImpl.create(dto);
         return "redirect:/";
     }
 
     @RequestMapping(value = "update{id}", method = RequestMethod.GET)
     public String updatePage(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute("dto", projectServiceImpl.get(id));
+//        model.addAttribute("dto", projectServiceImpl.get(id));
         return "project/createProject";
     }
 

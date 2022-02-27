@@ -15,6 +15,8 @@ public class ProjectUpdateDto extends GenericDto {
 
     private String name;
 
+    private String tz;
+
     private LocalDateTime deadline;
 
     private String description;
@@ -22,9 +24,10 @@ public class ProjectUpdateDto extends GenericDto {
     private List<ProjectColumn> projectColumns;
 
     @Builder(builderMethodName = "childBuilder")
-    public ProjectUpdateDto(Long id, String name, LocalDateTime deadline, String description, List<ProjectColumn> projectColumns) {
+    public ProjectUpdateDto(Long id, String name, String tz, LocalDateTime deadline, String description, List<ProjectColumn> projectColumns) {
         super(id);
         this.name = name;
+        this.tz = tz;
         this.deadline = deadline;
         this.description = description;
         this.projectColumns = projectColumns;

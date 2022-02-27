@@ -7,6 +7,7 @@ import team.bahor.entity.BaseGenericEntity;
 
 import java.util.List;
 
+
 public interface AbstractMapper<
         E extends BaseGenericEntity,
         D extends GenericDto,

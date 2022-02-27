@@ -13,6 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @SuperBuilder
 @NoArgsConstructor
@@ -27,7 +28,7 @@ public abstract class Auditable implements BaseGenericEntity {
     private Long id;
 
     @Column(unique = true, nullable = false, columnDefinition = "varchar default built_ins.gen_random_uuid()::varchar")
-    private String code;
+    private String code= UUID.randomUUID().toString();;
 
     @CreatedDate
     @CreationTimestamp
