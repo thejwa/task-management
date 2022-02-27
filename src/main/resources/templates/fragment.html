@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+<head th:fragment="header(name)">
+    <meta charset="UTF-8">
+    <title th:text="${name}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/webjars/bootstrap/4.6.1/css/bootstrap.min.css">
+</head>
+<body>
+<section th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/}">Trello</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item" sec:>
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</section>
+<section th:fragment="js-files">
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.6.1/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+</section>
+</body>
+</html>
