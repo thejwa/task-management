@@ -13,6 +13,7 @@ import java.util.Set;
 
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
+
     @Getter
     private Long id;
     private String username;
