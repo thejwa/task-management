@@ -29,4 +29,7 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
 
     @Query(value = "select * from organizations where not deleted and id= ?1",nativeQuery = true)
     Organization getByIdOrganization(Long idd);
+
+    @Query(value = "select o.* from users u inner join organizations o on u.organization_id = o.id where u.id= ?1",nativeQuery = true)
+    Organization getByUserIdOrganization(Long id);
 }

@@ -62,40 +62,33 @@
         </nav>
 
         <div class="container">
-            <h3  th:text="${organization.name}">Bahor Team Projects</h3>
+            <h3 th:text="${organization.name}">Bahor Team Projects</h3>
             <div class="content">
                 <div class="contents">
                     <div class="content-text">
                         <p>Projects</p>
-                        <p>Export</p>
+                        <p>Info</p>
                     </div>
-                    <table class="table">
-                        <thead class="thead-light">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">TZ</th>
-                            <th scope="col">DEADLINE</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="project,iter : ${organization.projects}">
-                            <th th:text="${iter.count}"></th>
-                            <th th:text="${project.name}"></th>
-                            <th th:text="${project.tz}"></th>
-                            <th th:text="${project.deadline}"></th>
-                            <th class="icons">
-                                <a class="btn btn-info" th:href="@{/project/add-member/{id}/(id=${project.id}">+👮‍</a>
-                                <a class="btn btn-info" href="#">👁</a>
-                                <a class="btn btn-info" href="#">🔐</a>
-                                <a class="btn btn-info" href="#">🔓</a>
-                                <a class="btn btn-info" th:href="@{/project/delete/{id}/(id=${project.id})}">🗑</a>
-                            </th>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <a th:href="@{/project/create/{id}(id=${organization.id})}" class="btn btn-success">➕ Add</a>
+                    <div th:each="project: ${organization.projects}">
+                        <div class="box d-flex justify-content-between">
+                            <div class="name">
+                                <p th:text="${project.name}"></p>
+                            </div>
+                            <div class="box-text">
+                                <p th:text="${project.deadline}"></p>
+                            </div>
+                            <div class="icons">
+                                <a class="btn btn-light" href="#">👁</a>
+                                <a class="btn btn-light" href="#">✏️</a>
+                                <a class="btn btn-light" href="#">🔐</a>
+                                <a class="btn btn-light" href="#">🔓</a>
+                                <a class="btn btn-light" href="#">🗑</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a th:href="@{/project/create/{id}(id=${organization.id})}" class="btn btn-success">➕ Add</a>
+                    </div>
                 </div>
             </div>
         </div>

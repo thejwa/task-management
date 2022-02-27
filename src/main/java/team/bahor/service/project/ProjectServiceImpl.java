@@ -71,7 +71,11 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
     }
 
     public List<ProjectDto> getAllProjectForOrganization(Long id) {
-       return mapper.toDto(repository.getByOrgId(id));
+        return mapper.toDto(repository.getByOrgId(id));
+    }
+
+    public List<ProjectDto> getAllProjectsForUser(Long id) {
+        return mapper.toDto(repository.getAllProjectsForUser(id));
     }
 
     public ProjectDto getProject(Long id){
