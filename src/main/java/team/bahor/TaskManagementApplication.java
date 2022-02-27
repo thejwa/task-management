@@ -51,11 +51,11 @@ public class TaskManagementApplication {
             superAdmin.setPassword(passwordEncoder.encode("123"));
             superAdmin.setCode(UUID.randomUUID().toString());
             superAdmin.setCreatedAt(LocalDateTime.now());
-            superAdmin.setUsername("ad");
+            superAdmin.setUsername("user");
             UserRole role = new UserRole();
-            role.setName(Roles.ADMIN.name());
-            role.setCode(Roles.ADMIN.getCode());
-            List<UserPermission> userPermissions = Roles.ADMIN.getPermissions().stream()
+            role.setName(Roles.USER.name());
+            role.setCode(Roles.USER.getCode());
+            List<UserPermission> userPermissions = Roles.USER.getPermissions().stream()
                     .map(permission -> new UserPermission(permission.name(), permission.getCode()))
                     .collect(Collectors.toList());
             role.setPermissions(userPermissions);

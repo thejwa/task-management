@@ -1,8 +1,6 @@
 package team.bahor.service.project;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import team.bahor.config.security.UserDetails;
 import team.bahor.dto.project.ProjectCreateDto;
 import team.bahor.dto.project.ProjectDto;
 import team.bahor.dto.project.ProjectUpdateDto;
@@ -45,9 +43,10 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository,Projec
     }
 
     @Override
-    public List<ProjectDto> getAllTasksForColumn(Long id) {
-//       return mapper.toDto(repository.findProjectsByOrganization(id));
-        return null;
+    public List<ProjectDto> getAll(Long id) {
+        System.out.println(mapper.toDto(repository.findProjectsByOrganizationId(id)));
+      return mapper.toDto(repository.findProjectsByOrganizationId(id));
+
     }
 
     public void update(ProjectUpdateDto dto){

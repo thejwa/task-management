@@ -23,6 +23,10 @@ public class HomeController {
                 .contains(new SimpleGrantedAuthority("ROLE_" + Roles.ADMIN.getCode())))
             return "forward:/user/admins_page";
 
+        if (SecurityContextHolder.getContext().getAuthentication().getAuthorities()
+                .contains(new SimpleGrantedAuthority("ROLE_" + Roles.USER.getCode())))
+            return "forward:/user/user_page";
+
         UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("principal.getId() = " + principal.getId());
         System.out.println("principal.getUsername() = " + principal.getUsername());

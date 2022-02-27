@@ -68,4 +68,11 @@ public class OrganizationController {
 //        model.addAttribute("organization", organizationService.get(id));
 //        return "redirect:/home";
 //    }
+//
+    @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
+    public String get(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("organization", organizationService.get(id));
+
+        return "redirect:/home";
+    }
 }

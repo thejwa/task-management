@@ -1,5 +1,6 @@
 package team.bahor.controller;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -53,6 +54,7 @@ public class ProjectController {
 
     @RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
     public String createPage(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("id", id);
         model.addAttribute("dto", new ProjectCreateDto(id));
         return "project/createProject";
     }
@@ -85,10 +87,10 @@ public class ProjectController {
         return "project";
     }
 
-    @RequestMapping(value = "getAll/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "getAll/{id}", method = RequestMethod.GET)
     public String getAll(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute("projects", projectServiceImpl.getAllTasksForColumn(id));
-        return "redirect:/";
+        model.addAttribute("projects", projectServiceImpl.getAll(id));
+        return "home";
     }
 
 }

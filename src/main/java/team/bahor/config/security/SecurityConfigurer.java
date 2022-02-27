@@ -44,13 +44,13 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(expressionInterceptUrlRegistry ->
-                                expressionInterceptUrlRegistry
-                                        .antMatchers(WHITE_LIST)
-                                        .permitAll()
+                        expressionInterceptUrlRegistry
+                                .antMatchers(WHITE_LIST)
+                                .permitAll()
 //                                .antMatchers(HttpMethod.POST, "/logout")
 //                                .permitAll()
-                                        .anyRequest()
-                                        .authenticated()
+                                .anyRequest()
+                                .authenticated()
                 )
                 .formLogin(httpSecurityFormLoginConfigurer ->
                         httpSecurityFormLoginConfigurer
