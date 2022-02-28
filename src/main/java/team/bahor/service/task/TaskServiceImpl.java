@@ -13,6 +13,7 @@ import team.bahor.mapper.task.TaskMapper;
 import team.bahor.repository.column.ColumnRepository;
 import team.bahor.repository.task.TaskRepository;
 import team.bahor.service.base.AbstractService;
+import team.bahor.service.column.ColumnServiceImp;
 import team.bahor.validator.TaskValidator;
 
 import java.time.LocalDateTime;
@@ -23,11 +24,9 @@ import java.util.UUID;
 
 @Service
 public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper, TaskValidator> implements TaskService {
-    private final ColumnRepository columnRepository;
 
-    public TaskServiceImpl(TaskMapper mapper, TaskValidator validator, TaskRepository repository, ColumnRepository columnRepository) {
+    public TaskServiceImpl(TaskMapper mapper, TaskValidator validator, TaskRepository repository) {
         super(mapper, validator, repository);
-        this.columnRepository = columnRepository;
     }
 
     @Override
@@ -71,5 +70,9 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
     public TaskUpdateDto getUpdateDto(Long id) {
         Task task = (Task) repository.findByIdOfTask(id).orElseThrow(() -> new IllegalArgumentException("invalid task id" + id));
         return mapper.toUpdateDto(task);
+    }
+
+    public Long getProjectIdByColumnId(Long id) {
+        return repository.getProjectIdByColumnId(id);
     }
 }

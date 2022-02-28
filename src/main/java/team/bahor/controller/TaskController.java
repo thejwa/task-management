@@ -25,7 +25,7 @@ public class TaskController {
         model.addAttribute("dto", new TaskCreateDto(id));
         return "task/create";
     }
-    @ResponseBody
+//    @ResponseBody
     @RequestMapping(value = "create/{id}", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("dto") TaskCreateDto dto, @PathVariable("id") Long id, BindingResult result) {
         if (result.hasErrors()) {
@@ -33,7 +33,7 @@ public class TaskController {
         }
         dto.setColumnId(id);
         service.create(dto);
-        return "redirect:/home";
+        return "redirect:/project/"+service.getProjectIdByColumnId(id);
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)

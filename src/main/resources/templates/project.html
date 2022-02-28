@@ -462,8 +462,8 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="#">+ Add Card</a></li>
-                                            <li><a class="dropdown-item" href="#">✏ Update</a></li>
-                                            <li><a class="dropdown-item" href="#">🗑 Delete</a></li>
+                                            <li><a class="dropdown-item" th:href="@{/column/update/{id}(id=${column.id})}">✏ Update</a></li>
+                                            <li><a class="dropdown-item" th:href="@{/column/delete/{id}(id=${column.id})}">🗑 Delete</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -480,7 +480,7 @@
                                 </div>
 
                                 <div class="create_task d-flex justify-content-center">
-                                    <a class="btn btn-info text-white" th:href="@{/}">+Add Card</a>
+                                    <a class="btn btn-info text-white" th:href="@{/task/create/{id}(id=${column.id})}">+Add Card</a>
                                 </div>
                             </div>
 <!--                        </div>-->
