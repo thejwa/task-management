@@ -58,18 +58,19 @@ public class ProjectController {
         return "project/createProject";
     }
 
-
-    @RequestMapping(value = "update{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "update/{id}", method = RequestMethod.GET)
     public String updatePage(Model model, @PathVariable(name = "id") Long id) {
-//        model.addAttribute("dto", projectServiceImpl.get(id));
-        return "project/createProject";
+        model.addAttribute("id",id);
+        model.addAttribute("dto", projectServiceImpl.get(id));
+        return "project/updateProject";
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute("dto") ProjectUpdateDto dto, BindingResult bindingResult) {
+    @RequestMapping(value = "update/{id}", method = RequestMethod.POST)
+    public String update(@Valid @ModelAttribute("dto") ProjectUpdateDto dto, BindingResult bindingResult,@PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
-            return "project/createProject";
+            return "project/updateProject";
         }
+        dto.setId(id);
         projectServiceImpl.update(dto);
         return "redirect:/";
     }

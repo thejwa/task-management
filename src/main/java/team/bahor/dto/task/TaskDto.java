@@ -3,17 +3,12 @@ package team.bahor.dto.task;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import team.bahor.dto.GenericDto;
-import team.bahor.entity.project.ProjectColumn;
-import team.bahor.entity.task.TaskComment;
+import team.bahor.dto.comment.CommentDto;
+import team.bahor.entity.task.Action;
 import team.bahor.enums.task.Level;
 import team.bahor.enums.task.Priority;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -46,6 +41,11 @@ public class TaskDto extends GenericDto {
     private Long taskOrder;
 
     private Long columnId;
+
+    private List<CommentDto> taskComments;
+
+    private List<Action> actions;
+
 
     @Builder(builderMethodName = "childBuilder")
     public TaskDto(Long id, String code, LocalDateTime createdAt, Long createdBy, LocalDateTime updatedAt, Long updatedBy, LocalDateTime deadline, Integer status, String name, String description, Level level, Priority priority, Long taskOrder, Long columnId) {

@@ -36,7 +36,7 @@ public interface TaskRepository extends AbstractRepository<Task, Long>, BaseGene
     void delete(Long id);
 
     @Query(value = "select * from tasks where not deleted and  id = ?1",nativeQuery = true)
-    Optional<Object> findByIdOfTask(Long id);
+    Optional<Task> findByIdOfTask(Long id);
 
     @Query(value = "select c.project_id from columns c where not c.deleted and c.id= ?1 limit 1",nativeQuery = true)
     Long getProjectIdByColumnId(Long id);

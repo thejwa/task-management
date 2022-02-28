@@ -42,10 +42,10 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
     }
 
     public ProjectDto get(Long id) {
-        Project project = repository.getById(id);
-        ProjectDto projectDto = mapper.toDto(project);
-//        projectDto.setProjectColumns(columnService.getAll(projectDto.getId()));
-        return projectDto;
+        final Project project = repository.findByIdProject(id);
+        ProjectDto dto = mapper.toDto(project);
+        dto.setOrganizationId(project.getOrganizationId());
+        return dto;
     }
 
     @Override
@@ -60,17 +60,28 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
 
     }
 
-    public void update(ProjectUpdateDto dto) {
+    public void update(ProjectUpdateDto dto,Long id) {
         Project project = mapper.fromUpdateDto(dto);
+        project.setDeadline(LocalDateTime.parse(dto.getDeadline(),DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
+        project.setCode(UUID.randomUUID().toString());
+        project.setOrganizationId(id);
         repository.save(project);
     }
 
     public void delete(Long id) {
         repository.setDeleted(id);
     }
+
+    @Override
+    public void update(ProjectUpdateDto dto) {
+        LocalDateTime localDateTime=LocalDateTime.parse(dto.getDeadline(),DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+        repository.update(dto,localDateTime);
+    }
+
     public void block(Long id){
         repository.setBlocked(id);
     }
+
     public void unBlock(Long id){
         repository.setUnBlocked(id);
     }

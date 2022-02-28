@@ -10,6 +10,11 @@ public class BaseUtils {
         return userDetails.getId();
     }
 
+    public static long getSessionOrgId() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userDetails.getOrganizationId();
+    }
+
     public static boolean hasRole(String role) {
         return SecurityContextHolder.getContext().getAuthentication().getAuthorities()
                 .contains(new SimpleGrantedAuthority("ROLE_" + role));

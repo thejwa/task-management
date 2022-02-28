@@ -1,16 +1,11 @@
 package team.bahor.dto.task;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import team.bahor.dto.BaseGenericDto;
-import team.bahor.entity.task.TaskComment;
 import team.bahor.enums.task.Level;
 import team.bahor.enums.task.Priority;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Setter
 @Getter

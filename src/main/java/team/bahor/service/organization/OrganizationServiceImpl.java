@@ -29,6 +29,7 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
     public Long create(OrganizationCreatoDto dto) {
         Organization org = mapper.fromCreateDto(dto);
         org.setCode(UUID.randomUUID().toString());
+        org.setStatus(0);
 //        org.setCreatedBy(dto.getCreatedBy());
         repository.save(org);
         return null;
@@ -42,10 +43,9 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
     }
 
 
-
     public OrganizationDto getOrg(Long id) {
-       final OrganizationDto organizationDto = mapper.toDto(repository.getByUserIdOrganization(id));
-       final List<ProjectDto> projectDto = projectService.getAllProjectsForUser(id);
+        final OrganizationDto organizationDto = mapper.toDto(repository.getByUserIdOrganization(id));
+        final List<ProjectDto> projectDto = projectService.getAllProjectsForUser(id);
         organizationDto.setProjects(projectDto);
         return organizationDto;
     }

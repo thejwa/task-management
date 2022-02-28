@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import team.bahor.config.security.UserDetails;
 import team.bahor.enums.user.Roles;
+import team.bahor.utils.BaseUtils;
 
 @Controller
 public class HomeController {
@@ -13,22 +14,10 @@ public class HomeController {
     //    @Secured("ROLE_SUPER_ADMIN")
     @GetMapping({"", "/home"})
     public String homePage() {
-        if (SecurityContextHolder.getContext().getAuthentication().getAuthorities()
-                .contains(new SimpleGrantedAuthority("ROLE_" + Roles.SUPER_ADMIN.getCode())))
-            return "forward:/organization/super_admins_page";
-
-        if (SecurityContextHolder.getContext().getAuthentication().getAuthorities()
-                .contains(new SimpleGrantedAuthority("ROLE_" + Roles.ADMIN.getCode())))
-            return "forward:/user/admins_page";
-
-        if (SecurityContextHolder.getContext().getAuthentication().getAuthorities()
-                .contains(new SimpleGrantedAuthority("ROLE_" + Roles.USER.getCode())))
-            return "forward:/user/user_page";
-
-        UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("principal.getId() = " + principal.getId());
-        System.out.println("principal.getUsername() = " + principal.getUsername());
-        System.out.println("principal.getAuthorities() = " + principal.getAuthorities());
+        if (BaseUtils.hasRole("SUPER_ADMIN")) return "forward:/organization/super_admins_page";
+        if (BaseUtils.hasPermission("PROJECT_LIST"))
+            return ("forward:/organization/get/" + BaseUtils.getSessionOrgId());
+        if (BaseUtils.hasRole("USER")) return "forward:/user/user_page";
         return "404";
     }
 

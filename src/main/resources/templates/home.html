@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,8 +26,8 @@
         </div>
 
         <div class="link">
-            <a th:href="@{/}"> -- Clients
-            </a>
+            <a th:href="@{/user/create_user/{id}(id=${organization.id})}"> Create user</a>
+            <!--sec:authentication="hasRole('ADMIN')"-->
             <a th:href="@{/task}">Task manager</a>
             <a th:href="@{/project}">Inbox</a>
             <a th:href="@{/admin}">Contacts</a>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="icons">
                                 <a class="btn btn-light" th:href="@{/project/{id}(id=${project.id})}">👁</a>
-                                <a class="btn btn-light" href="#">✏️</a>
+                                <a class="btn btn-light" th:href="@{/project/update/{id}(id=${project.id})}">✏️</a>
                                 <a class="btn btn-light" th:href="@{/project/block/{id}(id=${project.id})}">🔐</a>
                                 <a class="btn btn-light" th:href="@{/project/unblock/{id}(id=${project.id})}">🔓</a>
                                 <a class="btn btn-light" th:href="@{/project/delete/{id}(id=${project.id})}">🗑</a>

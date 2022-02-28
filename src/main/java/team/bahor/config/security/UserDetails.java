@@ -3,8 +3,10 @@ package team.bahor.config.security;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import team.bahor.entity.organization.Organization;
 import team.bahor.entity.user.User;
 import team.bahor.entity.user.UserRole;
+import team.bahor.repository.organization.OrganizationRepository;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -12,6 +14,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
+
 
     @Getter
     private Long id;
@@ -22,17 +25,18 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private boolean active;
     private boolean deleted;
     private Long organizationId;
+    private Organization organization;
     private Set<GrantedAuthority> authorities;
 
-    public UserDetails(User user) {
+    public UserDetails(Organization organization, User user) {
         this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.code = user.getCode();
         this.blocked = user.isBlocked();
-        this.deleted = user.isDeleted();
-        this.active = user.getStatus() == 0;
-        this.organizationId=user.getOrganizationId();
+        this.deleted = (user.isDeleted() || organization.isDeleted());
+        this.active = (user.getStatus() == 0) && (organization.getStatus() == 0 || organization.getId() == 0);
+        this.organizationId = user.getOrganizationId();
         processAuthorities(user);
     }
 
@@ -82,7 +86,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
         return (this.active && !this.deleted);
     }
 
-    public Long getOrganizationId(){
+    public Long getOrganizationId() {
         return this.organizationId;
     }
 

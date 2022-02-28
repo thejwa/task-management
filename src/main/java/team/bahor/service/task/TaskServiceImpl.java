@@ -14,6 +14,7 @@ import team.bahor.repository.column.ColumnRepository;
 import team.bahor.repository.task.TaskRepository;
 import team.bahor.service.base.AbstractService;
 import team.bahor.service.column.ColumnServiceImp;
+import team.bahor.service.comment.CommentServiceImp;
 import team.bahor.validator.TaskValidator;
 
 import java.time.LocalDateTime;
@@ -24,9 +25,11 @@ import java.util.UUID;
 
 @Service
 public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper, TaskValidator> implements TaskService {
+    private final CommentServiceImp commentServiceImp;
 
-    public TaskServiceImpl(TaskMapper mapper, TaskValidator validator, TaskRepository repository) {
+    public TaskServiceImpl(TaskMapper mapper, TaskValidator validator, TaskRepository repository, CommentServiceImp commentServiceImp) {
         super(mapper, validator, repository);
+        this.commentServiceImp = commentServiceImp;
     }
 
     @Override
@@ -41,7 +44,6 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
         task.setStatus(0);
         repository.save(task);
         return null;
-
     }
 
     @Override
@@ -57,7 +59,9 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
 
     @Override
     public TaskDto get(Long id) {
-        Task task = (Task) repository.findByIdOfTask(id).orElseThrow(() -> new IllegalArgumentException("invalid task id" + id));
+        Task task = repository.findByIdOfTask(id).orElseThrow(() -> new IllegalArgumentException("invalid task id" + id));
+        final TaskDto dto = mapper.toDto(task);
+        dto.setTaskComments(commentServiceImp.getAllForTask(id));
         return mapper.toDto(task);
     }
 
@@ -70,9 +74,5 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
     public TaskUpdateDto getUpdateDto(Long id) {
         Task task = (Task) repository.findByIdOfTask(id).orElseThrow(() -> new IllegalArgumentException("invalid task id" + id));
         return mapper.toUpdateDto(task);
-    }
-
-    public Long getProjectIdByColumnId(Long id) {
-        return repository.getProjectIdByColumnId(id);
     }
 }

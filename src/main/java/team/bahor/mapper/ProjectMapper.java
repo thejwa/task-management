@@ -25,5 +25,6 @@ public interface ProjectMapper extends AbstractMapper<Project,ProjectDto,Project
     Project fromCreateDto(ProjectCreateDto createDto);
 
     @Override
+    @Mapping(target = "deadline",ignore = true)
     Project fromUpdateDto(ProjectUpdateDto updateDto);
 }
