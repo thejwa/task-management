@@ -9,6 +9,8 @@ import team.bahor.dto.task.TaskDto;
 import team.bahor.dto.task.TaskUpdateDto;
 import team.bahor.entity.project.ProjectColumn;
 import team.bahor.entity.task.Task;
+import team.bahor.enums.task.Level;
+import team.bahor.enums.task.Priority;
 import team.bahor.mapper.task.TaskMapper;
 import team.bahor.repository.column.ColumnRepository;
 import team.bahor.repository.task.TaskRepository;
@@ -74,5 +76,9 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
     public TaskUpdateDto getUpdateDto(Long id) {
         Task task = (Task) repository.findByIdOfTask(id).orElseThrow(() -> new IllegalArgumentException("invalid task id" + id));
         return mapper.toUpdateDto(task);
+    }
+
+    public Long getProjectIdByColumnId(Long id) {
+        return repository.getProjectIdByColumnId(id);
     }
 }

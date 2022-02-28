@@ -4,9 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import team.bahor.dto.column.ColumnCreateDto;
 import team.bahor.dto.task.TaskCreateDto;
 import team.bahor.dto.task.TaskUpdateDto;
 import team.bahor.service.task.TaskServiceImpl;
+import team.bahor.utils.BaseUtils;
 
 import javax.validation.Valid;
 
@@ -20,20 +22,11 @@ public class TaskController {
         this.service = service;
     }
 
-    @RequestMapping(value = "create/{id}", method = RequestMethod.GET)
-    public String createPage(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("dto", new TaskCreateDto(id));
-        return "task/create";
-    }
-    @ResponseBody
     @RequestMapping(value = "create/{id}", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("dto") TaskCreateDto dto, @PathVariable("id") Long id, BindingResult result) {
-        if (result.hasErrors()) {
-            return "task/create";
-        }
+    public String create(@Valid @ModelAttribute("dto") TaskCreateDto dto, @PathVariable("id") Long id) {
         dto.setColumnId(id);
         service.create(dto);
-        return "redirect:/home";
+        return "redirect:/project/"+service.getProjectIdByColumnId(id);
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
@@ -62,7 +55,7 @@ public class TaskController {
 
     @GetMapping(value = "/get/{id}")
     public String getTask(@PathVariable("id") Long id,Model model){
-        model.addAttribute("model",service.get(id));
-        return "/";
+        model.addAttribute("task",service.get(id));
+        return "task";
     }
 }
