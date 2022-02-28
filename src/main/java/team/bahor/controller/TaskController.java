@@ -35,6 +35,7 @@ public class TaskController {
         model.addAttribute("dto", dto);
         return "task/update";
     }
+
 @ResponseBody
     @PostMapping(value = "/update/{id}")
     public String update(@Valid @ModelAttribute("dto") TaskUpdateDto dto,

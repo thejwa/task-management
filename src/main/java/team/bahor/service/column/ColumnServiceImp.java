@@ -66,9 +66,7 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
 
     @Override
     public void delete(Long id) {
-        ProjectColumn projectColumn = repository.getById(id);
-        projectColumn.setDeleted(true);
-        repository.save(projectColumn);
+        repository.deleteByIdForColumn(id);
     }
 
 
@@ -80,4 +78,15 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
         }
         return columnDtos;
     }
+
+    public Long getProjectIdOfColumnByColumnId(Long id) {
+        return repository.getProjectIdOfColumnByColumnId(id).getProjectId();
+    }
+
+    public ColumnUpdateDto getUpdateDto(Long id) {
+        ColumnUpdateDto columnUpdateDto=mapper.toUpdateDto(repository.getByIdAndDeletedTrue(id));
+        return columnUpdateDto;
+    }
+
+
 }

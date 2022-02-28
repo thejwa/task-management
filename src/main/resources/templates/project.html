@@ -446,8 +446,9 @@
                         <p><b>Deadline:</b><span th:text="${project.deadline}"></span></p>
                     </div>
                     <div class="content-box">
-                        <span>DESCRIPTION: </span><span th:text="${project.description}"></span>
-                        <span>TZ: </span><span th:text="${project.tz}"></span>
+                        <span><b>DESCRIPTION: </b></span><span th:text="${project.description}"></span>
+                        <br/>
+                        <span><b>TZ: </b> </span><span th:text="${project.tz}"></span>
                     </div>
                     <div class="boxs">
                         <p><b>All tasks:</b> 1</p>
@@ -467,14 +468,14 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">+ Add Card</a></li>
-                                    <li><a class="dropdown-item" href="#">✏️ Update</a></li>
-                                    <li><a class="dropdown-item" href="#">🗑 Delete</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/column/update/{id}(id=${column.id})}">✏️ Update</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/column/delete/{id}(id=${column.id})}">🗑 Delete</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="task">
                             <div class="todo-box" th:each="task : ${column.tasks}">
-                                <h4><a th:text="${task.name}" th:href="@{/task/{id}(id=${task.id})}"></a>
+                                <h4><a th:text="${task.name}" th:href="@{/task/get/{id}(id=${task.id})}"></a>
                                     <button th:class="low" th:text="${task.level}"></button>
                                 </h4>
                                 <!-- medium high-->
@@ -507,7 +508,7 @@
                                                     aria-label="Default select example">
                                                 <option selected disabled="disabled">Level</option>
                                                 <option value="HARD">Hard</option>
-                                                <option value="MIDDLE">Middle</option>
+                                                <option value="MEDIUM">Medium</option>
                                                 <option value="EASY">Easy</option>
                                             </select>
                                         </div>
@@ -517,14 +518,14 @@
                                                     aria-label="Default select example">
                                                 <option selected disabled="disabled">Priority</option>
                                                 <option value="DEFAULT">Default</option>
-                                                <option value="EASY">Easy</option>
+                                                <option value="LOW">Low</option>
                                                 <option value="MEDIUM">Medium</option>
                                                 <option value="HIGH">High</option>
                                             </select>
                                         </div>
 
                                         <div class="form-group">
-                                            <input class="form-control" type="datetime-local" name="finishDate"/>
+                                            <input class="form-control" type="datetime-local" name="deadline"/>
                                         </div>
                                         <br/>
                                         <div class="form-group d-flex justify-content-end">

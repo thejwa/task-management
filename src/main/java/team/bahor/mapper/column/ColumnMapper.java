@@ -29,4 +29,6 @@ public interface ColumnMapper extends AbstractMapper<
 
     @Override
     ProjectColumn fromUpdateDto(ColumnUpdateDto updateDto);
+
+    ColumnUpdateDto toUpdateDto(ProjectColumn byIdAndDeletedTrue);
 }
