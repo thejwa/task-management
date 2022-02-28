@@ -51,7 +51,7 @@ public class TaskManagementApplication {
             superAdmin.setPassword(passwordEncoder.encode("123"));
             superAdmin.setCode(UUID.randomUUID().toString());
             superAdmin.setCreatedAt(LocalDateTime.now());
-            superAdmin.setUsername("123");
+            superAdmin.setUsername("admin");
             UserRole role = new UserRole();
             role.setName(Roles.SUPER_ADMIN.name());
             role.setCode(Roles.SUPER_ADMIN.getCode());
