@@ -5,11 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.FluentQuery;
+import team.bahor.dto.project.ProjectUpdateDto;
 import team.bahor.entity.project.Project;
 import team.bahor.entity.project.ProjectColumn;
 import team.bahor.repository.base.BaseGenericRepository;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -23,8 +25,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, BaseGen
     @Override
     <S extends Project> List<S> saveAll(Iterable<S> entities);
 
-    @Override
-    Project getById(Long aLong);
+    Project getById(Long id);
 
     @Override
     <S extends Project> S save(S entity);
@@ -79,6 +80,10 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, BaseGen
     @Query(value = "select ps.* from project_member pm  inner join projects ps on ps.id = pm.project_id where not ps.deleted  and not pm.deleted   and pm.user_id = ?1",nativeQuery = true)
     List<Project> getAllProjectsForUser(Long id);
 
+    @Transactional
+    @Modifying
+    @Query(value = "update Project set name=:#{#dto.name},tz=:#{#dto.tz},description=:#{#dto.description},deadline=:localDateTime where id=:#{#dto.id}")
+    void update(ProjectUpdateDto dto, LocalDateTime localDateTime);
 
 //    @Query(value = "select * from columns pc where not pc.is_deleted and pc.project_id = id",nativeQuery = true)
 //    List<ProjectColumn> getAllProjectForProjectColumn(Long id);

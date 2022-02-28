@@ -14,16 +14,10 @@ public class ColumnUpdateDto extends GenericDto {
 
     private Integer columnOrder;
 
-    private Long updatedBy;
-
-    private Integer status;
-
     @Builder(builderMethodName = "childBuilder")
     public ColumnUpdateDto(Long id, String name, Integer columnOrder, Long updatedBy, Integer status) {
         super(id);
         this.name = name;
         this.columnOrder = columnOrder;
-        this.updatedBy = updatedBy;
-        this.status = status;
     }
 }

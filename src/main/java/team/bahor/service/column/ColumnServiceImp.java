@@ -1,7 +1,5 @@
 package team.bahor.service.column;
 
-import org.hibernate.mapping.Column;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.bahor.dto.column.ColumnCreateDto;
 import team.bahor.dto.column.ColumnDto;
@@ -30,10 +28,6 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
         this.taskService = taskService;
     }
 
-
-
-
-
     public Long create(ColumnCreateDto createDto) {
         ProjectColumn projectColumn = mapper.fromCreateDto(createDto);
         projectColumn.setCode(UUID.randomUUID().toString());
@@ -41,12 +35,10 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
         return null;
     }
 
-
     @Override
     public ColumnDto get(@NotNull Long id) {
         return mapper.toDto(repository.getById(id));
     }
-
 
     @Override
     public List<ColumnDto> getAllTasksForColumn(@NotNull Long id) {
@@ -63,14 +55,10 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
         repository.update(updateDto);
     }
 
-
     @Override
     public void delete(Long id) {
-        ProjectColumn projectColumn = repository.getById(id);
-        projectColumn.setDeleted(true);
-        repository.save(projectColumn);
+        repository.deleteByIdForColumn(id);
     }
-
 
     public List<ColumnDto> getAllColumnForPproject(Long id) {
         List<ProjectColumn> columns = repository.findAllColumn(id);
@@ -79,5 +67,18 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
             columnDto.setTasks(taskService.getAllTasksForColumn(columnDto.getId()));
         }
         return columnDtos;
+    }
+
+    public Long getProjectIdOfColumnByColumnId(Long id) {
+        return repository.getProjectIdOfColumnByColumnId(id).getProjectId();
+    }
+
+    public ColumnUpdateDto getUpdateDto(Long id) {
+        ColumnUpdateDto columnUpdateDto=mapper.toUpdateDto(repository.getByIdAndDeletedTrue(id));
+        return columnUpdateDto;
+    }
+
+    public Long getProjectIdByColumnId(Long id) {
+       return repository.getProjectIdByColumnId(id);
     }
 }

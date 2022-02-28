@@ -13,23 +13,30 @@ import java.util.Set;
 public enum Roles {
     SUPER_ADMIN("SUPER_ADMIN", 10,
             Sets.newHashSet(
-                    Permissions.ADMIN_CREATE,
-                    Permissions.ADMIN_UPDATE,
-                    Permissions.ADMIN_DELETE,
-                    Permissions.ADMIN_LIST,
-                    Permissions.MANAGER_CREATE,
-                    Permissions.MANAGER_UPDATE,
-                    Permissions.MANAGER_DELETE,
-                    Permissions.MANAGER_LIST
+                    Permissions.values()
             )),
     ADMIN("ADMIN", 6,
             Sets.newHashSet(
                     Permissions.MANAGER_CREATE,
                     Permissions.MANAGER_UPDATE,
                     Permissions.MANAGER_DELETE,
-                    Permissions.MANAGER_LIST
+                    Permissions.MANAGER_LIST,
+                    Permissions.USER_CREATE,
+                    Permissions.USER_UPDATE,
+                    Permissions.USER_DELETE,
+                    Permissions.USER_LIST,
+                    Permissions.PROJECT_CREATE,
+                    Permissions.PROJECT_UPDATE,
+                    Permissions.PROJECT_DELETE,
+                    Permissions.PROJECT_LIST
             )),
-    MANAGER("MANAGER", 3, Sets.newHashSet()),
+    MANAGER("MANAGER", 3,
+            Sets.newHashSet(
+                    Permissions.PROJECT_CREATE,
+                    Permissions.PROJECT_UPDATE,
+                    Permissions.PROJECT_DELETE,
+                    Permissions.PROJECT_LIST
+            )),
     USER("USER", 1, Sets.newHashSet());
 
     private final String code;

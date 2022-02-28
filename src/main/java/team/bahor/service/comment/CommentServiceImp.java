@@ -43,7 +43,7 @@ public class CommentServiceImp extends AbstractService<CommentRepository, Commen
         return null;
     }
 
-    public List<CommentDto> getAllForTask(Long id){
+    public List<CommentDto> getAllForTask(Long id) {
         return mapper.toDto(repository.getByIdForTask(id));
     }
 }

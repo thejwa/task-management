@@ -9,6 +9,7 @@ import team.bahor.entity.user.User;
 import team.bahor.entity.user.UserPermission;
 import team.bahor.entity.user.UserRole;
 import team.bahor.enums.user.Roles;
+import team.bahor.exeptions.ValidationException;
 import team.bahor.mapper.user.UserMapper;
 import team.bahor.repository.user.UserRepository;
 import team.bahor.service.base.AbstractService;
@@ -30,6 +31,11 @@ public class UserServiceImpl extends AbstractService<UserRepository, UserMapper,
 
     @Override
     public Long create(UserCreateDto dto) {
+        try {
+            validator.validOnCreate(dto);
+        } catch (ValidationException e) {
+            return null;
+        }
         User user = mapper.fromCreateDto(dto);
         user.setCode(UUID.randomUUID().toString());
         user.setCreatedAt(LocalDateTime.now());
