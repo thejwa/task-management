@@ -137,19 +137,6 @@
                 </div>
                 <div class="content-status">
                     <div class="status">
-
-<!--                        private String code;-->
-<!--                        private LocalDateTime createdAt;-->
-<!--                        private Long createdBy;-->
-<!--                        private LocalDateTime updatedAt;-->
-<!--                        private Long updatedBy;-->
-<!--                        private LocalDateTime deadline;-->
-<!--                        private Integer status;-->
-<!--                        private String name;-->
-<!--                        private String description;-->
-<!--                        private Level level;-->
-<!--                        private Long taskOrder;-->
-
                         <div class="status-text">
                             <p>Priority:</p>
                             <button class="low" th:text="${task.priority}"></button>
@@ -157,7 +144,7 @@
 
                         <div class="status-text">
                             <p>Level:</p>
-                            <button class="low" th:text="${task.level}"></button>
+                            <button class="medium" th:text="${task.level}"></button>
                         </div>
 
                         <div class="status-text">
@@ -182,13 +169,81 @@
                     </div>
 
                     <div class="btn">
-                        <button type="submit">Change the priority
-                            <img th:src="@{/imges/down.png}" alt="">
-                        </button>
+                        <div class="dropdown">
+                            <button type="submit" class="dropdown-toggle" id="added" data-bs-toggle="dropdown"
+                                    aria-expanded="false">🧑‍ Add Memember
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="added">
+                                <form class="create-todo p-2">
 
-                        <button type="submit">Change the priority
-                            <img th:src="@{/imges/down.png}" alt="">
-                        </button>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Default checkbox
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Checked checkbox
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary">Add</button>
+                                    </div>
+                                </form>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                        <button type="submit" class="dropdown-toggle dtn btn-info" id="droped" data-bs-toggle="dropdown"
+                               aria-expanded="false">✏️ Update Task</button>
+                            <ul class="dropdown-menu" aria-labelledby="droped">
+                                <form class="create-todo"
+                                      th:action="@{/task/update/{id}(id=${task.id})}"
+                                      method="post">
+
+<!--                                    <div class="form-group">-->
+<!--                                        <input class="form-control" type="text" th:value="${task.name}"-->
+<!--                                               name="name"/>-->
+<!--                                    </div>-->
+
+<!--                                    <div class="form-group">-->
+<!--                                        <input class="form-control" type="text" th:value="${task.descreption}"-->
+<!--                                               name="description"/>-->
+<!--                                    </div>-->
+
+                                    <div class="form-group">
+                                        <select name="level" class="form-select"
+                                                aria-label="Default select example">
+                                            <option selected disabled="disabled">Level</option>
+                                            <option value="HARD">Hard</option>
+                                            <option value="MEDIUM">Medium</option>
+                                            <option value="EASY">Easy</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <select name="priority" class="form-select"
+                                                aria-label="Default select example">
+                                            <option selected disabled="disabled">Priority</option>
+                                            <option value="DEFAULT">Default</option>
+                                            <option value="LOW">Low</option>
+                                            <option value="MEDIUM">Medium</option>
+                                            <option value="HIGH">High</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input class="form-control" type="datetime-local" name="deadline" th:value="${task.deadline}"/>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </form>
+                            </ul>
+                        </div>
 
                         <button type="submit">
                             <img th:src="@{/imges/usercheck.png}" alt="">Become a participant
