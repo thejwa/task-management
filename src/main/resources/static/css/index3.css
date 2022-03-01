@@ -140,7 +140,7 @@ nav .input {
   height: 80%;
   background: #f6f6f6;
   border-radius: 17px;
-  overflow-y: scroll;
+  over-y: scroll;
 }
 
 .content-actions::-webkit-scrollbar {
@@ -164,7 +164,6 @@ nav .input {
   background: #e0e4ea;
   border-radius: 17px;
 }
-
 .actions-box h6 {
   font-family: Rubik;
   font-style: normal;
@@ -353,17 +352,19 @@ nav .input {
 .btn button:nth-child(3) {
   background: #67cb65;
   border-radius: 17px;
-  color: #ffffff;
+  color: #050505;
 }
 
 .btn button:nth-child(4) {
-  background: #d9e5f9;
-  color: #000000;
+  background: #02fcb0;
+  border-radius: 17px;
+  color: #ffffff;
 }
 
 .btn button:nth-child(5) {
-  background: #e74444;
-  color: #ffffff;
+  background: #ff02fa;
+  border-radius: 17px;
+  color: #050505;
 }
 
 /* 
