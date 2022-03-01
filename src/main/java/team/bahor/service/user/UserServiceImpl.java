@@ -4,6 +4,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import team.bahor.dto.user.UserCreateDto;
 import team.bahor.dto.user.UserDto;
+import team.bahor.dto.user.UserDtoForProjectMember;
 import team.bahor.dto.user.UserUpdateDto;
 import team.bahor.entity.user.User;
 import team.bahor.entity.user.UserPermission;
@@ -63,5 +64,17 @@ public class UserServiceImpl extends AbstractService<UserRepository, UserMapper,
     @Override
     public List<UserDto> getAllTasksForColumn(Long id) {
         return null;
+    }
+
+    public List<UserDtoForProjectMember> getAllMemberForProject(Long id) {
+        return mapper.toUserDtoForProjectMember(repository.getAllMemberForProject(id));
+    }
+
+    public void projectAddMember(Long id,Long projectId) {
+        repository.projectAddMember(id,projectId);
+    }
+
+    public List<UserDtoForProjectMember> getProjectAllMember(Long id) {
+        return mapper.toUserDtoForProjectMember(repository.getProjectAllMember(id));
     }
 }

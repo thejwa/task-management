@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragmentproject.html :: header('list')">
+    <meta charset="UTF-8">
+    <title ></title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Tartibi</th>
+                <th>username</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user,iter : ${users}">
+                <th th:text="${iter.count}"></th>
+                <th th:text="${user.username}"></th>
+                <th>
+                    <a href="#">🗑</a>
+                    <a href="#">🔐</a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

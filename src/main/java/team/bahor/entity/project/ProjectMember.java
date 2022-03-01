@@ -28,7 +28,9 @@ public class ProjectMember {
     @Column(nullable = false, columnDefinition = "int default 0")
     private Integer status;
 
+    @Column(columnDefinition = "boolean default false")
     private boolean lead;
 
+    @Column(columnDefinition = "boolean default false")
     private boolean deleted;
 }

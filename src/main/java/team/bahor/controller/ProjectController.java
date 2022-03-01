@@ -103,5 +103,4 @@ public class ProjectController {
         model.addAttribute("projects", projectServiceImpl.getAll(id));
         return "home";
     }
-
 }

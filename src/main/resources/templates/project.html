@@ -407,6 +407,8 @@
             <a href="#">Task manager</a>
             <a href="#">Inbox</a>
             <a href="#">Contacts</a>
+            <a th:href="@{/user/projectlistmember/{id}(id=${project.id})}">Project member</a>
+            <a th:href="@{/user/projectaddmember/{id}(id=${project.id})}">Add member</a>
         </div>
     </main>
 
