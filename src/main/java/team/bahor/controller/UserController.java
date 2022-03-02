@@ -36,6 +36,21 @@ public class UserController extends AbstractController<UserServiceImpl> {
         return "user/create_admin";
     }
 
+    @GetMapping("create_user/{id}")
+    public String createUserPage(@PathVariable(value = "id") Long id, Model model) {
+        UserCreateDto dto = UserCreateDto.builder().organizationId(id).build();
+        model.addAttribute("dto", dto);
+        return "user/create_user";
+    }
+
+    @PostMapping("/create_user/{id}")
+    public String createUser(@ModelAttribute("dto") UserCreateDto dto, @PathVariable("id") Long id) {
+        dto.setOrganizationId(id);
+        dto.setRole(Roles.USER.getCode());
+        service.create(dto);
+        return "redirect:/home";
+    }
+
     //    @PreAuthorize(value = "hasRole('SUPER_ADMIN')")
     @PostMapping("/create_admin/{id}")
     public String createAdmin(@ModelAttribute("dto") UserCreateDto dto, @PathVariable("id") Long id) {
@@ -73,11 +88,22 @@ public class UserController extends AbstractController<UserServiceImpl> {
     }
 
     @RequestMapping(value = "projectlistmember/{id}")
-    public String getProjectAllMember(@PathParam("id") Long id,Model model){
+    public String getProjectAllMember(@PathVariable("id") Long id,Model model){
         model.addAttribute("users",service.getProjectAllMember(id));
-        model.addAttribute("projectId",id);
+        model.addAttribute("id",id);
         return "project/memberlist";
 
     }
 
+    @RequestMapping(value = "/deletedprojectmember/{projectId}/{id}")
+    public String deletedprojectmember(@PathVariable("id") Long id,@PathVariable("projectId") Long projectId,HttpServletRequest request){
+        service.deletedprojectmember(id,projectId);
+        return "redirect:"+request.getHeader("Referer");
+    }
+
+    @RequestMapping(value = "blockprojectmember/{projectId}/{id}")
+    public String blocked(@PathVariable("id") Long id,@PathVariable("projectId") Long projectId,HttpServletRequest request){
+        service.blockProjectmember(id,projectId);
+        return "redirect:"+request.getHeader("Referer");
+    }
 }

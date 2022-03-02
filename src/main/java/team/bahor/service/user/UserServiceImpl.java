@@ -77,4 +77,12 @@ public class UserServiceImpl extends AbstractService<UserRepository, UserMapper,
     public List<UserDtoForProjectMember> getProjectAllMember(Long id) {
         return mapper.toUserDtoForProjectMember(repository.getProjectAllMember(id));
     }
+
+    public void deletedprojectmember(Long id,Long projectId) {
+        repository.deletedprojectmember(id,projectId);
+
+    }
+
+    public void blockProjectmember(Long id, Long projectId) {
+    }
 }
