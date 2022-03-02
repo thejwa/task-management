@@ -15,13 +15,12 @@ public interface UserRepository extends AbstractRepository<User, Long> {
 
     @Query(value = "select u.*\n" +
             "from users u\n" +
-            "where id not in (select pm.user_id\n" +
-            "                 from project_member pm\n" +
-            "                          inner join projects p on pm.project_id = p.id\n" +
-            "                 where not pm.deleted\n" +
-            "                    or pm.project_id <> 1\n" +
-            "                    or p.organization_id <> u.organization_id)\n" +
-            "  and not u.deleted;", nativeQuery = true)
+            "where id not in (\n" +
+            "    select pm.user_id\n" +
+            "    from project_member pm\n" +
+            "    where not pm.deleted\n" +
+            "       and pm.project_id = 1) and u.organization_id in (select p.organization_id from projects p where not p.deleted and p.id=1)\n" +
+            "  and not u.deleted", nativeQuery = true)
     List<User> getAllMemberForProject(Long id);
 
     @Transactional

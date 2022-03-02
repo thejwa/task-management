@@ -14,6 +14,7 @@ import team.bahor.service.organization.OrganizationServiceImpl;
 import team.bahor.service.user.UserServiceImpl;
 import team.bahor.utils.BaseUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
@@ -66,9 +67,9 @@ public class UserController extends AbstractController<UserServiceImpl> {
         return "project/addMember";
     }
     @RequestMapping(value = "/projectAddmember/{projectId}/{id}")
-    public String projectAddMember(@PathVariable(name = "id") Long id,@PathVariable(name = "projectId") Long projectId){
+    public String projectAddMember(@PathVariable(name = "id") Long id, @PathVariable(name = "projectId") Long projectId, HttpServletRequest request){
         service.projectAddMember(id,projectId);
-        return "redirect:/";
+        return "redirect:"+request.getHeader("Referer");
     }
 
     @RequestMapping(value = "projectlistmember/{id}")
