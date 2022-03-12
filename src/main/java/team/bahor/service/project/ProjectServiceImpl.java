@@ -47,10 +47,7 @@ public class ProjectServiceImpl extends AbstractService<ProjectRepository, Proje
         return projectDto;
     }
 
-    @Override
-    public List<ProjectDto> getAllTasksForColumn(Long id) {
-        return null;
-    }
+
 
 
     public List<ProjectDto> getAll(Long id) {

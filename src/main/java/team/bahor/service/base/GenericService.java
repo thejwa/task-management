@@ -12,5 +12,5 @@ public interface GenericService <
 
     D get(K id);
 
-    List<D> getAllTasksForColumn(K id);
+    List<D> getAll(K id);
 }

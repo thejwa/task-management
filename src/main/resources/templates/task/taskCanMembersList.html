@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragmentproject.html :: header('Add Member')">
+    <meta charset="UTF-8">
+    <title>Project Add Member</title>
+</head>
+<body>
+<!--<div th:class="container">-->
+<!--    <div class="content">-->
+<!--        <div class="contents">-->
+<!--            <div th:each="user : ${users}">-->
+<!--                <div class="box">-->
+<!--                    <div class="name">-->
+<!--                        <p th:text="${user.username}"></p>-->
+<!--                    </div>-->
+<!--                    <div class="icon">-->
+<!--                        <p th:href="@{user/project/addmember/{id}(id=${user.id})}">➕ Add</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="d-flex justify-content-center">-->
+<!--                <a th:href="@{/project/{id}(id=${id})}" class="btn btn-success">Back</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+
+            <tbody>
+            <tr th:each="user,iter : ${users}">
+                <th th:text="${iter.count}"></th>
+                <th th:text="${user.username}"></th>
+                <th>
+                    <a th:href="@{/user/projectAddmember/{projectId}/{id}(id=${user.id},projectId=${id})}">➕ Add</a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a th:href="@{/project/{id}(id=${id})}" class="btn btn-success">Back</a>
+    </div>
+</div>
+
+<section th:include="fragmentproject.html :: js-files"></section>
+</body>
+</html>

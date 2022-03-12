@@ -1,7 +1,5 @@
 package team.bahor.service.column;
 
-import org.hibernate.mapping.Column;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.bahor.dto.column.ColumnCreateDto;
 import team.bahor.dto.column.ColumnDto;
@@ -11,7 +9,6 @@ import team.bahor.entity.project.ProjectColumn;
 import team.bahor.mapper.column.ColumnMapper;
 import team.bahor.repository.column.ColumnRepository;
 import team.bahor.service.base.AbstractService;
-import team.bahor.service.task.TaskService;
 import team.bahor.service.task.TaskServiceImpl;
 import team.bahor.validator.column.ColumnValidator;
 
@@ -49,10 +46,10 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
 
 
     @Override
-    public List<ColumnDto> getAllTasksForColumn(@NotNull Long id) {
+    public List<ColumnDto> getAll(@NotNull Long id) {
         List<ColumnDto> columns = mapper.toDto(repository.getAllProjectForProjectColumn(id));
         for (ColumnDto column : columns) {
-            final List<TaskDto> all = taskService.getAllTasksForColumn(column.getId());
+            final List<TaskDto> all = taskService.getAll(column.getId());
             column.setTasks(all);
         }
         return columns;
@@ -74,7 +71,7 @@ public class ColumnServiceImp extends AbstractService<ColumnRepository, ColumnMa
         List<ProjectColumn> columns = repository.findAllColumn(id);
         List<ColumnDto> columnDtos = mapper.toDto(columns);
         for (ColumnDto columnDto : columnDtos) {
-            columnDto.setTasks(taskService.getAllTasksForColumn(columnDto.getId()));
+            columnDto.setTasks(taskService.getAll(columnDto.getId()));
         }
         return columnDtos;
     }

@@ -78,9 +78,4 @@ public class TaskMemberServiceImp extends AbstractService<
         return dtos;
     }
 
-
-    @Override
-    public List<TaskMemberDto> getAllTasksForColumn(Long id) {
-        return null;
-    }
 }

@@ -111,14 +111,14 @@ public class UserController extends AbstractController<UserServiceImpl> {
     public String getTaskMembers(@PathVariable("id") Long id,Model model){
         model.addAttribute("users",service.getTaskMembers(id));
         model.addAttribute("id",id);
-        return "task/memberlist";
+        return "task/taskMemberslist";
     }
 
-//    @RequestMapping(value = "taskMembers/{id}")
-//    public String getTaskMembers(@PathVariable("id") Long id,Model model){
-//        model.addAttribute("users",service.getTaskMembers(id));
-//        model.addAttribute("id",id);
-//        return "task/memberlist";
-//    }
+    @RequestMapping(value = "taskCanMembersList/{id}")
+    public String taskCanMembersList(@PathVariable("id") Long id,Model model){
+        model.addAttribute("users",service.taskCanMembersList(id));
+        model.addAttribute("id",id);
+        return "task/taskCanMembersList";
+    }
 
 }

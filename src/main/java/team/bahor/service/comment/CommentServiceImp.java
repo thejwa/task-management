@@ -39,7 +39,7 @@ public class CommentServiceImp extends AbstractService<CommentRepository, Commen
     }
 
     @Override
-    public List<CommentDto> getAllTasksForColumn(Long id) {
+    public List<CommentDto> getAll(Long id) {
         return null;
     }
 
