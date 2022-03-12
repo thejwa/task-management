@@ -4,7 +4,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import team.bahor.dto.user.UserCreateDto;
 import team.bahor.dto.user.UserDto;
-import team.bahor.dto.user.UserDtoForProjectMember;
+import team.bahor.dto.user.UserDtoForMember;
 import team.bahor.dto.user.UserUpdateDto;
 import team.bahor.entity.user.User;
 import team.bahor.entity.user.UserPermission;
@@ -66,16 +66,16 @@ public class UserServiceImpl extends AbstractService<UserRepository, UserMapper,
         return null;
     }
 
-    public List<UserDtoForProjectMember> getAllMemberForProject(Long id) {
-        return mapper.toUserDtoForProjectMember(repository.getAllMemberForProject(id));
+    public List<UserDtoForMember> getAllMemberForProject(Long id) {
+        return mapper.toUserDtoForMember(repository.getAllMemberForProject(id));
     }
 
     public void projectAddMember(Long id,Long projectId) {
         repository.projectAddMember(id,projectId);
     }
 
-    public List<UserDtoForProjectMember> getProjectAllMember(Long id) {
-        return mapper.toUserDtoForProjectMember(repository.getProjectAllMember(id));
+    public List<UserDtoForMember> getProjectAllMember(Long id) {
+        return mapper.toUserDtoForMember(repository.getProjectAllMember(id));
     }
 
     public void deletedprojectmember(Long id,Long projectId) {
@@ -84,5 +84,9 @@ public class UserServiceImpl extends AbstractService<UserRepository, UserMapper,
     }
 
     public void blockProjectmember(Long id, Long projectId) {
+    }
+
+    public List<UserDtoForMember> getTaskMembers(Long id) {
+      return   mapper.toUserDtoForMember(repository.getTaskMembers(id));
     }
 }

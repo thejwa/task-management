@@ -64,6 +64,8 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
         Task task = repository.findByIdOfTask(id).orElseThrow(() -> new IllegalArgumentException("invalid task id" + id));
         final TaskDto dto = mapper.toDto(task);
         dto.setTaskComments(commentServiceImp.getAllForTask(id));
+        dto.setCommentCount(dto.getTaskComments().size());
+//        dto.setActions();
         return mapper.toDto(task);
     }
 

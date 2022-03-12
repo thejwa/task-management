@@ -106,4 +106,19 @@ public class UserController extends AbstractController<UserServiceImpl> {
         service.blockProjectmember(id,projectId);
         return "redirect:"+request.getHeader("Referer");
     }
+
+    @RequestMapping(value = "taskMembers/{id}")
+    public String getTaskMembers(@PathVariable("id") Long id,Model model){
+        model.addAttribute("users",service.getTaskMembers(id));
+        model.addAttribute("id",id);
+        return "task/memberlist";
+    }
+
+//    @RequestMapping(value = "taskMembers/{id}")
+//    public String getTaskMembers(@PathVariable("id") Long id,Model model){
+//        model.addAttribute("users",service.getTaskMembers(id));
+//        model.addAttribute("id",id);
+//        return "task/memberlist";
+//    }
+
 }

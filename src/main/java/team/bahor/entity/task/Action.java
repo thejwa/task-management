@@ -22,7 +22,4 @@ public class Action extends Auditable {
 
     @Column(nullable = true)
     private Long taskId;
-
-    @Column(nullable = false)
-    private Long projectId;
 }

@@ -2,7 +2,6 @@ package team.bahor.repository.user;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import team.bahor.dto.user.UserDtoForProjectMember;
 import team.bahor.entity.user.User;
 import team.bahor.repository.base.AbstractRepository;
 
@@ -35,4 +34,9 @@ public interface UserRepository extends AbstractRepository<User, Long> {
     @Modifying
     @Query(value = "update project_member set deleted=true  where user_id= ?1 and project_id= ?2",nativeQuery = true)
     void deletedprojectmember(Long id,Long projectId);
+
+    @Query(value = "select * from main.users u inner join task_member tm on u.id = tm.user_id where not u.deleted and not tm.deleted and tm.task_id= ?1",nativeQuery = true)
+    List<User> getTaskMembers(Long id);
+
+
 }

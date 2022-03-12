@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import team.bahor.dto.task.TaskUpdateDto;
-import team.bahor.entity.project.ProjectColumn;
 import team.bahor.entity.task.Task;
 import team.bahor.repository.base.AbstractRepository;
 import team.bahor.repository.base.BaseGenericRepository;

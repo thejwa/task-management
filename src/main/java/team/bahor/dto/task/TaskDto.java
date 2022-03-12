@@ -44,6 +44,8 @@ public class TaskDto extends GenericDto {
 
     private List<CommentDto> taskComments;
 
+    private Integer commentCount;
+
     private List<Action> actions;
 
 
