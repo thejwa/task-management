@@ -14,6 +14,8 @@ import team.bahor.enums.task.Priority;
 import team.bahor.mapper.task.TaskMapper;
 import team.bahor.repository.column.ColumnRepository;
 import team.bahor.repository.task.TaskRepository;
+import team.bahor.service.action.ActionService;
+import team.bahor.service.action.ActionServiceImp;
 import team.bahor.service.base.AbstractService;
 import team.bahor.service.column.ColumnServiceImp;
 import team.bahor.service.comment.CommentServiceImp;
@@ -28,10 +30,12 @@ import java.util.UUID;
 @Service
 public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper, TaskValidator> implements TaskService {
     private final CommentServiceImp commentServiceImp;
+    private final ActionServiceImp actionService;
 
-    public TaskServiceImpl(TaskMapper mapper, TaskValidator validator, TaskRepository repository, CommentServiceImp commentServiceImp) {
+    public TaskServiceImpl(TaskMapper mapper, TaskValidator validator, TaskRepository repository, CommentServiceImp commentServiceImp, ActionServiceImp actionService) {
         super(mapper, validator, repository);
         this.commentServiceImp = commentServiceImp;
+        this.actionService = actionService;
     }
 
     @Override
@@ -65,7 +69,7 @@ public class TaskServiceImpl extends AbstractService<TaskRepository, TaskMapper,
         final TaskDto dto = mapper.toDto(task);
         dto.setTaskComments(commentServiceImp.getAllForTask(id));
         dto.setCommentCount(dto.getTaskComments().size());
-//        dto.setActions();
+        dto.setActions(actionService.getAllAction(id));
         return mapper.toDto(task);
     }
 
