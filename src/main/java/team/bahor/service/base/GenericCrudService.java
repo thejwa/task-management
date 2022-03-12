@@ -18,3 +18,4 @@ public interface GenericCrudService<
 
     void update(UD updateDto);
 }
+    
