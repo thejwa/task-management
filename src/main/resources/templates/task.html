@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/index3.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Red+Hat+Display&family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+    <style>
+        * {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+
+<header>
+    <main>
+        <div class="menu-bar">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img th:src="@{/imges/logo.png}" alt="">
+        </div>
+
+        <div class="link">
+            <a href="#"> -- Clients
+            </a>
+            <a href="#">Task manager</a>
+            <a href="#">Inbox</a>
+            <a href="#">Contacts</a>
+        </div>
+    </main>
+
+    <aside>
+        <nav>
+            <div class="input">
+                <div>
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <input type="text" placeholder="Search">
+            </div>
+
+            <div class="user-information">
+                <div class="icon">
+                    <img th:src="@{/imges/bell.png}" alt="">
+                    <i class="far fa-envelope"></i>
+                </div>
+
+                <div class="user">
+                    <img th:src="@{/imges/useer.png}" alt="">
+                    <p>Azhar I.
+                        <i class="fas fa-angle-down"></i>
+                    </p>
+                </div>
+
+            </div>
+        </nav>
+
+        <div class="container">
+            <h4 th:text="${task.name}">Task name</h4>
+            <div class="contents">
+                <div class="content-actions">
+                    <h5>Actions</h5>
+                    <div class="actions-box">
+                        <h6>CRM system design</h6>
+                        <p><b>Activity: </b>12/04/2021, 6:37 p.m </p>
+                        <p>Приступил(-а) к задаче</p>
+                        <span>
+                                <img th:src="@{/imges/Ellipse.png}" alt="">Azhar
+                            </span>
+                    </div>
+
+                    <div class="actions-box">
+                        <h6>CRM system design</h6>
+                        <p><b>Activity: </b>12/04/2021, 6:37 p.m </p>
+                        <p>Приступил(-а) к задаче</p>
+                        <span>
+                                <img th:src="@{/imges/Ellipse.png}" alt="">Azhar
+                            </span>
+                    </div>
+
+                    <div class="actions-box">
+                        <h6>CRM system design</h6>
+                        <p><b>Activity: </b>12/04/2021, 6:37 p.m </p>
+                        <p>Приступил(-а) к задаче</p>
+                        <span>
+                                <img th:src="@{/imges/Ellipse.png}" alt="">Azhar
+                            </span>
+                    </div>
+
+                    <div class="actions-box">
+                        <h6>CRM system design</h6>
+                        <p><b>Activity: </b>12/04/2021, 6:37 p.m </p>
+                        <p>Приступил(-а) к задаче</p>
+                        <span>
+                                <img th:src="@{/imges/Ellipse.png}" alt="">Azhar
+                            </span>
+                    </div>
+
+                    <div class="actions-box">
+                        <h6>CRM system design</h6>
+                        <p><b>Activity: </b>12/04/2021, 6:37 p.m </p>
+                        <p>Приступил(-а) к задаче</p>
+                        <span>
+                                <img th:src="@{/imges/Ellipse.png}" alt="">Azhar
+                            </span>
+                    </div>
+                </div>
+                <div class="container-box">
+                    <div class="content-box">
+                        <p><b>DESCRIPTION: </b><span th:text="${task.description}"></span></p>
+                    </div>
+                    <div class="content-box">
+                        <textarea placeholder="Комментарий..." id="" cols="10" rows="3"></textarea>
+                        <button type="submit">Опубликовать</button>
+                    </div>
+
+                    <div class="content-box">
+                        <div class="flex">
+                            <p class="box-text"><img th:src="@{/imges/avatar.png}" alt="">Artur </p>
+                            <p>12/04/2021, 6:37 p.m</p>
+                        </div>
+
+                        <span>1. Добавлены шаблонные теги для подсчёта часов, потраченных на закрытые задачи.</span>
+                    </div>
+                </div>
+                <div class="content-status">
+                    <div class="status">
+                        <div class="status-text">
+                            <p>Priority:</p>
+                            <button class="low" th:text="${task.priority}"></button>
+                        </div>
+
+                        <div class="status-text">
+                            <p>Level:</p>
+                            <button class="medium" th:text="${task.level}"></button>
+                        </div>
+
+                        <div class="status-text">
+                            <p>Code:</p>
+                            <span th:text="${task.code}"></span>
+                        </div>
+
+                        <div class="status-text">
+                            <p>Created At:</p>
+                            <span th:text="${task.createdAt}"></span>
+                        </div>
+
+                        <div class="status-text">
+                            <p>Deadline:</p>
+                            <span th:text="${task.deadline}"></span>
+                        </div>
+
+                        <div class="status-text">
+                            <p>Members:</p>
+                            <span>Adyl, Azhar, Arthur</span>
+                        </div>
+                    </div>
+
+                    <div class="btn">
+                        <div class="dropdown">
+                            <button type="submit" class="dropdown-toggle" id="added" data-bs-toggle="dropdown"
+                                    aria-expanded="false">🧑‍ Add Memember
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="added">
+                                <form class="create-todo p-2">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Default checkbox
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Checked checkbox
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary">Add</button>
+                                    </div>
+                                </form>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                        <button type="submit" class="dropdown-toggle dtn btn-info" id="droped" data-bs-toggle="dropdown"
+                               aria-expanded="false">✏️ Update Task</button>
+                            <ul class="dropdown-menu" aria-labelledby="droped">
+                                <form class="create-todo"
+                                      th:action="@{/task/update/{id}(id=${task.id})}"
+                                      method="post">
+
+<!--                                    <div class="form-group">-->
+<!--                                        <input class="form-control" type="text" th:value="${task.name}"-->
+<!--                                               name="name"/>-->
+<!--                                    </div>-->
+
+<!--                                    <div class="form-group">-->
+<!--                                        <input class="form-control" type="text" th:value="${task.descreption}"-->
+<!--                                               name="description"/>-->
+<!--                                    </div>-->
+
+                                    <div class="form-group">
+                                        <select name="level" class="form-select"
+                                                aria-label="Default select example">
+                                            <option selected disabled="disabled">Level</option>
+                                            <option value="HARD">Hard</option>
+                                            <option value="MEDIUM">Medium</option>
+                                            <option value="EASY">Easy</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <select name="priority" class="form-select"
+                                                aria-label="Default select example">
+                                            <option selected disabled="disabled">Priority</option>
+                                            <option value="DEFAULT">Default</option>
+                                            <option value="LOW">Low</option>
+                                            <option value="MEDIUM">Medium</option>
+                                            <option value="HIGH">High</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input class="form-control" type="datetime-local" name="deadline" th:value="${task.deadline}"/>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </form>
+                            </ul>
+                        </div>
+
+                        <button type="submit">
+                            <img th:src="@{/imges/usercheck.png}" alt="">Become a participant
+                        </button>
+
+                        <button type="submit">
+                            <img th:src="@{/imges/ion_snow.png}" alt="">Freeze the task
+                        </button>
+
+                        <button type="submit">
+                            <img th:src="@{/imges/check.png}" alt="">Close task
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+</header>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script>
+    const menu = document.querySelector(".menu-bar")
+    const main = document.querySelector("main")
+    menu.addEventListener("click", () => {
+        main.classList.toggle("open")
+    })
+</script>
+</body>
+</html>

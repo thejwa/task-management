@@ -1,12 +1,16 @@
 package team.bahor.entity.user;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import team.bahor.entity.Auditable;
 import team.bahor.entity.organization.Organization;
 
 import javax.persistence.*;
 
+@SuperBuilder
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
@@ -20,15 +24,19 @@ public class User extends Auditable {
     @Column(unique = true, nullable = false)
     private String username;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @Column(nullable = false)
+    private String password;
+
+    private boolean blocked;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    private UserRole userRole;
 
     private String profilePhoto;
 
-    @OneToOne(cascade = CascadeType.ALL )
-    @JoinColumn(name = "organization_id", referencedColumnName = "id")
-    private Organization organization;
+    @Column(nullable = false)
+    private Long organizationId;
 
 
 }

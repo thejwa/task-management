@@ -4,12 +4,14 @@
   box-sizing: border-box;
   font-family: Rubik;
 }
-
+p{
+  margin: 0 !important;
+}
 header {
   display: grid;
   grid-template-columns: 300px 1fr;
   height: 100vh;
-  overflow-y: hidden;
+  overflow-x: scroll;
 }
 
 header main {
@@ -147,7 +149,8 @@ nav .input {
 .box {
   padding: 22px;
   width: 300px;
-  height: 100px;
+  height: auto;
+  box-sizing: border-box;
   background: #f6f6f6;
   border-radius: 17px;
 }
@@ -155,15 +158,17 @@ nav .input {
 .content-box {
   padding: 22px;
   width: 100%;
-  height: 100px;
+  height: auto;
   background: #f6f6f6;
+  box-sizing: border-box;
   border-radius: 17px;
 }
 
 .boxs {
   padding: 22px;
   width: 300px;
-  height: 100px;
+  height: auto;
+  box-sizing: border-box;
   background: #f6f6f6;
   border-radius: 17px;
 }
@@ -179,7 +184,8 @@ nav .input {
   padding: 10px 18px;
   margin-top: 20px;
   width: 100%;
-  height: 400px;
+  height: auto;
+  box-sizing: border-box;
   background: #f6f6f6;
   border-radius: 17px;
 }
@@ -346,4 +352,8 @@ nav .input {
   .content-box {
     height: 150px;
   }
+}
+
+.dropdown-toggle::after {
+  display: none; !important;
 }
